@@ -1,3 +1,9 @@
 data_dir:
-  raw_data: data/raw_pdfs
-  reports: data/reports
+  raw: backend/data/raw_pdfs
+  reports: backend/data/reports
+
+
+model:
+  chat_model: gpt-4o
+  temperature: 0.7
+

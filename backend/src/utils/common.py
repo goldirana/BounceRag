@@ -6,6 +6,7 @@ import os
 import pickle
 from multiprocessing import Pool, cpu_count
 from typing import *
+from tqdm import tqdm
 
 
 def split_file_extension(path: str) -> str:
@@ -104,7 +105,6 @@ def read_json(path):
                 logger.info("Json not read")
         print(params)
         return params
-        
     except Exception as e:
         logger.info(e)
         raise e      
