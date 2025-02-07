@@ -1,10 +1,11 @@
 import json, yaml
-from src import logger
+from backend.logger import logger
 from box import ConfigBox
 from pathlib import Path
 import os
 import pickle
 from multiprocessing import Pool, cpu_count
+from typing import *
 
 
 def split_file_extension(path: str) -> str:
