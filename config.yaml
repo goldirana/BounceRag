@@ -1,0 +1,3 @@
+data_dir:
+  raw_data: data/raw_pdfs
+  reports: data/reports
