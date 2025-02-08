@@ -1,0 +1,5 @@
+{
+"image_summarizer_prompt": "Describe the image in detail. Be specific about graphs and numbers",
+"text_summarizer_prompt": "Act as an assistant tasked with summarizing the tables and text. Give a concise summary of the table or text. Table or text chunk: {element}"
+    
+}
