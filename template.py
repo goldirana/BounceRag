@@ -44,6 +44,10 @@ backend_structure = [
         # research
     f"{back_end}/notebooks/__init__.py",
     f"{back_end}/notebooks/trails.ipynb",
+        # artifacts
+    f"{back_end}/artifacts/tacker.json",
+        # summarizer
+    f"{back_end}/src/prompts/summarizer.json",
 ]
 
 misc_structure = [
