@@ -103,11 +103,19 @@ def read_json(path):
             logger.info("Json object read sucessfully ")
             if params == None:
                 logger.info("Json not read")
-        print(params)
+        # print(params)
         return params
     except Exception as e:
         logger.info(e)
-        raise e      
+        raise e    
+    
+def save_json(object, path):
+    try:
+        with open(path, "w") as f:
+            json.dump(object, f)
+            logger.info("Json object saved at %s", path)
+    except Exception as e:
+        logger.error(e)
 
 def log_error(sucess_message=None, faliure_message=None):
     def decorator(func):  # This is the actual decorator
