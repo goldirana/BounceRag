@@ -7,3 +7,27 @@ model:
   chat_model: gpt-4o
   temperature: 0.7
 
+metadata:
+  - filetype
+  - page_number
+  - filename
+
+image_summarizer:
+  model: gpt-4o
+  device: cuda
+  image_dir: backend/data/images
+  summaries_dir: backend/data/summaries
+  image_summary_dir: backend/data/summaries/image_summaries.json
+
+text_summarizer:
+  model: gpt-4o
+  text_summary_dir: backend/data/summaries/text_summaries.json
+
+prompts:
+  summarizer_prompt_dir: backend/prompts/summarizer.json
+
+vector_database:
+  vectorstore_name: "test"
+  embeddings: "OpenAIEmbeddings" # if changed need to make change in code
+  persist_directory: "test_directory"
+  
