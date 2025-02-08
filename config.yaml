@@ -24,7 +24,7 @@ text_summarizer:
   text_summary_dir: backend/data/summaries/text_summaries.json
 
 prompts:
-  summarizer_prompt_dir: backend/prompts/summarizer.json
+  summarizer_prompt_dir: backend/src/prompts/summarizer.json
 
 vector_database:
   vectorstore_name: "test"
