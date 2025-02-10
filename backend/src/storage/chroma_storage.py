@@ -3,10 +3,10 @@ from langchain.storage import InMemoryStore
 from langchain.retrievers.multi_vector import MultiVectorRetriever
 from langchain.schema.document import Document
 from langchain_openai import OpenAIEmbeddings
-
+from zipfile import ZipFile
 from typing import *
 from dotenv import load_dotenv
-import os
+import os, uuid
 
 from backend.src.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
 from backend.src.config.configuration import ConfigurationManager
@@ -38,22 +38,7 @@ class VectorDatabase(Extractor):
         documents = [Document(page_content=data_, metadata=metadata_)
                         for data_, metadata_ in zip(data, metadata)]
         return documents
-    
-    def store_to_vb(self, data: List[Tuple], summaries: List[Document], retriever)->None:
-        try:
-            retriever.docstore.mset(data)
-            retriever.vectorstore.add_documents(summaries)
-        except Exception as e:
-            print("Error in storing data to vectorbase: ", e)
-            raise e
-    
-    def store_to_vb(self, summaries: List[Document], retriever)->None:
-        try:
-            retriever.vectorstore.add_documents(summaries)
-        except Exception as e:
-            print("Error in storing data to vectorbase: ", e)
-            raise e
-    
+
     @staticmethod
     def sanity_check_for_metadata(metadata: dict):
         """To check if metadata value has no data structure; if present take 1st value as str"""
@@ -67,8 +52,31 @@ class VectorDatabase(Extractor):
                 new_metadata[key] = str(value)
         return new_metadata
     
+    def store_to_vb(self, summaries: List[Document], retriever)->None:
+        try:
+            retriever.vectorstore.add_documents(summaries)
+        except Exception as e:
+            print("Error in storing data to vectorbase: ", e)
+            raise e
+    
+    def zip_vector_database(self) -> None:
+        """To zip the vector database; using persist_directory
+        """
+        with ZipFile(self.config.persist_directory + ".zip", 'w') as zipf:
+            for root, dirs, files in os.walk(self.config.persist_directory):
+                for file in files:
+                    zipf.write(os.path.join(root, file))
 
-# unit testing
+    def unzip_vectorbase(self, extract_to) -> None:
+        """To unzip vectorbase; using persist_directory
+        Args:
+            extract_to: path to extract the vectorbase
+        """
+        with ZipFile(self.config.persist_directory + ".zip", 'r') as zip_ref:
+            zip_ref.extractall(extract_to)
+
+
+# Unit testing
 if __name__ == "__main__":
     config_manager = ConfigurationManager(CONFIG_FILE_PATH, PARAMS_FILE_PATH)
     vector_database_config = config_manager.get_vectordatabase_config()

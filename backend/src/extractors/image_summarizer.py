@@ -1,5 +1,6 @@
 from backend.src.config.configuration import ConfigurationManager
 from backend.src.extractors.data_ingestion import DataIngestion
+from backend.src.extractors.text_summarizer import TextSummarizer
 from backend.src.utils.common import read_json
 from langchain.schema.messages import HumanMessage, SystemMessage, AIMessage
 from langchain.schema.document import Document
@@ -8,9 +9,12 @@ from typing import *
 import base64
 import uuid
 from backend.src.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
+import os
 from dotenv import load_dotenv
 
 load_dotenv()   
+
+
 class ImageSummarizer:
     def __init__(self, config, model: object):
         super().__init__()
@@ -31,7 +35,7 @@ class ImageSummarizer:
             str: base64 encoded image"""
         try:
             with open(image_path, "rb") as image:
-                return base64.b64encode(image.read()).decode("utf-8")
+                return base64.b64encode(image.read()).decode("utf-8"), image_path
         except Exception as e:
             print(f"Error: {e}")
             raise e
@@ -79,6 +83,7 @@ class ImageSummarizer:
             images_path.append(os.path.join(path, image))
         return images_path
     
+    
     @staticmethod
     def create_doc_from_list(data: List) -> List:
         """To create document from list of data"""
@@ -89,19 +94,27 @@ class ImageSummarizer:
             _.append(Document(doc, metadata=metadata))
         return _
     
-    def add_metadata(self, encoded_images, summaries, metadata: dict=None, automatic_metadata=False) -> Tuple[List[tuple], List[Document]]:
+    def decorator(func):
+        def wrapper(self, *args, **kwargs):
+            encoded_images_with_metadata, summaries_with_metadata = func(self, *args, **kwargs)
+            for index, summary in enumerate(summaries_with_metadata):
+                summary.metadata["raw_image"] = encoded_images_with_metadata[index][1]
+            return summaries_with_metadata
+        return wrapper
+    
+    @decorator
+    def add_metadata(self, encoded_images, summaries, metadata: list[dict]=None, automatic_metadata=False) -> Tuple[List[tuple], List[Document]]:
         if automatic_metadata:
-            self.uuids = [str(uuid.uuid4()) for i in encoded_images]
-
             metadata = {"source": self.image_path,
                         "type": self.type}
-                    
+        self.uuids = [str(uuid.uuid4()) for i in encoded_images]
         encoded_images_with_metadata = list(zip(self.uuids, encoded_images))
         
         summaries_with_metadata = []
         for index, summary in enumerate(summaries):
-            metadata["doc_id"] = self.uuids[index]
-            summaries_with_metadata.append(Document(page_content=summary, metadata=metadata))
+            meta_data = metadata[index]
+            meta_data["doc_id"] = self.uuids[index]
+            summaries_with_metadata.append(Document(page_content=summary, metadata=meta_data))
             
         return encoded_images_with_metadata, summaries_with_metadata
         
@@ -112,3 +125,16 @@ if __name__ == "__main__":
     config_manager = ConfigurationManager(CONFIG_FILE_PATH, PARAMS_FILE_PATH)
     image_summarizer_config = config_manager.get_image_summarizer_params()
     image_summarizer = ImageSummarizer(image_summarizer_config, model)
+    
+    image_path = "backend/data/reports/2023_removed/images"
+    images_path = image_summarizer.get_image_path(image_path)
+
+    encoded_images = []
+    image_summaries = []
+
+    for image in images_path:
+        encoded_image = image_summarizer.encode_image(image)
+        image_summaries.append(image_summarizer.image_summarize(encoded_image))
+        
+        encoded_images.append(encoded_image)
+    encoded_images, image_summaries = image_summarizer.add_metadata(encoded_images, image_summaries, automatic_metadata=True)
