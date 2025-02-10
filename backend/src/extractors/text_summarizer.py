@@ -9,12 +9,13 @@ from langchain.schema.output_parser import StrOutputParser
 from dotenv import load_dotenv
 from backend.src.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
 from typing import *
-
+import uuid
 
 load_dotenv()
 
 class TextSummarizer(Extractor):
     def __init__(self, config, model):
+        super().__init__()
         self.config = config
         self.model = model
         
@@ -58,10 +59,11 @@ class TextSummarizer(Extractor):
         """To add rawtext as metadata for summaries"""
         uuids = [str(uuid.uuid4()) for i in raw_text]
         summaries_with_metadata = []
+
         for index, data in enumerate(zip(summaries, summary_metdata)):
             summary, metadata = data
             metadata["doc_id"] = uuids[index]
-           
+            metadata["type"] = "text"
             metadata["raw_text"] = raw_text[index]
             metadata = TextSummarizer.sanity_check_for_metadata(metadata)
             summaries_with_metadata.append(Document(page_content=summary, metadata=metadata))
@@ -72,7 +74,7 @@ class TextSummarizer(Extractor):
 # Unit Testing
 if __name__ == "__main__":
     model = ChatOpenAI(temperature=0, model="gpt-4o")
-    pdf_file_path="backend/data/raw_pdfs/2023_removed.pdf"
+    pdf_file_path="data/raw_pdfs/2023_removed.pdf"
     config_manager = ConfigurationManager(CONFIG_FILE_PATH, PARAMS_FILE_PATH)
     text_summarizer_config = config_manager.get_text_summarizer_params()
     data_extractor_config = config_manager.get_data_ingestion_params()

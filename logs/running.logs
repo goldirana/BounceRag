@@ -1,0 +1,685 @@
+2025-02-10 08:30:13,819 - root - INFO - Yaml read successfully from config.yaml
+2025-02-10 08:30:13,820 - root - ERROR - FileNotFoundError: params.yaml
+2025-02-10 08:30:14,546 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-10 08:30:14,648 - chromadb.config - DEBUG - Starting component System
+2025-02-10 08:30:14,649 - chromadb.config - DEBUG - Starting component Posthog
+2025-02-10 08:30:14,649 - chromadb.config - DEBUG - Starting component OpenTelemetryClient
+2025-02-10 08:30:14,650 - chromadb.config - DEBUG - Starting component SqliteDB
+2025-02-10 08:30:14,655 - chromadb.config - DEBUG - Starting component SimpleQuotaEnforcer
+2025-02-10 08:30:14,656 - chromadb.config - DEBUG - Starting component SimpleRateLimitEnforcer
+2025-02-10 08:30:14,656 - chromadb.config - DEBUG - Starting component LocalSegmentManager
+2025-02-10 08:30:14,656 - chromadb.config - DEBUG - Starting component LocalExecutor
+2025-02-10 08:30:14,657 - chromadb.config - DEBUG - Starting component SegmentAPI
+2025-02-10 08:30:14,664 - chromadb.api.segment - DEBUG - Collection test2 already exists, returning existing collection.
+2025-02-10 08:30:15,170 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): us.i.posthog.com:443
+2025-02-10 08:30:16,206 - urllib3.connectionpool - DEBUG - https://us.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+2025-02-10 08:30:50,744 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x324eaac10>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 08:30:50,747 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 08:30:50,749 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 08:30:50,781 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x324dcd460>
+2025-02-10 08:30:50,783 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x3242c6740> server_hostname='api.openai.com' timeout=None
+2025-02-10 08:30:50,802 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x324dcdee0>
+2025-02-10 08:30:50,804 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 08:30:50,804 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 08:30:50,805 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 08:30:50,806 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 08:30:50,807 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 08:30:52,211 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 03:00:52 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'75'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-6d97889fc7-2pnr9'), (b'x-envoy-upstream-service-time', b'31'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999994'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_ccdde096bcca276ffd8df1ce94e79add'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=lONK5bDyXMuzN2KZ2FddmAGnvGNrLMsBvugA_W2.UAg-1739156452-1.0.1.1-Ud8BQoSFGr.uK6oc6C70VuX55SouPf7a9CDCqPsT4kfg9dTKQA9BWJoJhX3rljzccAYR0QqbC3aQiG6JmBiuDg; path=/; expires=Mon, 10-Feb-25 03:30:52 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=43e35mvCknim3D523UxaeMJSVxfXreJydQv6hVUioZ8-1739156452762-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90f8d9ed1e0e59be-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 08:30:52,214 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 08:30:52,217 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 08:30:52,219 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 08:30:52,219 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 08:30:52,219 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 08:30:52,220 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers([('date', 'Mon, 10 Feb 2025 03:00:52 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-allow-origin', '*'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-model', 'text-embedding-ada-002-v2'), ('openai-organization', 'user-gccgvei9eaw4a1hksddpirf5'), ('openai-processing-ms', '75'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('via', 'envoy-router-6d97889fc7-2pnr9'), ('x-envoy-upstream-service-time', '31'), ('x-ratelimit-limit-requests', '3000'), ('x-ratelimit-limit-tokens', '1000000'), ('x-ratelimit-remaining-requests', '2999'), ('x-ratelimit-remaining-tokens', '999994'), ('x-ratelimit-reset-requests', '20ms'), ('x-ratelimit-reset-tokens', '0s'), ('x-request-id', 'req_ccdde096bcca276ffd8df1ce94e79add'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=lONK5bDyXMuzN2KZ2FddmAGnvGNrLMsBvugA_W2.UAg-1739156452-1.0.1.1-Ud8BQoSFGr.uK6oc6C70VuX55SouPf7a9CDCqPsT4kfg9dTKQA9BWJoJhX3rljzccAYR0QqbC3aQiG6JmBiuDg; path=/; expires=Mon, 10-Feb-25 03:30:52 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=43e35mvCknim3D523UxaeMJSVxfXreJydQv6hVUioZ8-1739156452762-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90f8d9ed1e0e59be-DEL'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2025-02-10 08:30:52,220 - openai._base_client - DEBUG - request_id: req_ccdde096bcca276ffd8df1ce94e79add
+2025-02-10 08:30:52,256 - chromadb.config - DEBUG - Starting component PersistentLocalHnswSegment
+2025-02-10 08:30:53,031 - urllib3.connectionpool - DEBUG - https://us.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+2025-02-10 08:55:50,727 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x326643430>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 08:55:50,744 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 08:55:50,751 - httpcore.connection - DEBUG - close.started
+2025-02-10 08:55:50,755 - httpcore.connection - DEBUG - close.complete
+2025-02-10 08:55:50,756 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 08:55:50,850 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x3247cfc40>
+2025-02-10 08:55:50,851 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x3242c6740> server_hostname='api.openai.com' timeout=None
+2025-02-10 08:55:50,884 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x3247cf9d0>
+2025-02-10 08:55:50,886 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 08:55:50,889 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 08:55:50,889 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 08:55:50,890 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 08:55:50,890 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 08:55:52,004 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 03:25:52 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'44'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-d5486bf44-cz2cl'), (b'x-envoy-upstream-service-time', b'30'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999994'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_6012472e77e8119d7e7609999cb7baa6'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=Afq92Jgn8zMaGYIZi53RhnTmS8OlLkOPDufhKLjKPj8-1739157952-1.0.1.1-QM4u75p82DGM5PVxulI29E58teqCI_i9AfMZn8Ovw42xpBpcEc.MLaV0RkPUi39Nlf1rR0b0EUmElkIaK85C7Q; path=/; expires=Mon, 10-Feb-25 03:55:52 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90f8fe8c986459de-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 08:55:52,008 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 08:55:52,009 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 08:55:52,045 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 08:55:52,046 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 08:55:52,046 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 08:55:52,047 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Mon, 10 Feb 2025 03:25:52 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'access-control-expose-headers': 'X-Request-ID', 'openai-model': 'text-embedding-ada-002-v2', 'openai-organization': 'user-gccgvei9eaw4a1hksddpirf5', 'openai-processing-ms': '44', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'via': 'envoy-router-d5486bf44-cz2cl', 'x-envoy-upstream-service-time': '30', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999994', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_6012472e77e8119d7e7609999cb7baa6', 'cf-cache-status': 'DYNAMIC', 'set-cookie': '__cf_bm=Afq92Jgn8zMaGYIZi53RhnTmS8OlLkOPDufhKLjKPj8-1739157952-1.0.1.1-QM4u75p82DGM5PVxulI29E58teqCI_i9AfMZn8Ovw42xpBpcEc.MLaV0RkPUi39Nlf1rR0b0EUmElkIaK85C7Q; path=/; expires=Mon, 10-Feb-25 03:55:52 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '90f8fe8c986459de-DEL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-02-10 08:55:52,047 - openai._base_client - DEBUG - request_id: req_6012472e77e8119d7e7609999cb7baa6
+2025-02-10 08:56:13,143 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x327c59820>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 08:56:13,147 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 08:56:13,148 - httpcore.connection - DEBUG - close.started
+2025-02-10 08:56:13,149 - httpcore.connection - DEBUG - close.complete
+2025-02-10 08:56:13,149 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 08:56:13,164 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x3275cef70>
+2025-02-10 08:56:13,166 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x3242c6740> server_hostname='api.openai.com' timeout=None
+2025-02-10 08:56:13,187 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x326bf7220>
+2025-02-10 08:56:13,187 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 08:56:13,188 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 08:56:13,189 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 08:56:13,190 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 08:56:13,190 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 08:56:13,908 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 03:26:14 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'37'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-586fcd8bbf-zpsgg'), (b'x-envoy-upstream-service-time', b'28'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999994'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_cbc3e8edf2763f0d13ea0bcf34915679'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90f8ff17f96954f0-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 08:56:13,909 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 08:56:13,910 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 08:56:13,911 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 08:56:13,912 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 08:56:13,912 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 08:56:13,913 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Mon, 10 Feb 2025 03:26:14 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'access-control-expose-headers': 'X-Request-ID', 'openai-model': 'text-embedding-ada-002-v2', 'openai-organization': 'user-gccgvei9eaw4a1hksddpirf5', 'openai-processing-ms': '37', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'via': 'envoy-router-586fcd8bbf-zpsgg', 'x-envoy-upstream-service-time': '28', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999994', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_cbc3e8edf2763f0d13ea0bcf34915679', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '90f8ff17f96954f0-DEL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-02-10 08:56:13,913 - openai._base_client - DEBUG - request_id: req_cbc3e8edf2763f0d13ea0bcf34915679
+2025-02-10 08:59:46,253 - root - INFO - Yaml read successfully from config.yaml
+2025-02-10 08:59:46,253 - root - ERROR - FileNotFoundError: params.yaml
+2025-02-10 08:59:47,123 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-10 08:59:47,221 - chromadb.config - DEBUG - Starting component System
+2025-02-10 08:59:47,222 - chromadb.config - DEBUG - Starting component Posthog
+2025-02-10 08:59:47,222 - chromadb.config - DEBUG - Starting component OpenTelemetryClient
+2025-02-10 08:59:47,223 - chromadb.config - DEBUG - Starting component SqliteDB
+2025-02-10 08:59:47,227 - chromadb.config - DEBUG - Starting component SimpleQuotaEnforcer
+2025-02-10 08:59:47,228 - chromadb.config - DEBUG - Starting component SimpleRateLimitEnforcer
+2025-02-10 08:59:47,228 - chromadb.config - DEBUG - Starting component LocalSegmentManager
+2025-02-10 08:59:47,228 - chromadb.config - DEBUG - Starting component LocalExecutor
+2025-02-10 08:59:47,229 - chromadb.config - DEBUG - Starting component SegmentAPI
+2025-02-10 08:59:47,234 - chromadb.api.segment - DEBUG - Collection test3 already exists, returning existing collection.
+2025-02-10 08:59:47,744 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): us.i.posthog.com:443
+2025-02-10 08:59:48,809 - urllib3.connectionpool - DEBUG - https://us.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+2025-02-10 08:59:54,642 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x171fe5dc0>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 08:59:54,644 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 08:59:54,645 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 08:59:54,680 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x32e624460>
+2025-02-10 08:59:54,681 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x32db77240> server_hostname='api.openai.com' timeout=None
+2025-02-10 08:59:54,704 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x32e624790>
+2025-02-10 08:59:54,705 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 08:59:54,709 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 08:59:54,711 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 08:59:54,713 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 08:59:54,714 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 08:59:55,357 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 03:29:55 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'46'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-5448fdfb9b-fd9dv'), (b'x-envoy-upstream-service-time', b'33'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999994'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_f59dcc3a08e523dcb6446d359f163d8c'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=JclH4zv97Ftgey2.pK2AjCAHoQ.mwxkLaM8NDXk5qP4-1739158195-1.0.1.1-YMPfdWT9KlnWefTqDZm6.8yj9dE.ldR4PCzZZHjZcsUfrlzk6yJwi0A.9QMeEO66jlyD5H3ynYrVlagcDBpEwA; path=/; expires=Mon, 10-Feb-25 03:59:55 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=2zlQOs7huPDF2K9AbwNDoNzemWTZzsN_Qwf_NzxNtLw-1739158195908-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90f904808c545523-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 08:59:55,360 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 08:59:55,361 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 08:59:55,363 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 08:59:55,363 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 08:59:55,363 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 08:59:55,364 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers([('date', 'Mon, 10 Feb 2025 03:29:55 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-allow-origin', '*'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-model', 'text-embedding-ada-002-v2'), ('openai-organization', 'user-gccgvei9eaw4a1hksddpirf5'), ('openai-processing-ms', '46'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('via', 'envoy-router-5448fdfb9b-fd9dv'), ('x-envoy-upstream-service-time', '33'), ('x-ratelimit-limit-requests', '3000'), ('x-ratelimit-limit-tokens', '1000000'), ('x-ratelimit-remaining-requests', '2999'), ('x-ratelimit-remaining-tokens', '999994'), ('x-ratelimit-reset-requests', '20ms'), ('x-ratelimit-reset-tokens', '0s'), ('x-request-id', 'req_f59dcc3a08e523dcb6446d359f163d8c'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=JclH4zv97Ftgey2.pK2AjCAHoQ.mwxkLaM8NDXk5qP4-1739158195-1.0.1.1-YMPfdWT9KlnWefTqDZm6.8yj9dE.ldR4PCzZZHjZcsUfrlzk6yJwi0A.9QMeEO66jlyD5H3ynYrVlagcDBpEwA; path=/; expires=Mon, 10-Feb-25 03:59:55 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=2zlQOs7huPDF2K9AbwNDoNzemWTZzsN_Qwf_NzxNtLw-1739158195908-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90f904808c545523-DEL'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2025-02-10 08:59:55,364 - openai._base_client - DEBUG - request_id: req_f59dcc3a08e523dcb6446d359f163d8c
+2025-02-10 08:59:55,380 - chromadb.config - DEBUG - Starting component PersistentLocalHnswSegment
+2025-02-10 08:59:56,218 - urllib3.connectionpool - DEBUG - https://us.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+2025-02-10 11:20:00,701 - root - INFO - Yaml read successfully from config.yaml
+2025-02-10 11:20:00,702 - root - ERROR - FileNotFoundError: params.yaml
+2025-02-10 11:20:01,513 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-10 11:20:01,618 - chromadb.config - DEBUG - Starting component System
+2025-02-10 11:20:01,618 - chromadb.config - DEBUG - Starting component Posthog
+2025-02-10 11:20:01,619 - chromadb.config - DEBUG - Starting component OpenTelemetryClient
+2025-02-10 11:20:01,619 - chromadb.config - DEBUG - Starting component SqliteDB
+2025-02-10 11:20:01,624 - chromadb.config - DEBUG - Starting component SimpleQuotaEnforcer
+2025-02-10 11:20:01,624 - chromadb.config - DEBUG - Starting component SimpleRateLimitEnforcer
+2025-02-10 11:20:01,625 - chromadb.config - DEBUG - Starting component LocalSegmentManager
+2025-02-10 11:20:01,625 - chromadb.config - DEBUG - Starting component LocalExecutor
+2025-02-10 11:20:01,625 - chromadb.config - DEBUG - Starting component SegmentAPI
+2025-02-10 11:20:01,630 - chromadb.api.segment - DEBUG - Collection test3 already exists, returning existing collection.
+2025-02-10 11:20:02,134 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): us.i.posthog.com:443
+2025-02-10 11:20:03,170 - urllib3.connectionpool - DEBUG - https://us.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+2025-02-10 11:20:05,248 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x32e640dc0>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 11:20:05,250 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 11:20:05,251 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 11:20:05,281 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x32e63bf70>
+2025-02-10 11:20:05,282 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x32da77240> server_hostname='api.openai.com' timeout=None
+2025-02-10 11:20:05,301 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x32e63bc70>
+2025-02-10 11:20:05,302 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 11:20:05,302 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 11:20:05,303 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 11:20:05,303 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 11:20:05,303 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 11:20:06,061 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 05:50:06 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'110'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-canary-6b4c8788b8-f25g7'), (b'x-envoy-upstream-service-time', b'61'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999994'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_a115395ba49a8d4e462483ed47105c42'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=jiP02k7dluRWj7IgFaVbRg885TGFj8HM9S2m17yQOMc-1739166606-1.0.1.1-WRx5aqeGAokCwBtNnVRMkWWGLnylWH8J8a_Mh1d1i_1lt17UeXZX.FLR6u7aIuyUU.Z6HoUBVVqSHsQdEIGZZA; path=/; expires=Mon, 10-Feb-25 06:20:06 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=2wjDQbW.Rjj4BIc1bq4snv7vmiQLtQryF1lIRTT.sCA-1739166606623-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90f9d1d6ba0a598e-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 11:20:06,065 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 11:20:06,067 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 11:20:06,069 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 11:20:06,070 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 11:20:06,071 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 11:20:06,071 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers([('date', 'Mon, 10 Feb 2025 05:50:06 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-allow-origin', '*'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-model', 'text-embedding-ada-002-v2'), ('openai-organization', 'user-gccgvei9eaw4a1hksddpirf5'), ('openai-processing-ms', '110'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('via', 'envoy-router-canary-6b4c8788b8-f25g7'), ('x-envoy-upstream-service-time', '61'), ('x-ratelimit-limit-requests', '3000'), ('x-ratelimit-limit-tokens', '1000000'), ('x-ratelimit-remaining-requests', '2999'), ('x-ratelimit-remaining-tokens', '999994'), ('x-ratelimit-reset-requests', '20ms'), ('x-ratelimit-reset-tokens', '0s'), ('x-request-id', 'req_a115395ba49a8d4e462483ed47105c42'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=jiP02k7dluRWj7IgFaVbRg885TGFj8HM9S2m17yQOMc-1739166606-1.0.1.1-WRx5aqeGAokCwBtNnVRMkWWGLnylWH8J8a_Mh1d1i_1lt17UeXZX.FLR6u7aIuyUU.Z6HoUBVVqSHsQdEIGZZA; path=/; expires=Mon, 10-Feb-25 06:20:06 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=2wjDQbW.Rjj4BIc1bq4snv7vmiQLtQryF1lIRTT.sCA-1739166606623-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90f9d1d6ba0a598e-DEL'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2025-02-10 11:20:06,072 - openai._base_client - DEBUG - request_id: req_a115395ba49a8d4e462483ed47105c42
+2025-02-10 11:20:06,095 - chromadb.config - DEBUG - Starting component PersistentLocalHnswSegment
+2025-02-10 11:20:06,554 - urllib3.connectionpool - DEBUG - https://us.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+2025-02-10 11:23:37,813 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x33069cee0>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 11:23:37,836 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 11:23:37,858 - httpcore.connection - DEBUG - close.started
+2025-02-10 11:23:37,866 - httpcore.connection - DEBUG - close.complete
+2025-02-10 11:23:37,866 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 11:23:37,900 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x330686c40>
+2025-02-10 11:23:37,900 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x32da77240> server_hostname='api.openai.com' timeout=None
+2025-02-10 11:23:37,960 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x3306860a0>
+2025-02-10 11:23:37,966 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 11:23:37,971 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 11:23:37,971 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 11:23:37,972 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 11:23:37,972 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 11:23:38,645 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 05:53:39 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'96'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-7654f5764d-n96q2'), (b'x-envoy-upstream-service-time', b'59'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999994'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_59f1981ab74d0f3640f8e4ba9e27e7a5'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90f9d707ec625969-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 11:23:38,648 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 11:23:38,650 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 11:23:38,653 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 11:23:38,653 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 11:23:38,654 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 11:23:38,655 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Mon, 10 Feb 2025 05:53:39 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'access-control-expose-headers': 'X-Request-ID', 'openai-model': 'text-embedding-ada-002-v2', 'openai-organization': 'user-gccgvei9eaw4a1hksddpirf5', 'openai-processing-ms': '96', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'via': 'envoy-router-7654f5764d-n96q2', 'x-envoy-upstream-service-time': '59', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999994', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_59f1981ab74d0f3640f8e4ba9e27e7a5', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '90f9d707ec625969-DEL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-02-10 11:23:38,657 - openai._base_client - DEBUG - request_id: req_59f1981ab74d0f3640f8e4ba9e27e7a5
+2025-02-10 11:26:46,799 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x33069e280>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 11:26:46,816 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 11:26:46,822 - httpcore.connection - DEBUG - close.started
+2025-02-10 11:26:46,825 - httpcore.connection - DEBUG - close.complete
+2025-02-10 11:26:46,826 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 11:26:46,874 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x3306868e0>
+2025-02-10 11:26:46,893 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x32da77240> server_hostname='api.openai.com' timeout=None
+2025-02-10 11:26:47,083 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x3306865b0>
+2025-02-10 11:26:47,216 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 11:26:47,529 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 11:26:47,548 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 11:26:47,554 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 11:26:47,612 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 11:26:48,266 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 05:56:48 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'94'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-77574556d6-nczhb'), (b'x-envoy-upstream-service-time', b'62'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999994'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_bf7bca412f22081d7caf6ef6ee8d5559'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90f9dba8bf815a0c-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 11:26:48,335 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 11:26:48,340 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 11:26:48,347 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 11:26:48,349 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 11:26:48,351 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 11:26:48,354 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Mon, 10 Feb 2025 05:56:48 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'access-control-expose-headers': 'X-Request-ID', 'openai-model': 'text-embedding-ada-002-v2', 'openai-organization': 'user-gccgvei9eaw4a1hksddpirf5', 'openai-processing-ms': '94', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'via': 'envoy-router-77574556d6-nczhb', 'x-envoy-upstream-service-time': '62', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999994', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_bf7bca412f22081d7caf6ef6ee8d5559', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '90f9dba8bf815a0c-DEL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-02-10 11:26:48,357 - openai._base_client - DEBUG - request_id: req_bf7bca412f22081d7caf6ef6ee8d5559
+2025-02-10 11:27:49,211 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x33069ec10>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 11:27:49,224 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 11:27:49,227 - httpcore.connection - DEBUG - close.started
+2025-02-10 11:27:49,230 - httpcore.connection - DEBUG - close.complete
+2025-02-10 11:27:49,231 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 11:28:19,352 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(gaierror(8, 'nodename nor servname provided, or not known'))
+2025-02-10 11:28:19,440 - openai._base_client - DEBUG - Encountered Exception
+Traceback (most recent call last):
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 101, in handle_request
+    raise exc
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 215, in connect_tcp
+    sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/openai/_base_client.py", line 996, in _request
+    response = self._client.send(
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 8] nodename nor servname provided, or not known
+2025-02-10 11:28:19,894 - openai._base_client - DEBUG - 2 retries left
+2025-02-10 11:28:20,059 - openai._base_client - INFO - Retrying request to /embeddings in 0.424891 seconds
+2025-02-10 11:28:20,492 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x33069ec10>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 11:28:20,497 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 11:28:20,498 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 11:28:50,509 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(gaierror(8, 'nodename nor servname provided, or not known'))
+2025-02-10 11:28:50,527 - openai._base_client - DEBUG - Encountered Exception
+Traceback (most recent call last):
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 101, in handle_request
+    raise exc
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 215, in connect_tcp
+    sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/openai/_base_client.py", line 996, in _request
+    response = self._client.send(
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 8] nodename nor servname provided, or not known
+2025-02-10 11:28:50,531 - openai._base_client - DEBUG - 1 retry left
+2025-02-10 11:28:50,533 - openai._base_client - INFO - Retrying request to /embeddings in 0.998007 seconds
+2025-02-10 11:28:51,542 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x33069ec10>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 11:28:51,549 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 11:28:51,552 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 11:29:21,560 - httpcore.connection - DEBUG - connect_tcp.failed exception=KeyboardInterrupt()
+2025-02-10 11:29:25,897 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x33429e3a0>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 11:29:25,910 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 11:29:25,911 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 11:29:55,920 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(gaierror(8, 'nodename nor servname provided, or not known'))
+2025-02-10 11:29:55,929 - openai._base_client - DEBUG - Encountered Exception
+Traceback (most recent call last):
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 101, in handle_request
+    raise exc
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 215, in connect_tcp
+    sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/openai/_base_client.py", line 996, in _request
+    response = self._client.send(
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 8] nodename nor servname provided, or not known
+2025-02-10 11:29:55,936 - openai._base_client - DEBUG - 2 retries left
+2025-02-10 11:29:55,936 - openai._base_client - INFO - Retrying request to /embeddings in 0.402760 seconds
+2025-02-10 11:29:56,346 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x33429e3a0>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 11:29:56,351 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 11:29:56,353 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 11:30:03,354 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(gaierror(8, 'nodename nor servname provided, or not known'))
+2025-02-10 11:30:03,467 - openai._base_client - DEBUG - Encountered Exception
+Traceback (most recent call last):
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 101, in handle_request
+    raise exc
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 215, in connect_tcp
+    sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/openai/_base_client.py", line 996, in _request
+    response = self._client.send(
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 8] nodename nor servname provided, or not known
+2025-02-10 11:30:03,478 - openai._base_client - DEBUG - 1 retry left
+2025-02-10 11:30:03,483 - openai._base_client - INFO - Retrying request to /embeddings in 0.865249 seconds
+2025-02-10 11:30:04,352 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x33429e3a0>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 11:30:04,364 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 11:30:04,366 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 11:30:07,906 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x3342a1640>
+2025-02-10 11:30:07,919 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x32da77240> server_hostname='api.openai.com' timeout=None
+2025-02-10 11:30:08,358 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x3342b36d0>
+2025-02-10 11:30:08,365 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 11:30:08,369 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 11:30:08,369 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 11:30:08,371 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 11:30:08,371 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 11:30:18,428 - httpcore.http11 - DEBUG - receive_response_headers.failed exception=KeyboardInterrupt()
+2025-02-10 11:30:18,433 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 11:30:18,434 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 11:30:20,657 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x3346d6d30>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 11:30:20,660 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 11:30:20,661 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 11:30:21,760 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x33472fa90>
+2025-02-10 11:30:21,764 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x32da77240> server_hostname='api.openai.com' timeout=None
+2025-02-10 11:30:22,153 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x33472f7f0>
+2025-02-10 11:30:22,156 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 11:30:22,157 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 11:30:22,158 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 11:30:22,158 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 11:30:22,159 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 11:30:22,881 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 06:00:23 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'114'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-59988fbbff-skxph'), (b'x-envoy-upstream-service-time', b'62'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999994'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_adebd6f30e5c549428d9bd754f456c9f'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=Ez9r4cY2Rl3Bc0QJxzaEp_wIxxgdi60VSn.1yB3ApYE-1739167223-1.0.1.1-P8phTe6NK9EsIDp_KlB2eDAn7y4ICr2SBVTPhHyyWSzTeMcdSdxUEK_jEves7PuJSX.ym2qq6N0Do1Y5MPzymA; path=/; expires=Mon, 10-Feb-25 06:30:23 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=wLs76tJI5mVqCGmh4uV8oI2iLGFhyjtW3r8Guq.cAXI-1739167223410-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90f9e0e629cca794-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 11:30:22,884 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 11:30:22,903 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 11:30:22,907 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 11:30:22,909 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 11:30:22,910 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 11:30:22,911 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers([('date', 'Mon, 10 Feb 2025 06:00:23 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-allow-origin', '*'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-model', 'text-embedding-ada-002-v2'), ('openai-organization', 'user-gccgvei9eaw4a1hksddpirf5'), ('openai-processing-ms', '114'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('via', 'envoy-router-59988fbbff-skxph'), ('x-envoy-upstream-service-time', '62'), ('x-ratelimit-limit-requests', '3000'), ('x-ratelimit-limit-tokens', '1000000'), ('x-ratelimit-remaining-requests', '2999'), ('x-ratelimit-remaining-tokens', '999994'), ('x-ratelimit-reset-requests', '20ms'), ('x-ratelimit-reset-tokens', '0s'), ('x-request-id', 'req_adebd6f30e5c549428d9bd754f456c9f'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=Ez9r4cY2Rl3Bc0QJxzaEp_wIxxgdi60VSn.1yB3ApYE-1739167223-1.0.1.1-P8phTe6NK9EsIDp_KlB2eDAn7y4ICr2SBVTPhHyyWSzTeMcdSdxUEK_jEves7PuJSX.ym2qq6N0Do1Y5MPzymA; path=/; expires=Mon, 10-Feb-25 06:30:23 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=wLs76tJI5mVqCGmh4uV8oI2iLGFhyjtW3r8Guq.cAXI-1739167223410-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90f9e0e629cca794-DEL'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2025-02-10 11:30:22,911 - openai._base_client - DEBUG - request_id: req_adebd6f30e5c549428d9bd754f456c9f
+2025-02-10 11:31:37,951 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x33475c4c0>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 11:31:37,959 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 11:31:37,961 - httpcore.connection - DEBUG - close.started
+2025-02-10 11:31:37,971 - httpcore.connection - DEBUG - close.complete
+2025-02-10 11:31:37,973 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 11:31:38,027 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1121fe730>
+2025-02-10 11:31:38,028 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x32da77240> server_hostname='api.openai.com' timeout=None
+2025-02-10 11:31:38,096 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x334737b50>
+2025-02-10 11:31:38,098 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 11:31:38,099 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 11:31:38,100 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 11:31:38,100 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 11:31:38,101 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 11:31:38,772 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 06:01:39 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'159'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-59988fbbff-rw96x'), (b'x-envoy-upstream-service-time', b'114'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999994'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_b7d11176c49166e6a2cd0f4a6884770d'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90f9e2c0c8129639-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 11:31:38,773 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 11:31:38,776 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 11:31:38,825 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 11:31:38,827 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 11:31:38,828 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 11:31:38,828 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Mon, 10 Feb 2025 06:01:39 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'access-control-expose-headers': 'X-Request-ID', 'openai-model': 'text-embedding-ada-002-v2', 'openai-organization': 'user-gccgvei9eaw4a1hksddpirf5', 'openai-processing-ms': '159', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'via': 'envoy-router-59988fbbff-rw96x', 'x-envoy-upstream-service-time': '114', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999994', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_b7d11176c49166e6a2cd0f4a6884770d', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '90f9e2c0c8129639-DEL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-02-10 11:31:38,829 - openai._base_client - DEBUG - request_id: req_b7d11176c49166e6a2cd0f4a6884770d
+2025-02-10 12:04:12,142 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x33475cd30>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 12:04:12,166 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 12:04:12,183 - httpcore.connection - DEBUG - close.started
+2025-02-10 12:04:12,211 - httpcore.connection - DEBUG - close.complete
+2025-02-10 12:04:12,214 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 12:04:12,314 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x334748040>
+2025-02-10 12:04:12,321 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x32da77240> server_hostname='api.openai.com' timeout=None
+2025-02-10 12:04:12,509 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x3347483d0>
+2025-02-10 12:04:12,523 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 12:04:12,534 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 12:04:12,537 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 12:04:12,541 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 12:04:12,543 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 12:04:13,947 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 06:34:14 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'79'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-7d64cd77f5-shdmn'), (b'x-envoy-upstream-service-time', b'60'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999994'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_48c61cec582ed30b4a97335c532ddcad'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=Q0JUsFLvaiRZqbwdhwCjBFlEwDMoatVHkgsW5qFGkXg-1739169254-1.0.1.1-2z.QAZxatO8Lr_Sc0b0Yy5ctWTF3iWKSTwVtlLUyR0NDJrbeLpCzOOBKw7dT8oeB.GlRjf2WzEV9BTcfPAsyqw; path=/; expires=Mon, 10-Feb-25 07:04:14 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=XU2WqsyJyKFTwyw_NCTadxPferudmC.tPP6czolTovA-1739169254408-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90fa1278085b548a-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 12:04:13,959 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 12:04:13,965 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 12:04:13,969 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 12:04:13,970 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 12:04:13,970 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 12:04:13,971 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers([('date', 'Mon, 10 Feb 2025 06:34:14 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-allow-origin', '*'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-model', 'text-embedding-ada-002-v2'), ('openai-organization', 'user-gccgvei9eaw4a1hksddpirf5'), ('openai-processing-ms', '79'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('via', 'envoy-router-7d64cd77f5-shdmn'), ('x-envoy-upstream-service-time', '60'), ('x-ratelimit-limit-requests', '3000'), ('x-ratelimit-limit-tokens', '1000000'), ('x-ratelimit-remaining-requests', '2999'), ('x-ratelimit-remaining-tokens', '999994'), ('x-ratelimit-reset-requests', '20ms'), ('x-ratelimit-reset-tokens', '0s'), ('x-request-id', 'req_48c61cec582ed30b4a97335c532ddcad'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=Q0JUsFLvaiRZqbwdhwCjBFlEwDMoatVHkgsW5qFGkXg-1739169254-1.0.1.1-2z.QAZxatO8Lr_Sc0b0Yy5ctWTF3iWKSTwVtlLUyR0NDJrbeLpCzOOBKw7dT8oeB.GlRjf2WzEV9BTcfPAsyqw; path=/; expires=Mon, 10-Feb-25 07:04:14 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=XU2WqsyJyKFTwyw_NCTadxPferudmC.tPP6czolTovA-1739169254408-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90fa1278085b548a-DEL'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2025-02-10 12:04:13,973 - openai._base_client - DEBUG - request_id: req_48c61cec582ed30b4a97335c532ddcad
+2025-02-10 12:04:26,068 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x3357a7790>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 12:04:26,072 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 12:04:26,073 - httpcore.connection - DEBUG - close.started
+2025-02-10 12:04:26,073 - httpcore.connection - DEBUG - close.complete
+2025-02-10 12:04:26,075 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 12:04:26,091 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x332dd3760>
+2025-02-10 12:04:26,092 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x32da77240> server_hostname='api.openai.com' timeout=None
+2025-02-10 12:04:26,114 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x332dd3850>
+2025-02-10 12:04:26,115 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 12:04:26,116 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 12:04:26,116 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 12:04:26,117 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 12:04:26,117 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 12:04:26,642 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 06:34:27 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'42'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-586fcd8bbf-fbr6h'), (b'x-envoy-upstream-service-time', b'27'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999994'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_2288ea23d4ed5811a56c4fe5e2977923'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90fa12ccec418e86-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 12:04:26,645 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 12:04:26,647 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 12:04:26,649 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 12:04:26,650 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 12:04:26,651 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 12:04:26,652 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Mon, 10 Feb 2025 06:34:27 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'access-control-expose-headers': 'X-Request-ID', 'openai-model': 'text-embedding-ada-002-v2', 'openai-organization': 'user-gccgvei9eaw4a1hksddpirf5', 'openai-processing-ms': '42', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'via': 'envoy-router-586fcd8bbf-fbr6h', 'x-envoy-upstream-service-time': '27', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999994', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_2288ea23d4ed5811a56c4fe5e2977923', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '90fa12ccec418e86-DEL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-02-10 12:04:26,653 - openai._base_client - DEBUG - request_id: req_2288ea23d4ed5811a56c4fe5e2977923
+2025-02-10 12:05:24,102 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x3357a7550>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 12:05:24,107 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 12:05:24,108 - httpcore.connection - DEBUG - close.started
+2025-02-10 12:05:24,109 - httpcore.connection - DEBUG - close.complete
+2025-02-10 12:05:24,110 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 12:05:24,127 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x330686220>
+2025-02-10 12:05:24,128 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x32da77240> server_hostname='api.openai.com' timeout=None
+2025-02-10 12:05:24,158 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x33472faf0>
+2025-02-10 12:05:24,160 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 12:05:24,164 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 12:05:24,165 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 12:05:24,166 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 12:05:24,166 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 12:05:24,597 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 06:35:25 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'62'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-77574556d6-xls56'), (b'x-envoy-upstream-service-time', b'30'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999994'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_5a8ef5920ab6650afc0a0642329749eb'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90fa1437bfbd91be-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 12:05:24,598 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 12:05:24,599 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 12:05:24,765 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 12:05:24,766 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 12:05:24,766 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 12:05:24,767 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Mon, 10 Feb 2025 06:35:25 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'access-control-expose-headers': 'X-Request-ID', 'openai-model': 'text-embedding-ada-002-v2', 'openai-organization': 'user-gccgvei9eaw4a1hksddpirf5', 'openai-processing-ms': '62', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'via': 'envoy-router-77574556d6-xls56', 'x-envoy-upstream-service-time': '30', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999994', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_5a8ef5920ab6650afc0a0642329749eb', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '90fa1437bfbd91be-DEL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-02-10 12:05:24,767 - openai._base_client - DEBUG - request_id: req_5a8ef5920ab6650afc0a0642329749eb
+2025-02-10 12:05:50,113 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x3357c1700>, 'json_data': {'input': [[12840, 1587, 1934, 10975, 603]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 12:05:50,117 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 12:05:50,120 - httpcore.connection - DEBUG - close.started
+2025-02-10 12:05:50,121 - httpcore.connection - DEBUG - close.complete
+2025-02-10 12:05:50,122 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 12:05:50,206 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x334771a00>
+2025-02-10 12:05:50,209 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x32da77240> server_hostname='api.openai.com' timeout=None
+2025-02-10 12:05:50,232 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x3357c04c0>
+2025-02-10 12:05:50,233 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 12:05:50,234 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 12:05:50,235 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 12:05:50,236 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 12:05:50,236 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 12:05:57,571 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 06:35:51 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'61'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-f75cbbb97-8268l'), (b'x-envoy-upstream-service-time', b'43'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999994'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_d73e9e874152c9b5dc516377e975a177'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90fa14daaff5598f-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 12:05:57,647 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 12:05:57,654 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 12:05:57,660 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 12:05:57,661 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 12:05:57,661 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 12:05:57,662 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Mon, 10 Feb 2025 06:35:51 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'access-control-expose-headers': 'X-Request-ID', 'openai-model': 'text-embedding-ada-002-v2', 'openai-organization': 'user-gccgvei9eaw4a1hksddpirf5', 'openai-processing-ms': '61', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'via': 'envoy-router-f75cbbb97-8268l', 'x-envoy-upstream-service-time': '43', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999994', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_d73e9e874152c9b5dc516377e975a177', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '90fa14daaff5598f-DEL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-02-10 12:05:57,669 - openai._base_client - DEBUG - request_id: req_d73e9e874152c9b5dc516377e975a177
+2025-02-10 12:21:29,560 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x3357c1ca0>, 'json_data': {'input': [[50222, 2353]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 12:21:29,600 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 12:21:29,612 - httpcore.connection - DEBUG - close.started
+2025-02-10 12:21:29,636 - httpcore.connection - DEBUG - close.complete
+2025-02-10 12:21:29,640 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 12:21:29,676 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x33474fc40>
+2025-02-10 12:21:29,677 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x32da77240> server_hostname='api.openai.com' timeout=None
+2025-02-10 12:21:29,737 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x33474f2e0>
+2025-02-10 12:21:29,739 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 12:21:29,741 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 12:21:29,742 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 12:21:29,743 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 12:21:29,743 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 12:21:30,146 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 06:51:30 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'67'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-f75cbbb97-fj7xt'), (b'x-envoy-upstream-service-time', b'37'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999998'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_97182974a8add7309390b4fcf335cafc'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=3KmuMa4lw8wnDkt8NPt8l3gaM769GjdGI5Zw9JsfKn4-1739170290-1.0.1.1-7BQBKbgfdYuc61RuMEAu4v7SFpb1TYduSTzXppv4spIacihmpYBIQnGahyjn03lQUSSM3wJ4in5mm2pU5_AmqQ; path=/; expires=Mon, 10-Feb-25 07:21:30 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90fa2bca9b4654e9-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 12:21:30,152 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 12:21:30,154 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 12:21:30,156 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 12:21:30,157 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 12:21:30,157 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 12:21:30,157 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Mon, 10 Feb 2025 06:51:30 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'access-control-expose-headers': 'X-Request-ID', 'openai-model': 'text-embedding-ada-002-v2', 'openai-organization': 'user-gccgvei9eaw4a1hksddpirf5', 'openai-processing-ms': '67', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'via': 'envoy-router-f75cbbb97-fj7xt', 'x-envoy-upstream-service-time': '37', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999998', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_97182974a8add7309390b4fcf335cafc', 'cf-cache-status': 'DYNAMIC', 'set-cookie': '__cf_bm=3KmuMa4lw8wnDkt8NPt8l3gaM769GjdGI5Zw9JsfKn4-1739170290-1.0.1.1-7BQBKbgfdYuc61RuMEAu4v7SFpb1TYduSTzXppv4spIacihmpYBIQnGahyjn03lQUSSM3wJ4in5mm2pU5_AmqQ; path=/; expires=Mon, 10-Feb-25 07:21:30 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '90fa2bca9b4654e9-DEL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-02-10 12:21:30,158 - openai._base_client - DEBUG - request_id: req_97182974a8add7309390b4fcf335cafc
+2025-02-10 12:22:10,583 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x3357a7e50>, 'json_data': {'input': [[12840, 279, 2217, 374, 922]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 12:22:10,601 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 12:22:10,606 - httpcore.connection - DEBUG - close.started
+2025-02-10 12:22:10,609 - httpcore.connection - DEBUG - close.complete
+2025-02-10 12:22:10,611 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 12:22:10,634 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x334748640>
+2025-02-10 12:22:10,638 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x32da77240> server_hostname='api.openai.com' timeout=None
+2025-02-10 12:22:10,678 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x334748520>
+2025-02-10 12:22:10,681 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 12:22:10,684 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 12:22:10,685 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 12:22:10,687 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 12:22:10,689 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 12:22:11,182 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 06:52:11 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'81'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-7654f5764d-nswkz'), (b'x-envoy-upstream-service-time', b'59'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999994'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_5b5f3e26f77b323f00e12b6882f5e03c'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90fa2cca7efb546b-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 12:22:11,184 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 12:22:11,185 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 12:22:11,387 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 12:22:11,388 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 12:22:11,388 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 12:22:11,389 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Mon, 10 Feb 2025 06:52:11 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'access-control-expose-headers': 'X-Request-ID', 'openai-model': 'text-embedding-ada-002-v2', 'openai-organization': 'user-gccgvei9eaw4a1hksddpirf5', 'openai-processing-ms': '81', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'via': 'envoy-router-7654f5764d-nswkz', 'x-envoy-upstream-service-time': '59', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999994', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_5b5f3e26f77b323f00e12b6882f5e03c', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '90fa2cca7efb546b-DEL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-02-10 12:22:11,390 - openai._base_client - DEBUG - request_id: req_5b5f3e26f77b323f00e12b6882f5e03c
+2025-02-10 12:22:57,170 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x3357a7790>, 'json_data': {'input': [[12840, 279, 2217, 374, 922]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 12:22:57,179 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 12:22:57,182 - httpcore.connection - DEBUG - close.started
+2025-02-10 12:22:57,186 - httpcore.connection - DEBUG - close.complete
+2025-02-10 12:22:57,187 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 12:22:57,269 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x334737c10>
+2025-02-10 12:22:57,270 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x32da77240> server_hostname='api.openai.com' timeout=None
+2025-02-10 12:22:57,289 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x334737580>
+2025-02-10 12:22:57,291 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 12:22:57,292 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 12:22:57,293 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 12:22:57,293 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 12:22:57,294 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 12:22:58,300 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 06:52:58 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'90'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-57b75d8f84-dgpzp'), (b'x-envoy-upstream-service-time', b'66'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999994'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_e5eda4396773ac8b23d13e8acbfb742b'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90fa2dedcbd91be1-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 12:22:58,301 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 12:22:58,302 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 12:22:58,303 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 12:22:58,304 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 12:22:58,304 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 12:22:58,305 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Mon, 10 Feb 2025 06:52:58 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'access-control-expose-headers': 'X-Request-ID', 'openai-model': 'text-embedding-ada-002-v2', 'openai-organization': 'user-gccgvei9eaw4a1hksddpirf5', 'openai-processing-ms': '90', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'via': 'envoy-router-57b75d8f84-dgpzp', 'x-envoy-upstream-service-time': '66', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999994', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_e5eda4396773ac8b23d13e8acbfb742b', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '90fa2dedcbd91be1-DEL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-02-10 12:22:58,305 - openai._base_client - DEBUG - request_id: req_e5eda4396773ac8b23d13e8acbfb742b
+2025-02-10 12:22:58,312 - chromadb.segment.impl.vector.local_persistent_hnsw - WARNING - Number of requested results 50 is greater than number of elements in index 9, updating n_results = 9
+2025-02-10 12:23:54,583 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x33429e820>, 'json_data': {'input': [[12840, 279, 9676, 10975, 603, 922, 6763]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 12:23:54,586 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 12:23:54,589 - httpcore.connection - DEBUG - close.started
+2025-02-10 12:23:54,591 - httpcore.connection - DEBUG - close.complete
+2025-02-10 12:23:54,594 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 12:23:54,614 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x33473e610>
+2025-02-10 12:23:54,615 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x32da77240> server_hostname='api.openai.com' timeout=None
+2025-02-10 12:23:54,642 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x33473e5b0>
+2025-02-10 12:23:54,645 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 12:23:54,648 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 12:23:54,649 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 12:23:54,650 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 12:23:54,650 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 12:23:55,171 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 06:53:55 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'43'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-6d97889fc7-vm9kl'), (b'x-envoy-upstream-service-time', b'31'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999993'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_3932467079635fe1da99ef759f5549c4'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90fa2f544a891bc2-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 12:23:55,172 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 12:23:55,172 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 12:23:55,177 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 12:23:55,177 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 12:23:55,178 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 12:23:55,178 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Mon, 10 Feb 2025 06:53:55 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'access-control-expose-headers': 'X-Request-ID', 'openai-model': 'text-embedding-ada-002-v2', 'openai-organization': 'user-gccgvei9eaw4a1hksddpirf5', 'openai-processing-ms': '43', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'via': 'envoy-router-6d97889fc7-vm9kl', 'x-envoy-upstream-service-time': '31', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999993', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_3932467079635fe1da99ef759f5549c4', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '90fa2f544a891bc2-DEL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-02-10 12:23:55,178 - openai._base_client - DEBUG - request_id: req_3932467079635fe1da99ef759f5549c4
+2025-02-10 12:23:55,198 - chromadb.segment.impl.vector.local_persistent_hnsw - WARNING - Number of requested results 50 is greater than number of elements in index 9, updating n_results = 9
+2025-02-10 17:19:25,564 - root - INFO - Yaml read successfully from config.yaml
+2025-02-10 17:19:25,570 - root - INFO - Yaml read successfully from params.yaml
+2025-02-10 17:19:25,575 - root - ERROR - Exception occured while reading yaml file from                         location: params.yaml
+ First argument must be mapping or iterable
+2025-02-10 17:19:25,773 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-10 17:19:25,788 - chromadb.config - DEBUG - Starting component System
+2025-02-10 17:19:25,789 - chromadb.config - DEBUG - Starting component Posthog
+2025-02-10 17:19:25,790 - chromadb.config - DEBUG - Starting component OpenTelemetryClient
+2025-02-10 17:19:25,790 - chromadb.config - DEBUG - Starting component SqliteDB
+2025-02-10 17:19:25,835 - chromadb.config - DEBUG - Starting component SimpleQuotaEnforcer
+2025-02-10 17:19:25,836 - chromadb.config - DEBUG - Starting component SimpleRateLimitEnforcer
+2025-02-10 17:19:25,837 - chromadb.config - DEBUG - Starting component LocalSegmentManager
+2025-02-10 17:19:25,837 - chromadb.config - DEBUG - Starting component LocalExecutor
+2025-02-10 17:19:25,838 - chromadb.config - DEBUG - Starting component SegmentAPI
+2025-02-10 17:19:26,341 - urllib3.connectionpool - DEBUG - Resetting dropped connection: us.i.posthog.com
+2025-02-10 17:19:27,825 - urllib3.connectionpool - DEBUG - https://us.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+2025-02-10 17:19:48,191 - root - INFO - Yaml read successfully from config.yaml
+2025-02-10 17:19:48,197 - root - INFO - Yaml read successfully from params.yaml
+2025-02-10 17:19:48,198 - root - ERROR - Exception occured while reading yaml file from                         location: params.yaml
+ First argument must be mapping or iterable
+2025-02-10 17:19:48,280 - chromadb.api.segment - DEBUG - Collection test3 already exists, returning existing collection.
+2025-02-10 17:19:48,870 - urllib3.connectionpool - DEBUG - https://us.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+2025-02-10 17:20:30,146 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x308099a60>, 'json_data': {'input': [[12840, 279, 9676, 10975, 603, 922, 6763]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 17:20:30,155 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 17:20:30,159 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 17:20:30,238 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x3357b7b80>
+2025-02-10 17:20:30,239 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x3357a2cc0> server_hostname='api.openai.com' timeout=None
+2025-02-10 17:20:30,271 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x332dd3880>
+2025-02-10 17:20:30,272 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 17:20:30,273 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 17:20:30,274 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 17:20:30,274 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 17:20:30,275 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 17:20:31,003 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 11:50:31 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'79'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-canary-75dcd9764-nwvpl'), (b'x-envoy-upstream-service-time', b'60'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999993'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_5d9a96c586524e5f1bfd20592e57934e'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=1oL.xbE5sYIQNqDktzm0hnwXp0IhgMBnIKnWPaLJgFQ-1739188231-1.0.1.1-1XLj7SYw6iCLCKRhiBy7n.ACyQn1WhCJ_2XbJKSDQglaQeMt1btQ26Tbyn8Oi0JyQrWipcZ8dpbve9nYaiwESQ; path=/; expires=Mon, 10-Feb-25 12:20:31 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=hYI6MaBc5Bzf6YRcFD1lR6auGHCsZqvpUUTXiKgSZKk-1739188231628-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90fbe1cb38b7550b-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 17:20:31,007 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 17:20:31,009 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 17:20:31,011 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 17:20:31,011 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 17:20:31,012 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 17:20:31,013 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers([('date', 'Mon, 10 Feb 2025 11:50:31 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-allow-origin', '*'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-model', 'text-embedding-ada-002-v2'), ('openai-organization', 'user-gccgvei9eaw4a1hksddpirf5'), ('openai-processing-ms', '79'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('via', 'envoy-router-canary-75dcd9764-nwvpl'), ('x-envoy-upstream-service-time', '60'), ('x-ratelimit-limit-requests', '3000'), ('x-ratelimit-limit-tokens', '1000000'), ('x-ratelimit-remaining-requests', '2999'), ('x-ratelimit-remaining-tokens', '999993'), ('x-ratelimit-reset-requests', '20ms'), ('x-ratelimit-reset-tokens', '0s'), ('x-request-id', 'req_5d9a96c586524e5f1bfd20592e57934e'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=1oL.xbE5sYIQNqDktzm0hnwXp0IhgMBnIKnWPaLJgFQ-1739188231-1.0.1.1-1XLj7SYw6iCLCKRhiBy7n.ACyQn1WhCJ_2XbJKSDQglaQeMt1btQ26Tbyn8Oi0JyQrWipcZ8dpbve9nYaiwESQ; path=/; expires=Mon, 10-Feb-25 12:20:31 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=hYI6MaBc5Bzf6YRcFD1lR6auGHCsZqvpUUTXiKgSZKk-1739188231628-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90fbe1cb38b7550b-DEL'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2025-02-10 17:20:31,013 - openai._base_client - DEBUG - request_id: req_5d9a96c586524e5f1bfd20592e57934e
+2025-02-10 17:20:31,072 - chromadb.segment.impl.vector.local_persistent_hnsw - WARNING - Number of requested results 50 is greater than number of elements in index 9, updating n_results = 9
+2025-02-10 17:20:38,734 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x308043310>, 'json_data': {'input': [[12840, 279, 9676, 10975, 603, 922, 6763]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+2025-02-10 17:20:38,739 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-02-10 17:20:38,740 - httpcore.connection - DEBUG - close.started
+2025-02-10 17:20:38,744 - httpcore.connection - DEBUG - close.complete
+2025-02-10 17:20:38,745 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-02-10 17:20:38,769 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x30910b190>
+2025-02-10 17:20:38,771 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x3357a2cc0> server_hostname='api.openai.com' timeout=None
+2025-02-10 17:20:38,799 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x30910bcd0>
+2025-02-10 17:20:38,802 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-10 17:20:38,803 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-10 17:20:38,803 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-10 17:20:38,805 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-10 17:20:38,805 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-10 17:20:39,335 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 10 Feb 2025 11:50:39 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-ada-002-v2'), (b'openai-organization', b'user-gccgvei9eaw4a1hksddpirf5'), (b'openai-processing-ms', b'105'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-5448fdfb9b-v8vhv'), (b'x-envoy-upstream-service-time', b'70'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999993'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_1887eaa2978bb8d5d1e55cda2d078ce0'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90fbe200898591b0-DEL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-02-10 17:20:39,336 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-02-10 17:20:39,338 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-10 17:20:39,340 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-10 17:20:39,340 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-10 17:20:39,341 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-10 17:20:39,341 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Mon, 10 Feb 2025 11:50:39 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'access-control-expose-headers': 'X-Request-ID', 'openai-model': 'text-embedding-ada-002-v2', 'openai-organization': 'user-gccgvei9eaw4a1hksddpirf5', 'openai-processing-ms': '105', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'via': 'envoy-router-5448fdfb9b-v8vhv', 'x-envoy-upstream-service-time': '70', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999993', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_1887eaa2978bb8d5d1e55cda2d078ce0', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '90fbe200898591b0-DEL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-02-10 17:20:39,342 - openai._base_client - DEBUG - request_id: req_1887eaa2978bb8d5d1e55cda2d078ce0

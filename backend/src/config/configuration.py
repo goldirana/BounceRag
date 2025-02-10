@@ -31,6 +31,13 @@ class ConfigurationManager:
         )
         return params
     
+    def get_data_ingestion_params(self) -> DataIngestionConfig:
+        params = DataIngestionConfig(
+            raw=self.config.data_dir.raw,
+            reports=self.config.data_dir.reports,
+            metadata=self.config.metadata)
+        return params
+    
     def get_vectordatabase_config(self) -> VectorDatabaseConfig:
         params = VectorDatabaseConfig(
             vectorstore_name=self.config.vector_database.vectorstore_name,
