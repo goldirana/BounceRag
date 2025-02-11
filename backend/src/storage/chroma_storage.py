@@ -18,20 +18,21 @@ class VectorDatabase(Extractor):
     def __init__(self, config):
         super(VectorDatabase, self).__init__()
         self.config = config
+        self.vectorstore = None
     
     def init_chromadb(self, embeddings):
         return Chroma(self.config.vectorstore_name, 
                       embeddings, 
                       persist_directory=self.config.persist_directory)
         
-    def get_retriever(self, vectorstore, id_key: str="doc_id") -> MultiVectorRetriever:
+    def get_multivector_retriever(self, vectorstore, id_key: str="doc_id") -> MultiVectorRetriever:
         store = InMemoryStore()
         return MultiVectorRetriever(
             vectorstore=vectorstore,
             docstore=store,
             id_key=id_key
         )
-          
+       
     def generate_document(self, data, metadata=None) -> Document:
         if metadata == None:
             metadata = self.generate_unique_id(data)
@@ -58,6 +59,7 @@ class VectorDatabase(Extractor):
         except Exception as e:
             print("Error in storing data to vectorbase: ", e)
             raise e
+
     
     def zip_vector_database(self) -> None:
         """To zip the vector database; using persist_directory
@@ -75,6 +77,9 @@ class VectorDatabase(Extractor):
         with ZipFile(self.config.persist_directory + ".zip", 'r') as zip_ref:
             zip_ref.extractall(extract_to)
 
+    def get_vectorstore_as_retreiever(self, vectorstore) -> MultiVectorRetriever:        
+        return vectorstore.as_retriever()
+    
 
 # Unit testing
 if __name__ == "__main__":

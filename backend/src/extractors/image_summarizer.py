@@ -98,7 +98,7 @@ class ImageSummarizer:
         def wrapper(self, *args, **kwargs):
             encoded_images_with_metadata, summaries_with_metadata = func(self, *args, **kwargs)
             for index, summary in enumerate(summaries_with_metadata):
-                summary.metadata["raw_image"] = encoded_images_with_metadata[index][1]
+                summary.metadata["raw_string"] = encoded_images_with_metadata[index][1]
             return summaries_with_metadata
         return wrapper
     
@@ -112,7 +112,8 @@ class ImageSummarizer:
         
         summaries_with_metadata = []
         for index, summary in enumerate(summaries):
-            meta_data = metadata[index]
+            if automatic_metadata == False:
+                meta_data = metadata[index]
             meta_data["doc_id"] = self.uuids[index]
             summaries_with_metadata.append(Document(page_content=summary, metadata=meta_data))
             

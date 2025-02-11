@@ -48,6 +48,8 @@ backend_structure = [
     f"{back_end}/artifacts/tacker.json",
         # summarizer
     f"{back_end}/src/prompts/summarizer.json",
+        # logger
+    f"{back_end}/logger/__init__.py",
 ]
 
 misc_structure = [
@@ -63,7 +65,13 @@ misc_structure = [
     "config.yaml"
 ]
 
-frontend_structure = ["frontend/src/"]
+frontend_structure = [f"{front_end}/src/components/__init__.py",
+                    f"{front_end}/src/pages/__init__.py",
+                    f"{front_end}/src/services/__init__.py",
+                    f"{front_end}/src/utils/__init__.py",
+                    f"{front_end}/public/",
+                    f"{front_end}/logger/__init__.py"
+                      ]
 
 for structure in [backend_structure, misc_structure, frontend_structure]:
     for filepath in structure:
