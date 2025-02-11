@@ -23,10 +23,9 @@ text_summarizer:
   text_summary_dir: backend/data/summaries/text_summaries.json
 
 prompts:
-  summarizer_prompt_dir: src/prompts/summarizer.json
+  summarizer_prompt_dir: backend/src/prompts/summarizer.json
 
 vector_database:
-  vectorstore_name: test4
+  vectorstore_name: test5
   embeddings: OpenAIEmbeddings # if changed need to make change in code
-  persist_directory: db
-  
+  persist_directory: vector_database/test_directory

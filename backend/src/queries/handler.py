@@ -5,8 +5,8 @@ import uuid
 from base64 import b64decode
 from PIL import Image
 from IPython.display import display, HTML
-
-
+from langchain.retrievers.multi_vector import MultiVectorRetriever
+from copy import deepcopy
 
 class QueryHandler:
     def __init__(self, retriever):
@@ -40,26 +40,67 @@ class QueryHandler:
             doc_id = i.metadata["doc_id"]
             doc = self.retriever.docstore.__dict__["store"].get(doc_id, "None") # if data is present in InMemoryStore
             if doc == "None":
-                raw_docs.append(i.metadata.get("raw_text", "None"))
+                raw_docs.append(i.metadata.get("raw_string", "None"))
             else:
                 raw_docs.append(doc)
             i.metadata.pop("raw_text", None)
             meta_data.append(i.metadata)
         return raw_docs, meta_data
     
-    def split_image_text_types(self, docs: List[Document]) -> Dict:
+    # @staticmethod
+    # def split_image_text_types(docs: List[Document]) -> Dict:
+    # #     ''' Split base64-encoded images and texts '''
+    #     b64 = []
+    #     text = []
+    #     for doc in docs:
+    #         if doc.metadata["type"] == "image":
+    #             b64.append(doc.metadata.get("raw_string", "None"))
+    #         elif doc.metadata["type"] == "text":
+    #             text.append(doc.metadata.get("raw_string", "None"))
+    #     return {
+    #         "images": b64,
+    #         "texts": text
+    #     }
+    
+    @staticmethod
+    def split_image_text_types(docs: List[Document]) -> Dict:
     #     ''' Split base64-encoded images and texts '''
-        b64 = []
-        text = []
-        for doc in docs:
-            if doc.metadata["type"] == "Image":
-                b64.append(self.query_by_id(doc.id))
-            elif doc.metadata["type"] == "Text":
-                text.append(doc)
-
+        docs_ = deepcopy(docs)
+        b64, image_metadata = [], []
+        text, text_metadata = [], []
+        for doc in docs_:
+            print(doc.metadata)
+            if doc.metadata["type"] == "image":
+                try:
+                    raw_string = doc.metadata.pop("raw_string")
+                    print("IMage raw string: ", raw_string)
+                    b64.append(raw_string)
+                    image_metadata.append(doc.metadata)
+                except:
+                    b64.append("None")
+                    print("Image append None")
+                    image_metadata.append(doc.metadata)
+            elif doc.metadata["type"] == "text":
+                try:
+                    raw_string = doc.metadata.pop("raw_string")
+                    print("text raw string: ", raw_string)
+                    text.append(raw_string)
+                    text_metadata.append(doc.metadata)
+                except:
+                    text.append("None")
+                    print("Text append None")
+                    text_metadata.append(doc.metadata)
+        print("**"*40)
+        print("before return")
+        print(b64, text)
+        print("**"*40)
+        print(image_metadata, text_metadata)
+        print("**"*40)
         return {
             "images": b64,
-            "texts": text
+            "images_metadata": image_metadata,
+            "texts": text,
+            "texts_metadata": text_metadata
         }
 
     @staticmethod
@@ -74,6 +115,13 @@ class QueryHandler:
     def plot_img_base64(self, img_base64: str):
         img = Image.open(io.BytesIO(b64decode(img_base64)))
         img.show()
+        
+    def get_vectorstore_as_retreiever(self) -> MultiVectorRetriever:
+        if self.vectorstore == None:
+            raise ValueError("Vectorstore is not initialized")
+            
+        return self.vectorstore.as_retriever()
+    
 
 if __name__ == "__main__":
     query_handler = QueryHandler(retriever)

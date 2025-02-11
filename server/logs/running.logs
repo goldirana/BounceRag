@@ -1,0 +1,62 @@
+2025-02-11 13:38:58,798 - layoutparser.file_utils - DEBUG - PyTorch version 2.6.0 available.
+2025-02-11 13:38:58,799 - layoutparser.file_utils - DEBUG - Effdet version 0.4.1 available.
+2025-02-11 13:38:58,800 - layoutparser.file_utils - DEBUG - Pytesseract version 0.3.13 available.
+2025-02-11 13:38:58,801 - layoutparser.file_utils - DEBUG - Google Cloud Vision Utils version 3.9.0 available.
+2025-02-11 13:39:01,173 - pydot - DEBUG - pydot initializing
+2025-02-11 13:39:01,173 - pydot - DEBUG - pydot 3.0.4
+2025-02-11 13:39:01,202 - pydot.dot_parser - DEBUG - pydot dot_parser module initializing
+2025-02-11 13:39:01,204 - pydot.core - DEBUG - pydot core module initializing
+2025-02-11 13:39:02,244 - matplotlib - DEBUG - matplotlib data path: /Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/matplotlib/mpl-data
+2025-02-11 13:39:02,249 - matplotlib - DEBUG - CONFIGDIR=/Users/goldyrana/.matplotlib
+2025-02-11 13:39:02,251 - matplotlib - DEBUG - interactive is False
+2025-02-11 13:39:02,251 - matplotlib - DEBUG - platform is darwin
+2025-02-11 13:39:02,294 - matplotlib - DEBUG - CACHEDIR=/Users/goldyrana/.matplotlib
+2025-02-11 13:39:02,298 - matplotlib.font_manager - DEBUG - Using fontManager instance from /Users/goldyrana/.matplotlib/fontlist-v390.json
+2025-02-11 13:39:02,645 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): packages.unstructured.io:443
+2025-02-11 13:39:04,001 - urllib3.connectionpool - DEBUG - https://packages.unstructured.io:443 "GET /python-telemetry?version=0.16.11&platform=Darwin&python3.9&arch=arm64&gpu=False&dev=false HTTP/1.1" 200 596
+2025-02-11 13:39:06,085 - root - INFO - Yaml read successfully from ../config.yaml
+2025-02-11 13:39:06,085 - root - INFO - Yaml read successfully from ../params.yaml
+2025-02-11 13:39:06,086 - root - ERROR - Exception occured while reading yaml file from                         location: ../params.yaml
+ First argument must be mapping or iterable
+2025-02-11 13:39:30,208 - layoutparser.file_utils - DEBUG - PyTorch version 2.6.0 available.
+2025-02-11 13:39:30,209 - layoutparser.file_utils - DEBUG - Effdet version 0.4.1 available.
+2025-02-11 13:39:30,211 - layoutparser.file_utils - DEBUG - Pytesseract version 0.3.13 available.
+2025-02-11 13:39:30,211 - layoutparser.file_utils - DEBUG - Google Cloud Vision Utils version 3.9.0 available.
+2025-02-11 13:39:31,786 - pydot - DEBUG - pydot initializing
+2025-02-11 13:39:31,786 - pydot - DEBUG - pydot 3.0.4
+2025-02-11 13:39:31,806 - pydot.dot_parser - DEBUG - pydot dot_parser module initializing
+2025-02-11 13:39:31,807 - pydot.core - DEBUG - pydot core module initializing
+2025-02-11 13:39:32,598 - matplotlib - DEBUG - matplotlib data path: /Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/matplotlib/mpl-data
+2025-02-11 13:39:32,603 - matplotlib - DEBUG - CONFIGDIR=/Users/goldyrana/.matplotlib
+2025-02-11 13:39:32,604 - matplotlib - DEBUG - interactive is False
+2025-02-11 13:39:32,605 - matplotlib - DEBUG - platform is darwin
+2025-02-11 13:39:32,645 - matplotlib - DEBUG - CACHEDIR=/Users/goldyrana/.matplotlib
+2025-02-11 13:39:32,648 - matplotlib.font_manager - DEBUG - Using fontManager instance from /Users/goldyrana/.matplotlib/fontlist-v390.json
+2025-02-11 13:39:32,968 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): packages.unstructured.io:443
+2025-02-11 13:39:34,271 - urllib3.connectionpool - DEBUG - https://packages.unstructured.io:443 "GET /python-telemetry?version=0.16.11&platform=Darwin&python3.9&arch=arm64&gpu=False&dev=false HTTP/1.1" 200 596
+2025-02-11 13:39:35,784 - root - INFO - Yaml read successfully from ../config.yaml
+2025-02-11 13:39:35,785 - root - INFO - Yaml read successfully from ../params.yaml
+2025-02-11 13:39:35,785 - root - ERROR - Exception occured while reading yaml file from                         location: ../params.yaml
+ First argument must be mapping or iterable
+2025-02-11 13:39:35,785 - root - INFO - [Errno 2] No such file or directory: 'src/prompts/summarizer.json'
+2025-02-11 13:40:02,723 - layoutparser.file_utils - DEBUG - PyTorch version 2.6.0 available.
+2025-02-11 13:40:02,725 - layoutparser.file_utils - DEBUG - Effdet version 0.4.1 available.
+2025-02-11 13:40:02,725 - layoutparser.file_utils - DEBUG - Pytesseract version 0.3.13 available.
+2025-02-11 13:40:02,726 - layoutparser.file_utils - DEBUG - Google Cloud Vision Utils version 3.9.0 available.
+2025-02-11 13:40:04,230 - pydot - DEBUG - pydot initializing
+2025-02-11 13:40:04,230 - pydot - DEBUG - pydot 3.0.4
+2025-02-11 13:40:04,250 - pydot.dot_parser - DEBUG - pydot dot_parser module initializing
+2025-02-11 13:40:04,251 - pydot.core - DEBUG - pydot core module initializing
+2025-02-11 13:40:05,063 - matplotlib - DEBUG - matplotlib data path: /Users/goldyrana/miniconda3/envs/bounce/lib/python3.9/site-packages/matplotlib/mpl-data
+2025-02-11 13:40:05,067 - matplotlib - DEBUG - CONFIGDIR=/Users/goldyrana/.matplotlib
+2025-02-11 13:40:05,069 - matplotlib - DEBUG - interactive is False
+2025-02-11 13:40:05,069 - matplotlib - DEBUG - platform is darwin
+2025-02-11 13:40:05,110 - matplotlib - DEBUG - CACHEDIR=/Users/goldyrana/.matplotlib
+2025-02-11 13:40:05,113 - matplotlib.font_manager - DEBUG - Using fontManager instance from /Users/goldyrana/.matplotlib/fontlist-v390.json
+2025-02-11 13:40:05,433 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): packages.unstructured.io:443
+2025-02-11 13:40:06,728 - urllib3.connectionpool - DEBUG - https://packages.unstructured.io:443 "GET /python-telemetry?version=0.16.11&platform=Darwin&python3.9&arch=arm64&gpu=False&dev=false HTTP/1.1" 200 596
+2025-02-11 13:40:08,209 - root - INFO - Yaml read successfully from ../config.yaml
+2025-02-11 13:40:08,210 - root - INFO - Yaml read successfully from ../params.yaml
+2025-02-11 13:40:08,210 - root - ERROR - Exception occured while reading yaml file from                         location: ../params.yaml
+ First argument must be mapping or iterable
+2025-02-11 13:40:08,210 - root - INFO - [Errno 2] No such file or directory: 'backend/src/prompts/summarizer.json'

@@ -64,7 +64,7 @@ class TextSummarizer(Extractor):
             summary, metadata = data
             metadata["doc_id"] = uuids[index]
             metadata["type"] = "text"
-            metadata["raw_text"] = raw_text[index]
+            metadata["raw_string"] = raw_text[index]
             metadata = TextSummarizer.sanity_check_for_metadata(metadata)
             summaries_with_metadata.append(Document(page_content=summary, metadata=metadata))
         
