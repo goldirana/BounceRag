@@ -8,6 +8,7 @@ from IPython.display import display, HTML
 from langchain.retrievers.multi_vector import MultiVectorRetriever
 from copy import deepcopy
 
+
 class QueryHandler:
     def __init__(self, retriever):
         self.retriever = retriever
@@ -46,22 +47,7 @@ class QueryHandler:
             i.metadata.pop("raw_text", None)
             meta_data.append(i.metadata)
         return raw_docs, meta_data
-    
-    # @staticmethod
-    # def split_image_text_types(docs: List[Document]) -> Dict:
-    # #     ''' Split base64-encoded images and texts '''
-    #     b64 = []
-    #     text = []
-    #     for doc in docs:
-    #         if doc.metadata["type"] == "image":
-    #             b64.append(doc.metadata.get("raw_string", "None"))
-    #         elif doc.metadata["type"] == "text":
-    #             text.append(doc.metadata.get("raw_string", "None"))
-    #     return {
-    #         "images": b64,
-    #         "texts": text
-    #     }
-    
+        
     @staticmethod
     def split_image_text_types(docs: List[Document]) -> Dict:
     #     ''' Split base64-encoded images and texts '''
@@ -90,12 +76,12 @@ class QueryHandler:
                     text.append("None")
                     print("Text append None")
                     text_metadata.append(doc.metadata)
-        print("**"*40)
-        print("before return")
-        print(b64, text)
-        print("**"*40)
-        print(image_metadata, text_metadata)
-        print("**"*40)
+        # print("**"*40)
+        # print("before return")
+        # print(b64, text)
+        # print("**"*40)
+        # print(image_metadata, text_metadata)
+        # print("**"*40)
         return {
             "images": b64,
             "images_metadata": image_metadata,
