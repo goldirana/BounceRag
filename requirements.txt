@@ -38,4 +38,6 @@ tiktoken
 
 chromadb
 langchain-chroma
+firebase_admin
+langchain-google-firestore
 -e .
