@@ -1,2 +1,17 @@
 /backend/data/*
 bounceinsights.egg.info/*
+backend/src/__pycache__/*
+backend/src/config/__pycache__/*
+backend/src/entity/__pycache__/*
+backend/src/constants/__pycache__/*
+backend/src/utils/__pycache__/*
+backend/src/extractors/__pycache__/*
+backend/src/queries/__pycache__/*
+backend/src/storage/__pycache__/*
+
+frontend/__pycache__/*
+frontend/src/__pycache__/*
+frontend/src/services/__pycache__/*
+
+server/__pycache__/*
+server/services/__pycache__/*
