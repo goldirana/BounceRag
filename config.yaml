@@ -29,3 +29,8 @@ vector_database:
   vectorstore_name: test5
   embeddings: OpenAIEmbeddings # if changed need to make change in code
   persist_directory: vector_database/test_directory
+
+
+firebase:
+  session_id: user_session_new
+  firebase_credentials_path: credentials/firebase_credentials.json
