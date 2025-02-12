@@ -25,3 +25,8 @@ class TextSummarizerConfig:
     text_summary_dir: str # path to save text summaries
     summarizer_prompt_dir: str
     text_summarizer_prompt: str 
+    
+@dataclass
+class FireStoreConfig:
+    firebase_credentials_path:str
+    session_id: str
