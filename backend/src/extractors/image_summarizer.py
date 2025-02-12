@@ -1,8 +1,6 @@
 from backend.src.config.configuration import ConfigurationManager
-from backend.src.extractors.data_ingestion import DataIngestion
-from backend.src.extractors.text_summarizer import TextSummarizer
 from backend.src.utils.common import read_json
-from langchain.schema.messages import HumanMessage, SystemMessage, AIMessage
+from langchain.schema.messages import HumanMessage
 from langchain.schema.document import Document
 from langchain_openai import ChatOpenAI
 from typing import *
@@ -11,9 +9,8 @@ import uuid
 from backend.src.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
 import os
 from dotenv import load_dotenv
-
+from backend.src.llm_models import (get_openai_embeddings, get_openai_model)
 load_dotenv()   
-
 
 class ImageSummarizer:
     def __init__(self, config, model: object):
@@ -122,7 +119,7 @@ class ImageSummarizer:
             
 # unit testing
 if __name__ == "__main__":
-    model = ChatOpenAI(temperature=0, model="gpt-4o")
+    model = get_openai_model()
     config_manager = ConfigurationManager(CONFIG_FILE_PATH, PARAMS_FILE_PATH)
     image_summarizer_config = config_manager.get_image_summarizer_params()
     image_summarizer = ImageSummarizer(image_summarizer_config, model)
