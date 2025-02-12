@@ -18,13 +18,13 @@ class QueryHandler:
         return self.retriever.vectorstore.similarity_search(query, top_k)
     
     def relevant_documents(self, query: str, top_k: int=5):
-        return self.retriever.get_relevant_documents(query, k=top_k, return_metadata=True)
+        return self.vectorstore.get_relevant_documents(query, k=top_k, return_metadata=True)
     
     def query_by_vector(self, vector: np.array, top_k: int=5):
-        return self.retriever.query_by_vector(vector, top_k)
+        return self.vectorstore.query_by_vector(vector, top_k)
     
     def query_by_document(self, document: Document, top_k: int=5):
-        return self.retriever.query_by_document(document, top_k)
+        return self.vectorstore.query_by_document(document, top_k)
         
     def map_raw_docs(self, vectorstore_results: List[Document]) -> List:
         """To map the raw documents from vectorstore results by using doc_id from metadata

@@ -6,10 +6,11 @@ from backend.src.extractors.data_ingestion import DataIngestion
 from backend.src.extractors.extract import Extractor
 from backend.src.entity.config_entity import *
 from backend.src.utils.common import read_yaml
-from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from backend.src.config.configuration import ConfigurationManager
 from backend.src.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
-
+from server.services.query_service import QueryService
+from server.services.rag_service import RAGService
 
 config_manager = ConfigurationManager(CONFIG_FILE_PATH, PARAMS_FILE_PATH)
 vector_database_config = config_manager.get_vectordatabase_config()
@@ -17,7 +18,7 @@ data_ingestion_config = config_manager.get_data_ingestion_params()
 image_summarizer_config = config_manager.get_image_summarizer_params()
 text_summarizer_config = config_manager.get_text_summarizer_params()
 
-
+embeddings = OpenAIEmbeddings()
 config_params = read_yaml(CONFIG_FILE_PATH)
 model_name = config_params.model.chat_model
 model_temp = config_params.model.temperature
@@ -42,8 +43,18 @@ def get_image_summarizer(config: ImageSummarizerConfig=image_summarizer_config) 
     image_summarizer = ImageSummarizer(config, get_llm_model())
     return image_summarizer
 
+def get_query_service():
+    query_service = QueryService(embeddings, get_vector_db())
+    return query_service
+
+def get_rag_service():
+    rag_service = RAGService()
+    return rag_service
+
 
 if __name__ == "__main__":
     print(config_params)
+    x = get_query_service()
+    
 
 
