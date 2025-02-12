@@ -15,6 +15,7 @@ from server.services.query_service import QueryService
 from server.services.rag_service import RAGService
 
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from backend.src.llm_models import (get_openai_embeddings, get_openai_model)
 
 
 config_manager = ConfigurationManager(CONFIG_FILE_PATH, PARAMS_FILE_PATH)
@@ -25,13 +26,13 @@ text_summarizer_config = config_manager.get_text_summarizer_params()
 firestore_params = config_manager.get_firebase_params()
 
 
-embeddings = OpenAIEmbeddings()
+embeddings = get_openai_embeddings()
 config_params = read_yaml(CONFIG_FILE_PATH)
 model_name = config_params.model.chat_model
 model_temp = config_params.model.temperature
 
-def get_llm_model(temperature: float=model_temp, model_name:str=model_name) -> object:
-    model = ChatOpenAI(temperature=temperature, model_name=model_name)
+def get_llm_model() -> object:
+    model = get_openai_model()
     return model
 
 def get_vector_db(config: VectorDatabaseConfig=vector_database_config) -> object:

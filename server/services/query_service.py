@@ -1,15 +1,13 @@
 from backend.src.storage.chroma_storage import VectorDatabase
-from langchain_openai import ChatOpenAI
-from langchain_openai import OpenAIEmbeddings
 from backend.src.queries.handler import QueryHandler
 from langchain.schema.document import Document
 from typing import *
 from langchain.schema.messages import HumanMessage
 from langchain.schema.runnable import RunnablePassthrough, RunnableLambda
 from langchain.schema.output_parser import StrOutputParser
+from backend.src.llm_models import get_openai_embeddings, get_openai_model
 
-
-embeddings = OpenAIEmbeddings()
+embeddings = get_openai_embeddings()
 # vb = VectorDatabase()
 # vectorstore = vb.init_chromadb(embeddings)
 # retriever = vb.get_retriever(vectorstore, id_key="doc_id")
