@@ -1,14 +1,13 @@
 
 from langchain.schema.messages import HumanMessage
-from langchain.schema.runnable import RunnablePassthrough, RunnableLambda
+from langchain.schema.runnable import RunnablePassthrough, RunnableLambda, RunnableParallel
 from langchain.schema.output_parser import StrOutputParser
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+from backend.src.storage.firebase_storage import FireStore
+from typing import final
 
-
-from server.services.query_service import QueryService
-from backend.src.storage.chroma_storage import VectorDatabase
-
-
+firestore = FireStore()
+firestore_chat_history = firestore.get_chat_history()
 
 class RAGService:
     def __init__(self):
@@ -39,9 +38,19 @@ class RAGService:
     #     print(message_content)  # Debugging: Print what is being sent
     #     return HumanMessage(content=message_content)  # ✅ Single `HumanMessage`
     
+    @final
+    def get_last_n_messages(self, n:int):
+        """Get last n messages from firestore chat history"""
+        messages = firestore.load_messages(n)
+        return messages
+
+    
     def prompt_func(self, dict):
         message_content = []
-
+        past_conversation = self.get_last_n_messages(5)
+        if len(past_conversation) > 0:
+            message_content.extend(past_conversation)
+        print("----"*200)
         # ✅ Add text content if available
         if "texts" in dict["context"] and len(dict["context"]["texts"]) > 0:
             format_texts = "\n".join(dict["context"]["texts"])
@@ -73,3 +82,26 @@ class RAGService:
             | StrOutputParser()
         )
         return chain
+    
+
+#     def get_chain(self, query, query_service, model):
+#         chain = (
+#              RunnableParallel(
+#                 {""RunnableLambda(lambda x: query_service.search_similar_documents(query))
+#                 |RunnableLambda(query_service.get_stored_docs),
+#                 RunnableLambda(lambda x: query_service.get_last_n_messages(5))}
+#             )
+#             | (lambda context: {"context": context,
+#                                 "question": RunnablePassthrough()})
+#             | RunnableLambda(self.prompt_func)
+#             | model
+#             | StrOutputParser()
+#         )
+#         return chain
+    
+# parallel_chain = RunnableParallel(
+#     {
+#         "text_result": RunnableLambda(process_text),
+#         "image_result": RunnableLambda(process_image),
+#     }
+# )

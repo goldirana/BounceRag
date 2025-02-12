@@ -6,17 +6,24 @@ from backend.src.extractors.data_ingestion import DataIngestion
 from backend.src.extractors.extract import Extractor
 from backend.src.entity.config_entity import *
 from backend.src.utils.common import read_yaml
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from backend.src.storage.firebase_storage import FireStore
 from backend.src.config.configuration import ConfigurationManager
 from backend.src.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
+
+
 from server.services.query_service import QueryService
 from server.services.rag_service import RAGService
+
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+
 
 config_manager = ConfigurationManager(CONFIG_FILE_PATH, PARAMS_FILE_PATH)
 vector_database_config = config_manager.get_vectordatabase_config()
 data_ingestion_config = config_manager.get_data_ingestion_params()
 image_summarizer_config = config_manager.get_image_summarizer_params()
 text_summarizer_config = config_manager.get_text_summarizer_params()
+firestore_params = config_manager.get_firebase_params()
+
 
 embeddings = OpenAIEmbeddings()
 config_params = read_yaml(CONFIG_FILE_PATH)
@@ -51,6 +58,10 @@ def get_rag_service():
     rag_service = RAGService()
     return rag_service
 
+def get_firestore_chat_client():
+    firestore = FireStore(firestore_params)
+    firestore_chat_history = firestore.get_chat_history()
+    return firestore_chat_history
 
 if __name__ == "__main__":
     print(config_params)
