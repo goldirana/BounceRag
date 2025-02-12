@@ -1,12 +1,13 @@
-from backend.src.constants import (CONFIG_FILE_PATH, PARAMS_FILE_PATH)
+from backend.src.constants import (CONFIG_FILE_PATH, PARAMS_FILE_PATH, FIREBASE_CREDENTIALS_PATH)
 from backend.src.utils.common import read_yaml, read_json
 
 from backend.src.entity.config_entity import (ImageSummarizerConfig, 
                                       DataIngestionConfig,
                                       VectorDatabaseConfig,
-                                      TextSummarizerConfig)
+                                      TextSummarizerConfig,
+                                      FireStoreConfig)
 import os
-print(os.getcwd())                       
+               
 
 class ConfigurationManager:
     def __init__(self, CONFIG_FILE_PATH, PARAMS_FILE_PATH):
@@ -43,6 +44,14 @@ class ConfigurationManager:
             vectorstore_name=self.config.vector_database.vectorstore_name,
             persist_directory=self.config.vector_database.persist_directory)
         return params
+    
+    
+    def get_firebase_params(self):
+        cred = FireStoreConfig(
+            firebase_credentials_path=self.config.firebase.firebase_credentials_path,
+            session_id=self.config.firebase.session_id
+        )
+        return cred
     
 if __name__ == "__main__":
     config_manager = ConfigurationManager(CONFIG_FILE_PATH, PARAMS_FILE_PATH)
