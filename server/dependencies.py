@@ -13,9 +13,8 @@ from backend.src.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
 
 from server.services.query_service import QueryService
 from server.services.rag_service import RAGService
-
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from backend.src.llm_models import (get_openai_embeddings, get_openai_model)
+import os
 
 
 config_manager = ConfigurationManager(CONFIG_FILE_PATH, PARAMS_FILE_PATH)
