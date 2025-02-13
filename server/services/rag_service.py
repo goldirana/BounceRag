@@ -20,14 +20,36 @@ class RAGService:
     def __init__(self):
         pass
     
-    
-    @final # to prevent from 
+    @final # Prevent method from being overridden
     def get_last_n_messages(self, n:int):
-        """Get last n messages from firestore chat history"""
+        """
+        Retrieve the last 'n' messages from the Firestore database.
+        Args:
+            n (int): The number of recent messages to retrieve.
+        Returns:
+            list: A list of the last 'n' messages.
+        """
         messages = firestore.load_messages(n)
         return messages
         
     def prompt_func(self, dict):
+        """
+        Constructs a prompt message for the model based on the provided context and question.
+        Args:
+            dict (dict): A dictionary containing the context and question. The dictionary should have the following structure:
+                {
+                    "context": {
+                        "texts": [list of text strings],
+                        "images": [list of base64 encoded images]
+                    },
+                    "question": str
+                }
+        Returns:
+            dict: A dictionary containing:
+                - "messages" (list): A list of message objects including system messages, past conversation, and the current question with context.
+                - "image_paths" (list): A list of file paths to the saved images.
+        """
+    
         message_content = []
         message_content.append(SystemMessage(content=get_system_prompt()))
         
@@ -58,7 +80,15 @@ class RAGService:
         return {"messages": message_content, "image_paths": image_paths}
     
     def save_image(self, base64_string):
-        """Decode base64 and save image to temp directory"""
+        """
+        Decode a base64 encoded string and save the resulting image to a temporary directory.
+        Args:
+            base64_string (str): The base64 encoded string representing the image.
+        Returns:
+            str: The file path of the saved image if successful, None otherwise.
+        Raises:
+            Exception: If there is an error during the decoding or saving process.
+        """
         temp_dir = tempfile.gettempdir()  # Get system temp dir
         img_path = os.path.join(temp_dir, f"image_{uuid.uuid4().hex}.jpg")
         
@@ -71,7 +101,16 @@ class RAGService:
             return None 
     
     def get_chain(self, query, query_service, model):
-        """Modified RAG chain to preserve image paths"""
+        """
+        Constructs a processing chain for handling a query using the provided query service and model.
+        Args:
+            query (str): The query string to be processed.
+            query_service (object): An instance of the query service to search and retrieve documents.
+            model (object): The model to invoke for generating responses.
+        Returns:
+            chain (object): A chain of runnable lambdas and functions to process the query and generate a response.
+        """
+
         chain = (
             RunnableLambda(lambda x: query_service.search_similar_documents(query))
             | RunnableLambda(query_service.get_stored_docs)

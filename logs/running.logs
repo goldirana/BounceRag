@@ -8645,3 +8645,7 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2025-02-13 23:37:48,830 - chromadb.api.segment - DEBUG - Collection test5 already exists, returning existing collection.
 2025-02-13 23:37:49,331 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): us.i.posthog.com:443
 2025-02-13 23:37:50,555 - urllib3.connectionpool - DEBUG - https://us.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+2025-02-14 00:27:29,103 - root - ERROR - Exception occured while reading yaml file from                         location: params.yaml
+ First argument must be mapping or iterable
+2025-02-14 00:29:02,831 - root - ERROR - Exception occured while reading yaml file from                         location: params.yaml
+ First argument must be mapping or iterable
