@@ -4,7 +4,7 @@ import uvicorn
 from fastapi.staticfiles import StaticFiles
 import tempfile
 import os
-
+# os.chdir("../")
 
 app = FastAPI()
 app.include_router(router)
