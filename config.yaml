@@ -2,7 +2,6 @@ data_dir:
   raw: backend/data/raw_pdfs
   reports: data/reports
 
-
 model:
   chat_model: gpt-4o
   temperature: 0.7
@@ -24,12 +23,13 @@ text_summarizer:
 
 prompts:
   summarizer_prompt_dir: backend/src/prompts/summarizer.json
+  prompt_dir: backend/src/prompts
+  system_message_prompt: system_message.json
 
 vector_database:
   vectorstore_name: test5
   embeddings: OpenAIEmbeddings # if changed need to make change in code
   persist_directory: vector_database/test_directory
-
 
 firebase:
   session_id: user_session_new

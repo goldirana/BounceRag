@@ -1,18 +1,34 @@
 from backend.src.constants import (CONFIG_FILE_PATH, PARAMS_FILE_PATH, FIREBASE_CREDENTIALS_PATH)
 from backend.src.utils.common import read_yaml, read_json
-
 from backend.src.entity.config_entity import (ImageSummarizerConfig, 
                                       DataIngestionConfig,
                                       VectorDatabaseConfig,
                                       TextSummarizerConfig,
-                                      FireStoreConfig)
+                                      FireStoreConfig,
+                                      PromptConfig)
 import os
-               
+from typing import *
+print("---"*100)
+print(CONFIG_FILE_PATH)
+print(PARAMS_FILE_PATH)
+print(read_yaml(CONFIG_FILE_PATH))
+print(os.getcwd())
+# code to get the executing file name 
+print("---"*100)
+
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Gets the absolute path of the current script
+# CONFIG_FILE_PATH = os.path.join(BASE_DIR, "../../../config.yaml")
+# PARAMS_FILE_PATH = os.path.join(BASE_DIR, "../../../params.yaml")
 
 class ConfigurationManager:
     def __init__(self, CONFIG_FILE_PATH, PARAMS_FILE_PATH):
         self.config = read_yaml(CONFIG_FILE_PATH)
         self.params = read_yaml(PARAMS_FILE_PATH)
+        if self.config is None:
+            print("---"*100)
+            print(os.path.abspath(__file__))
+            
+            raise ValueError("ERROR: Config file not loaded. Check config.yaml path.")
         
     def get_image_summarizer_params(self) -> ImageSummarizerConfig:
         params = ImageSummarizerConfig(
@@ -45,8 +61,14 @@ class ConfigurationManager:
             persist_directory=self.config.vector_database.persist_directory)
         return params
     
-    
+    def get_prompt_config(self) -> Optional[Union[PromptConfig, dict]]:
+        params = PromptConfig(prompt_dir=self.config.prompts.prompt_dir,
+                                system_message_prompt=self.config.prompts.system_message_prompt)
+        return params
+
     def get_firebase_params(self):
+        print("**"*100)
+        print(self.config)
         cred = FireStoreConfig(
             firebase_credentials_path=self.config.firebase.firebase_credentials_path,
             session_id=self.config.firebase.session_id
@@ -58,3 +80,5 @@ if __name__ == "__main__":
     print(config_manager.get_image_summarizer_params())
     print(config_manager.get_vectordatabase_config())
     print(config_manager.get_text_summarizer_params())
+    print("__"* 50)
+    print(config_manager.get_firebase_params())
