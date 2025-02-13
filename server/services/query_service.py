@@ -8,10 +8,6 @@ from langchain.schema.output_parser import StrOutputParser
 from backend.src.llm_models import get_openai_embeddings, get_openai_model
 
 embeddings = get_openai_embeddings()
-# vb = VectorDatabase()
-# vectorstore = vb.init_chromadb(embeddings)
-# retriever = vb.get_retriever(vectorstore, id_key="doc_id")
-# query_handler = QueryHandler(retriever)
 
     
 

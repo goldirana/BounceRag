@@ -8,26 +8,41 @@ from backend.src.entity.config_entity import (ImageSummarizerConfig,
                                       PromptConfig)
 import os
 from typing import *
-print("---"*100)
-print(CONFIG_FILE_PATH)
-print(PARAMS_FILE_PATH)
-print(read_yaml(CONFIG_FILE_PATH))
-print(os.getcwd())
-# code to get the executing file name 
-print("---"*100)
 
-# BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Gets the absolute path of the current script
-# CONFIG_FILE_PATH = os.path.join(BASE_DIR, "../../../config.yaml")
-# PARAMS_FILE_PATH = os.path.join(BASE_DIR, "../../../params.yaml")
 
 class ConfigurationManager:
+    """
+    A class to manage configuration settings for various components of the project.
+    Attributes:
+    -----------
+    config : dict
+        Configuration settings loaded from the config YAML file.
+    params : dict
+        Parameters loaded from the params YAML file.
+    Methods:
+    --------
+    __init__(CONFIG_FILE_PATH, PARAMS_FILE_PATH):
+        Initializes the ConfigurationManager with paths to the config and params YAML files.
+    get_image_summarizer_params() -> ImageSummarizerConfig:
+        Retrieves the configuration parameters for the image summarizer.
+    get_text_summarizer_params() -> TextSummarizerConfig:
+        Retrieves the configuration parameters for the text summarizer.
+    get_data_ingestion_params() -> DataIngestionConfig:
+        Retrieves the configuration parameters for data ingestion.
+    get_vectordatabase_config() -> VectorDatabaseConfig:
+        Retrieves the configuration parameters for the vector database.
+    get_prompt_config() -> Optional[Union[PromptConfig, dict]]:
+        Retrieves the configuration parameters for prompts.
+    get_firebase_params():
+        Retrieves the configuration parameters for Firebase.
+    """
+    
     def __init__(self, CONFIG_FILE_PATH, PARAMS_FILE_PATH):
         self.config = read_yaml(CONFIG_FILE_PATH)
         self.params = read_yaml(PARAMS_FILE_PATH)
         if self.config is None:
-            print("---"*100)
-            print(os.path.abspath(__file__))
-            
+            # print("---"*100)
+            # print(os.path.abspath(__file__))
             raise ValueError("ERROR: Config file not loaded. Check config.yaml path.")
         
     def get_image_summarizer_params(self) -> ImageSummarizerConfig:
@@ -67,8 +82,8 @@ class ConfigurationManager:
         return params
 
     def get_firebase_params(self):
-        print("**"*100)
-        print(self.config)
+        # print("**"*100)
+        # print(self.config)
         cred = FireStoreConfig(
             firebase_credentials_path=self.config.firebase.firebase_credentials_path,
             session_id=self.config.firebase.session_id

@@ -1,6 +1,5 @@
 import uuid
 from typing import *
-from dataclasses import dataclass
 from langchain.schema.document import Document
 from unstructured.partition.pdf import partition_pdf
 from unstructured.documents.elements import CompositeElement, Table, Image, ListItem  
