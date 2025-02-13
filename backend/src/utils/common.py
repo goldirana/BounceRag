@@ -43,7 +43,6 @@ def check_directory_path(path: str) -> None:
         
 def create_directory(path: str, is_extension_present: bool=True)-> None:
     """Create directory at given location
-    
     Args:
         path(str): path where directory needs to be created
         is_extension_present: whether extension of file present in path
@@ -60,13 +59,12 @@ def create_directory(path: str, is_extension_present: bool=True)-> None:
     except Exception as e:
         logger.error(f"Error occured while creating directory at {path} \n{e}")
 
-
-
-def read_yaml(path: str, format: str="r"):
+def read_yaml(path: str, format: str="r", log_info: bool=False) -> ConfigBox:
     try:
         with open(path, format                     ) as f:
             params = yaml.safe_load(f)
-            logger.info("Yaml read successfully from %s", path)
+            if log_info == True:
+                logger.info("Yaml read successfully from %s", path)
             return ConfigBox(params)
     except FileNotFoundError:
         logger.error("FileNotFoundError: %s", path)

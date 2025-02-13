@@ -1,6 +1,0 @@
-2025-02-10 08:28:35,590 - root - ERROR - FileNotFoundError: config.yaml
-2025-02-10 08:28:35,596 - root - ERROR - FileNotFoundError: params.yaml
-2025-02-10 08:28:55,157 - root - ERROR - FileNotFoundError: config.yaml
-2025-02-10 08:28:55,158 - root - ERROR - FileNotFoundError: params.yaml
-2025-02-10 08:29:09,600 - root - ERROR - FileNotFoundError: config.yaml
-2025-02-10 08:29:09,604 - root - ERROR - FileNotFoundError: params.yaml
