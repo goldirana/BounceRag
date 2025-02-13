@@ -20,15 +20,18 @@ class TextSummarizer(Extractor):
         self.model = model
         
     def generate_summary(self, docs: List[dict]):
-        """To generate summary of the text
-
-        Args:
-            model (object): model used to generate summary of text
-            docs (List[dict]): List containing dict >> text with metadata
-                len of docs = len of dict containing text with metadata
-                        dict -> text, metadata 
         """
-                    
+        Generates summaries for a list of documents.
+        Args:
+            docs (List[dict]): A list of dictionaries where each dictionary contains 
+                               the raw text and associated metadata of a document.
+        Returns:
+            Tuple[List[str], List[str], List[dict]]: A tuple containing:
+                - raw_text (List[str]): A list of raw text extracted from the documents.
+                - summaries (List[str]): A list of generated summaries for the documents.
+                - metadata (List[dict]): A list of metadata associated with the documents.
+        """
+
         raw_text, metadata = Extractor.seprate_data_metadata_for_text(docs)
         prompt = ChatPromptTemplate.from_template(self.config.text_summarizer_prompt)
         summarize_chain = {"element": lambda x: x} | prompt | self.model | StrOutputParser()
@@ -36,6 +39,16 @@ class TextSummarizer(Extractor):
         return raw_text, summaries, metadata
     
     def get_text_data(self, raw_pdf_elements)-> List[Any]:
+        """
+        Extracts text data from a list of raw PDF elements.
+        This method iterates through the provided list of raw PDF elements and 
+        appends elements that are instances of CompositeElement or ListItem to 
+        the text list.
+        Args:
+            raw_pdf_elements (List[Any]): A list of raw elements extracted from a PDF.
+        Returns:
+            List[Any]: A list containing elements that are instances of CompositeElement or ListItem.
+        """  
         text = []
         for element in raw_pdf_elements:
             if isinstance(element, CompositeElement) or isinstance(element, ListItem):
@@ -44,7 +57,16 @@ class TextSummarizer(Extractor):
     
     @staticmethod
     def sanity_check_for_metadata(metadata: dict):
-        """To check if metadata value has no data structure; if present take 1st value as str"""
+        """
+        Check and sanitize metadata values.
+        This function iterates through the provided metadata dictionary and ensures that each value is converted to a string.
+        If the value is a list, tuple, or set, it takes the first element and converts it to a string.
+        Otherwise, it directly converts the value to a string.
+        Args:
+            metadata (dict): The metadata dictionary to be sanitized.
+        Returns:
+            dict: A new dictionary with sanitized metadata values as strings.
+        """
         new_metadata = {}
         for key, value in metadata.items():
             if isinstance(value, (list, tuple)):
@@ -56,7 +78,18 @@ class TextSummarizer(Extractor):
         return new_metadata
         
     def add_metadata(self, raw_text, summaries, summary_metdata: dict=None):
-        """To add rawtext as metadata for summaries"""
+        """
+        Adds metadata to the provided summaries and returns a list of Document objects with the enriched metadata.
+        Args:
+            raw_text (list of str): The list of raw text strings corresponding to the summaries.
+            summaries (list of str): The list of summary strings to which metadata will be added.
+            summary_metdata (dict, optional): A dictionary containing metadata for each summary. Defaults to None.
+        Returns:
+            list of Document: A list of Document objects, each containing a summary and its associated metadata.
+        Raises:
+            ValueError: If the lengths of `raw_text`, `summaries`, and `summary_metdata` do not match.
+        """
+        
         uuids = [str(uuid.uuid4()) for i in raw_text]
         summaries_with_metadata = []
 

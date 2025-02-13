@@ -12,7 +12,29 @@ from dotenv import load_dotenv
 from backend.src.llm_models import (get_openai_embeddings, get_openai_model)
 load_dotenv()   
 
+
 class ImageSummarizer:
+    """ImageSummarizer is a class designed to summarize images using a language model API. It provides methods to encode images, summarize them, and manage metadata.
+    Attributes:
+        config (object): Configuration object containing settings and paths.
+        model (object): Language model object used for summarization.
+        image_summary_prompt (str): Prompt used for image summarization.
+        image_path (str): Path to the image directory.
+        type (str): Type of the summarizer, default is "Image".
+        uuids (list): List of UUIDs for the images.
+    Methods:
+        __init__(config, model):
+            Initializes the ImageSummarizer with the given configuration and model.
+        encode_image(image_path):
+            Encodes an image to base64 format.
+        image_summarize(img_base64):
+            Summarizes an image using the language model API.
+        get_image_path(path):
+            Returns the paths of images in the specified directory.
+        create_doc_from_list(data):
+        decorator(func):
+        add_metadata(encoded_images, summaries, metadata=None, automatic_metadata=False):
+    """
     def __init__(self, config, model: object):
         super().__init__()
         self.config = config
@@ -64,7 +86,6 @@ class ImageSummarizer:
 
     def get_image_path(self, path: str):
         """Returns the images path by joining the main path and the image names
-
         Args:
             path (str): image folder
 
@@ -83,7 +104,14 @@ class ImageSummarizer:
     
     @staticmethod
     def create_doc_from_list(data: List) -> List:
-        """To create document from list of data"""
+        """
+        Creates a list of Document objects from a list of tuples containing metadata and document content.
+        Args:
+            data (List): A list of tuples where each tuple contains metadata and document content.
+        Returns:
+            List: A list of Document objects with the provided metadata and content.
+        """
+
         _ = []
         
         for metadata, doc in data:
@@ -92,6 +120,17 @@ class ImageSummarizer:
         return _
     
     def decorator(func):
+        """
+        A decorator that processes the output of a function to add raw string metadata to summaries.
+        This decorator assumes that the decorated function returns a tuple containing two lists:
+        1. `encoded_images_with_metadata`: A list where each element is a tuple, and the second element of the tuple is a raw string.
+        2. `summaries_with_metadata`: A list of summary objects, each having a `metadata` attribute which is a dictionary.
+        The decorator iterates over the `summaries_with_metadata` list and adds the corresponding raw string from `encoded_images_with_metadata` to the `metadata` dictionary of each summary.
+        Args:
+            func (callable): The function to be decorated.
+        Returns:
+            callable: The wrapped function with added functionality.
+        """
         def wrapper(self, *args, **kwargs):
             encoded_images_with_metadata, summaries_with_metadata = func(self, *args, **kwargs)
             for index, summary in enumerate(summaries_with_metadata):
@@ -100,7 +139,19 @@ class ImageSummarizer:
         return wrapper
     
     @decorator
-    def add_metadata(self, encoded_images, summaries, metadata: list[dict]=None, automatic_metadata=False) -> Tuple[List[tuple], List[Document]]:
+    def add_metadata(self, encoded_images, summaries, metadata: list[dict]=None, 
+                     automatic_metadata=False) -> Tuple[List[tuple], List[Document]]:
+        """
+        Adds metadata to encoded images and summaries.
+        Args:
+            encoded_images (List[bytes]): A list of encoded images.
+            summaries (List[str]): A list of summaries corresponding to the images.
+            metadata (list[dict], optional): A list of metadata dictionaries for each image and summary. Defaults to None.
+            automatic_metadata (bool, optional): If True, automatically generates metadata using the image path and type. Defaults to False.
+        Returns:
+            Tuple[List[tuple], List[Document]]: A tuple containing a list of tuples with UUIDs and encoded images, 
+                                                and a list of Document objects with summaries and metadata.
+        """
         if automatic_metadata:
             metadata = {"source": self.image_path,
                         "type": self.type}
