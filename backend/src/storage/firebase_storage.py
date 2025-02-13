@@ -15,18 +15,13 @@ class FireStore:
         if config == None:
             self.config = config
         self.config = config
-        
-    # def get_firestore_client(self):
-    #     cred = credentials.Certificate(self.config.firebase_credentials_path)
-    #     firebase_admin.initialize_app(cred)
-    #     return firestore.client()
-    
+            
     def get_firestore_client(self):
         if not firebase_admin._apps: 
             cred = credentials.Certificate(self.config.firebase_credentials_path)
             firebase_admin.initialize_app(cred)
-        
         return firestore.client()
+    
     def get_chat_history(self):
         chat_history=FirestoreChatMessageHistory(
             session_id=self.config.session_id,

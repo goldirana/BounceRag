@@ -12,7 +12,13 @@ class DataIngestionConfig:
 class VectorDatabaseConfig:
     vectorstore_name: str
     persist_directory: str
+
+@dataclass
+class PromptConfig:
+    prompt_dir: str
+    system_message_prompt: str
     
+
 @dataclass
 class ImageSummarizerConfig:
     model: str # name of model
