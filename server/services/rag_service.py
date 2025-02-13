@@ -1,17 +1,20 @@
 
-from langchain.schema.messages import HumanMessage
+from langchain.schema.messages import HumanMessage, SystemMessage, AIMessage
 from langchain.schema.runnable import RunnablePassthrough, RunnableLambda, RunnableParallel
 from langchain.schema.output_parser import StrOutputParser
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from backend.src.storage.firebase_storage import FireStore
+from server.services.prompt_service import get_system_prompt
 from typing import final
 import tempfile
 import base64
 import os
 import uuid
 
+
 firestore = FireStore()
 firestore_chat_history = firestore.get_chat_history()
+
 
 class RAGService:
     def __init__(self):
@@ -23,9 +26,11 @@ class RAGService:
         """Get last n messages from firestore chat history"""
         messages = firestore.load_messages(n)
         return messages
-
+        
     def prompt_func(self, dict):
         message_content = []
+        message_content.append(SystemMessage(content=get_system_prompt()))
+        
         past_conversation = self.get_last_n_messages(5)
         if len(past_conversation) > 0:
             message_content.extend(past_conversation)
