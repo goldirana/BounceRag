@@ -1,4 +1,6 @@
 from dataclasses import dataclass
+from typing import *
+
 """
 This module defines configuration entities using dataclasses for various components of the project.
 Classes:
@@ -31,7 +33,7 @@ Attributes:
     FireStoreConfig.firebase_credentials_path (str): Path to Firebase credentials.
     FireStoreConfig.session_id (str): Session ID for Firestore.
 """
-from typing import *
+
 
 
 @dataclass

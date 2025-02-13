@@ -60,6 +60,19 @@ def create_directory(path: str, is_extension_present: bool=True)-> None:
         logger.error(f"Error occured while creating directory at {path} \n{e}")
 
 def read_yaml(path: str, format: str="r", log_info: bool=False) -> ConfigBox:
+    """
+    Reads a YAML file and returns its contents as a ConfigBox object.
+    Args:
+        path (str): The path to the YAML file.
+        format (str, optional): The mode in which the file is opened. Defaults to "r".
+        log_info (bool, optional): If True, logs an info message upon successful read. Defaults to False.
+    Returns:
+        ConfigBox: An object containing the parsed YAML data.
+    Raises:
+        FileNotFoundError: If the specified file does not exist.
+        Exception: For any other exceptions that occur during file reading.
+    """
+    
     try:
         with open(path, format                     ) as f:
             params = yaml.safe_load(f)
@@ -73,6 +86,18 @@ def read_yaml(path: str, format: str="r", log_info: bool=False) -> ConfigBox:
                         location: {path}\n {e}")
         
 def save_pickle(object: Any, path: str):
+    """
+    Save an object to a file using pickle.
+    Args:
+        object (Any): The object to be serialized and saved.
+        path (str): The file path where the object will be saved.
+    Raises:
+        pickle.PickleError: If there is an error during the pickling process.
+        Exception: For any other exceptions that occur during the file operation.
+    Logs:
+        Info: When the object is successfully saved.
+        Error: If there is an error during the saving process.
+    """
     try:
         create_directory(path, is_extension_present=True)
         with open(path, "wb") as f:
@@ -94,20 +119,40 @@ def read_pickle(path: str):
         logger.error("Error occured while reading pickle %s", e)
 
 
-def read_json(path):
+def read_json(path, log_info=False):
+    """
+    Reads a JSON file from the specified path and returns its contents as a dictionary.
+    Args:
+        path (str): The file path to the JSON file.
+        log_info (bool, optional): If True, logs information about the reading process. Defaults to False.
+    Returns:
+        dict: The contents of the JSON file.
+    Raises:
+        Exception: If there is an error reading the JSON file.
+    """
+    
     try:
         with open(path, "r") as f:
             params = json.load(f)
-            logger.info("Json object read sucessfully ")
+            if log_info == True:
+                logger.info("Json read successfully from %s", path)
             if params == None:
                 logger.info("Json not read")
-        # print(params)
         return params
     except Exception as e:
         logger.info(e)
         raise e    
     
 def save_json(object, path):
+    """
+    Save a Python object as a JSON file.
+    Args:
+        object (any): The Python object to be saved as JSON.
+        path (str): The file path where the JSON file will be saved.
+    Raises:
+        Exception: If there is an error during the file writing process, it will be logged.
+    """
+    
     try:
         with open(path, "w") as f:
             json.dump(object, f)
@@ -116,6 +161,15 @@ def save_json(object, path):
         logger.error(e)
 
 def log_error(sucess_message=None, faliure_message=None):
+    """
+    A decorator that logs a success message if the decorated function executes without exceptions,
+    and logs an error message along with the exception details if an exception is raised.
+    Args:
+        sucess_message (str, optional): The message to log if the function executes successfully.
+        faliure_message (str, optional): The message to log if the function raises an exception.
+    Returns:
+        function: The decorated function with added logging functionality.
+    """
     def decorator(func):  # This is the actual decorator
         def wrapper(*args, **kwargs):
             try:
