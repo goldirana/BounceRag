@@ -38,7 +38,7 @@ class DataIngestion(Extractor):
         """
         file_name = os.path.split(pdf_file_path)[-1].split(".")[0] # get the filename from file name and set it as directory name
         report_dir = os.path.join(self.config.reports, file_name) 
-        print(report_dir)
+        # print(report_dir)
         create_directory(report_dir, is_extension_present=False) # create directory with file_name
         if kwargs.get("extract_image_block_output_dir", None) == None: # to create image folder in report_dir
             kwargs["extract_image_block_output_dir"] = os.path.join(report_dir, "images")
