@@ -121,7 +121,6 @@ class RAGService:
     def rephrased_question_(query, model):
         return RAGService.get_rephrased_question(query, model)
 
-    @staticmethod
     def prompt_func_(self, result):
         return self.prompt_func(result)
     
@@ -138,11 +137,12 @@ class RAGService:
                 "context": RunnableLambda(lambda x: RAGService.search_similar_documents_(query_service, query))
                             # | RunnableLambda(lambda x: self.debug(x))
                             | RunnableLambda(lambda x: RAGService.get_stored_docs_(query_service, x)),
-                "question": RunnableLambda(lambda x: RAGService.rephrased_question_(query, model))
+                "question": RunnableLambda(lambda x: RAGService.get_rephrased_question_(query, model))
             })
-            | RunnableLambda(RAGService.prompt_func_)
+            | RunnableLambda(lambda x: self.prompt_func_(x))
             | RunnableLambda(lambda result: RAGService.generate_response(model, result))
         )
+        
         return chain
     
     # def debug(self, x):
