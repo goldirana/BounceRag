@@ -17,3 +17,14 @@ def get_system_prompt():
     
     docs = read_json(os.path.join(prompt_params.prompt_dir, prompt_params.system_message_prompt))
     return docs["system_message"]
+
+def get_ror_prompt():
+    """
+    Reads a JSON file containing ROR (rephrase and respond) prompts and returns the ROR prompt.
+    The JSON file is located in the directory specified by `prompt_params.prompt_dir`
+    and has the filename specified by `prompt_params.ror_prompt`.
+    Returns:
+        str: The ROR prompt from the JSON file.
+    """
+    docs = read_json(os.path.join(prompt_params.prompt_dir, prompt_params.ror_prompt))
+    return docs["ror_prompt"]
