@@ -58,7 +58,8 @@ class QueryService:
             prompt_func (callable): A function to generate prompts for the model.
             model (object): The model to be used in the pipeline.
         Returns:
-            chain: A processing chain that includes context retrieval, prompt generation, model inference, and output parsing.
+            chain: A processing chain 
+            that includes context retrieval, prompt generation, model inference, and output parsing.
         """
         
         chain = (

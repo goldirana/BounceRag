@@ -6,7 +6,7 @@ import time
 from math import ceil
 st.title("Query System")
 
-FAST_API_URL = "http://127.0.0.1:8092"
+FAST_API_URL = "http://127.0.0.1:8095"
 icons = {"assistant": "/Users/goldyrana/mess/deep_learning/projects/rag/frontend/assests/xxx.svg"}
 query = st.chat_input("Message Insight Docs...")
 if "messages" not in st.session_state:
