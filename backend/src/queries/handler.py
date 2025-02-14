@@ -55,26 +55,26 @@ class QueryHandler:
         b64, image_metadata = [], []
         text, text_metadata = [], []
         for doc in docs_:
-            print(doc.metadata)
+            # print(doc.metadata)
             if doc.metadata["type"] == "image":
                 try:
                     raw_string = doc.metadata.pop("raw_string")
-                    print("IMage raw string: ", raw_string)
+                    # print("IMage raw string: ", raw_string)
                     b64.append(raw_string)
                     image_metadata.append(doc.metadata)
                 except:
                     b64.append("None")
-                    print("Image append None")
+                    # print("Image append None")
                     image_metadata.append(doc.metadata)
             elif doc.metadata["type"] == "text":
                 try:
                     raw_string = doc.metadata.pop("raw_string")
-                    print("text raw string: ", raw_string)
+                    # print("text raw string: ", raw_string)
                     text.append(raw_string)
                     text_metadata.append(doc.metadata)
                 except:
                     text.append("None")
-                    print("Text append None")
+                    # print("Text append None")
                     text_metadata.append(doc.metadata)
         # print("**"*40)
         # print("before return")

@@ -19,6 +19,7 @@ ensure==1.0.2
 joblib
 
 
+
 langchain
 langchain-openai
 langchain_community
@@ -40,4 +41,5 @@ chromadb
 langchain-chroma
 firebase_admin
 langchain-google-firestore
+streamlit
 -e .
