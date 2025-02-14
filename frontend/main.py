@@ -20,6 +20,6 @@ pg = st.navigation(
      "Project": [query_page]}
 )
 
-st.logo("/Users/goldyrana/mess/deep_learning/projects/rag/frontend/assests/bounce_insight_logo.png")
+# st.logo("assests/bounce_insight_logo.png")
 
 pg.run()
