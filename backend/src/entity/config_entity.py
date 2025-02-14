@@ -51,7 +51,7 @@ class VectorDatabaseConfig:
 class PromptConfig:
     prompt_dir: str
     system_message_prompt: str
-    
+    ror_prompt: str
 
 @dataclass
 class ImageSummarizerConfig:
