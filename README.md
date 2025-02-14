@@ -39,3 +39,11 @@ export PYTHONPATH="/Users/goldyrana/mess/deep_learning/projects/rag:$PYTHONPATH"
 
 
 ### Export the  environment variable
+
+
+### setting heroku
+heroku config:set FAST_API_URL="https://test9799-02e2b743b08e.herokuapp.com/" -a test9799
+chmod +x run_services.sh
+
+
+<!-- "app name" --> test

@@ -1,13 +1,13 @@
 import streamlit as st
 import os
-import sys
 import requests
 import time
 from math import ceil
 st.title("Query System")
 
-FAST_API_URL = "http://127.0.0.1:5000"
-icons = {"assistant": "/Users/goldyrana/mess/deep_learning/projects/rag/frontend/assests/xxx.svg"}
+# FAST_API_URL = "http://localhost:8501"
+FAST_API_URL = os.getenv("FAST_API_URL", "http://localhost:8501")
+icons = {"assistant": "frontend/assests/xxx.svg"}
 query = st.chat_input("Message Insight Docs...")
 if "messages" not in st.session_state:
     st.session_state_messages = []
