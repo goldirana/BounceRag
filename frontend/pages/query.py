@@ -6,7 +6,7 @@ import time
 from math import ceil
 st.title("Query System")
 
-FAST_API_URL = "http://127.0.0.1:8095"
+FAST_API_URL = "http://127.0.0.1:8097"
 icons = {"assistant": "/Users/goldyrana/mess/deep_learning/projects/rag/frontend/assests/xxx.svg"}
 query = st.chat_input("Message Insight Docs...")
 if "messages" not in st.session_state:
@@ -22,9 +22,12 @@ if query:
         assistant_text = st.empty()
 
         with st.spinner("Thinking..."):
-            response = requests.post(f"{FAST_API_URL}/query", json={"question": query},stream=True).json()
+            response = requests.post(f"{FAST_API_URL}/query", json={"question": query},
+                                     stream=True).json()
         
         text_response = response.get("response", "No response generated.")["content"]
+        # print("--"* 100)
+        # print(text_response)
         image_urls = response.get("images", [])
         
         streamed_text = ""
@@ -36,7 +39,7 @@ if query:
         
         time.sleep(2)
         if image_urls:
-            st.subheader("Image Reference:")
+            st.subheader("Some helpful images: icon")
             
             num_images = len(image_urls)
             cols_per_row = 3  # Adjust number of columns per row
@@ -53,4 +56,10 @@ if query:
                             st.image(img_url, use_container_width=True)
                     image_index += 1
                         
-    
+with st.container():
+    for message in st.session_state_messages:
+        role = message["role"]
+        content = message["content"]
+        
+        with st.chat_message(role):
+            st.markdown(content)

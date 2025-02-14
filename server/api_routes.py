@@ -26,10 +26,10 @@ class QueryRequest(BaseModel):
 async def search_vb(request: QueryRequest):
 
     query = request.question
-    # print("DEBUG serch vb")
-    # print("--"*100)
-    # print(query)
-    # print("--"*100)
+    print("DEBUG serch vb")
+    print("--"*100)
+    print(query)
+    print("--"*100)
     chain = rag_service.get_chain(query, query_service, model)
     response_data = await chain.ainvoke(query)
     
