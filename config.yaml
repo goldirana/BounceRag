@@ -25,6 +25,7 @@ prompts:
   summarizer_prompt_dir: backend/src/prompts/summarizer.json
   prompt_dir: backend/src/prompts
   system_message_prompt: system_message.json
+  ror_prompt: rephrase_and_respond.json
 
 vector_database:
   vectorstore_name: test5

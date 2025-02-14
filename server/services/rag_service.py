@@ -4,13 +4,14 @@ from langchain.schema.runnable import RunnablePassthrough, RunnableLambda, Runna
 from langchain.schema.output_parser import StrOutputParser
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from backend.src.storage.firebase_storage import FireStore
-from server.services.prompt_service import get_system_prompt
+from server.services.prompt_service import get_system_prompt, get_ror_prompt
 from typing import final
 import tempfile
 import base64
 import os
 import uuid
-
+from typing import *
+from langchain.schema.document import Document
 
 firestore = FireStore()
 firestore_chat_history = firestore.get_chat_history()
@@ -49,7 +50,6 @@ class RAGService:
                 - "messages" (list): A list of message objects including system messages, past conversation, and the current question with context.
                 - "image_paths" (list): A list of file paths to the saved images.
         """
-    
         message_content = []
         message_content.append(SystemMessage(content=get_system_prompt()))
         
@@ -100,26 +100,56 @@ class RAGService:
             print(f"Error saving image: {e}")
             return None 
     
-    def get_chain(self, query, query_service, model):
-        """
-        Constructs a processing chain for handling a query using the provided query service and model.
-        Args:
-            query (str): The query string to be processed.
-            query_service (object): An instance of the query service to search and retrieve documents.
-            model (object): The model to invoke for generating responses.
-        Returns:
-            chain (object): A chain of runnable lambdas and functions to process the query and generate a response.
-        """
+    @staticmethod
+    def get_rephrased_question_(query, model):
+        prompt = get_ror_prompt()
+        prompt = prompt.format(query=query)
+        return model.invoke(prompt).content
 
+    @staticmethod
+    def search_similar_documents_(query_service, query):
+        return query_service.search_similar_documents(query)
+
+    @staticmethod
+    def get_stored_docs_(query_service, context: List[Document]):
+        if isinstance(context, list):
+            return query_service.get_stored_docs(context)
+        else:
+            raise TypeError("Expected context to be a dictionary")
+
+    @staticmethod
+    def rephrased_question_(query, model):
+        return RAGService.get_rephrased_question(query, model)
+
+    @staticmethod
+    def prompt_func_(self, result):
+        return self.prompt_func(result)
+    
+    @staticmethod
+    def generate_response(model, result):
+        return {
+            "response": model.invoke(result["messages"]),  # LLM output
+            "image_paths": result["image_paths"]  # Preserve image paths
+        }
+        
+    def get_chain(self, query, query_service, model):
         chain = (
-            RunnableLambda(lambda x: query_service.search_similar_documents(query))
-            | RunnableLambda(query_service.get_stored_docs)
-            | (lambda context: {"context": context, "question": RunnablePassthrough()})
-            | RunnableLambda(self.prompt_func)
-            | RunnableLambda(lambda result: {
-                "response": model.invoke(result["messages"]),  # LLM output
-                "image_paths": result["image_paths"]  # Preserve image paths
+            RunnableParallel({
+                "context": RunnableLambda(lambda x: RAGService.search_similar_documents_(query_service, query))
+                            # | RunnableLambda(lambda x: self.debug(x))
+                            | RunnableLambda(lambda x: RAGService.get_stored_docs_(query_service, x)),
+                "question": RunnableLambda(lambda x: RAGService.rephrased_question_(query, model))
             })
+            | RunnableLambda(RAGService.prompt_func_)
+            | RunnableLambda(lambda result: RAGService.generate_response(model, result))
         )
         return chain
     
+    # def debug(self, x):
+    #     print( "***"*100)
+    #     print("This is debug function ")
+    #     print(type(x))
+    #     print(x[0])
+    #     if isinstance(x, dict):
+    #         print(x.keys())
+    #     # print(x)
