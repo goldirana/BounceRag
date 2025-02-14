@@ -78,12 +78,11 @@ class ConfigurationManager:
     
     def get_prompt_config(self) -> Optional[Union[PromptConfig, dict]]:
         params = PromptConfig(prompt_dir=self.config.prompts.prompt_dir,
-                                system_message_prompt=self.config.prompts.system_message_prompt)
+                                system_message_prompt=self.config.prompts.system_message_prompt,
+                                ror_prompt=self.config.prompts.ror_prompt)
         return params
 
     def get_firebase_params(self):
-        # print("**"*100)
-        # print(self.config)
         cred = FireStoreConfig(
             firebase_credentials_path=self.config.firebase.firebase_credentials_path,
             session_id=self.config.firebase.session_id
