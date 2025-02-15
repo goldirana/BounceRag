@@ -34,8 +34,8 @@ WORKDIR /app
 COPY . /app
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
-
+# RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 # Make port 8501 available to the world outside this container
 EXPOSE 8501
 
@@ -45,4 +45,4 @@ ENV OPENAI_API_KEY="sk-proj-Nvf95QICppaEhhSuP0CPogtqurhhT0vwMOgNfm5Y7w5uILMHF4mL
 
 # Run both FastAPI and Streamlit using a process manager like gunicorn for FastAPI
 # and streamlit's own server for Streamlit. Using a script to start both.
-CMD sh run_services.sh
+CMD ["/app/run_services.sh"]
