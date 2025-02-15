@@ -15,10 +15,7 @@ backend/src/entity/config_entity.py
 backend/src/extractors/__init__.py
 backend/src/extractors/data_ingestion.py
 backend/src/extractors/extract.py
-backend/src/extractors/image_extractor.py
 backend/src/extractors/image_summarizer.py
-backend/src/extractors/table_extractor.py
-backend/src/extractors/text_extractor.py
 backend/src/extractors/text_summarizer.py
 backend/src/prompts/__init__.py
 backend/src/queries/__init__.py
@@ -35,13 +32,10 @@ bounceinsights.egg-info/dependency_links.txt
 bounceinsights.egg-info/top_level.txt
 frontend/__init__.py
 frontend/main.py
+frontend/assests/__init__.py
 frontend/logger/__init__.py
 frontend/pages/__init__.py
 frontend/pages/about_me.py
+frontend/pages/app.py
+frontend/pages/contact.py
 frontend/pages/query.py
-frontend/public/__init__.py
-frontend/services/__init__.py
-frontend/services/api.py
-frontend/src/__init__.py
-frontend/src/components/__init__.py
-frontend/src/utils/__init__.py
