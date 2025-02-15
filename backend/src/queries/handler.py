@@ -1,7 +1,6 @@
 from typing import *
 from langchain.schema.document import Document
 import numpy as np
-import uuid
 from base64 import b64decode
 from PIL import Image
 from IPython.display import display, HTML

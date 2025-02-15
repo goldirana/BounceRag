@@ -1,4 +1,5 @@
-from backend.src.storage.chroma_storage import VectorDatabase
+# from backend.src.storage.chroma_storage import VectorDatabase
+from server.services.chroma_service import VectorDatabase 
 from backend.src.queries.handler import QueryHandler
 from langchain.schema.document import Document
 from typing import *
