@@ -6,6 +6,7 @@ from PIL import Image
 from IPython.display import display, HTML
 from langchain.retrievers.multi_vector import MultiVectorRetriever
 from copy import deepcopy
+import io
 
 
 class QueryHandler:

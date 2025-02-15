@@ -98,5 +98,6 @@ firebase_admin
 # Web Development
 langchain-google-firestore
 streamlit
+ipython
 -e .
 
