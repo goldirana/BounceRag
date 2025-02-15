@@ -16,3 +16,5 @@ frontend/src/services/__pycache__/*
 
 server/__pycache__/*
 server/services/__pycache__/*
+
+.DS_Store
