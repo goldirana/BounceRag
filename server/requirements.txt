@@ -39,8 +39,11 @@ pytesseract==0.3.13
 chromadb
 langchain-chroma
 firebase_admin
-pi_heif==0.21.0
+pi-heif==0.21.0
 lxml==5.3.0
+tiktoken==0.8.0
+unstructured_inference
+unstructured[all-docs]
 # Web Development
 streamlit
 -e .
