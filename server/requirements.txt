@@ -24,24 +24,23 @@ uvicorn
 # notebook
 
 # AI and NLP
-langchain
+langchain==0.3.17
 langchain-openai
 langchain_community
 unstructured==0.16.11
 fastapi==0.115.8
-pydantic
+pydantic==2.10.6
 pdfminer.six==20231228
-# pdfminer
-# lxml
-# pdfminer
+
 # tesseract==0.1.3
-# pytesseract==0.3.13
+pytesseract==0.3.13
 
 # Databases and Storage
 chromadb
 langchain-chroma
 firebase_admin
 pi_heif==0.21.0
+lxml==5.3.0
 # Web Development
 streamlit
 -e .
