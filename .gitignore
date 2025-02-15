@@ -1,3 +1,4 @@
+__pycache__/
 /backend/data/*
 bounceinsights.egg.info/*
 backend/src/__pycache__/*
