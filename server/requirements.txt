@@ -96,7 +96,7 @@ firebase_admin
 # unstructured_inference
 # unstructured[pdf]
 # Web Development
-langchain_google_firestore
+langchain-google-firestore
 streamlit
 -e .
 
