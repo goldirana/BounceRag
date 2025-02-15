@@ -41,7 +41,7 @@ pdfminer.six==20231228
 chromadb
 langchain-chroma
 firebase_admin
-
+pi_heif==0.21.0
 # Web Development
 streamlit
 -e .
