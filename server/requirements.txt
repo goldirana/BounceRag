@@ -30,6 +30,7 @@ langchain_community
 unstructured==0.16.11
 fastapi==0.115.8
 pydantic
+pdfminer.six==20231228
 # pdfminer
 # lxml
 # pdfminer
