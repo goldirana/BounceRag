@@ -6,7 +6,7 @@ from math import ceil
 st.title("Query System")
 
 # FAST_API_URL = "http://localhost:8501"
-FAST_API_URL = os.getenv("FAST_API_URL", "http://localhost:8501")
+FAST_API_URL = os.getenv("FAST_API_URL", "https://goldy_frontend.onrender.com")
 icons = {"assistant": "assests/xxx.svg"}
 query = st.chat_input("Message Insight Docs...")
 if "messages" not in st.session_state:
