@@ -2,7 +2,6 @@
 from langchain.schema.messages import HumanMessage, SystemMessage, AIMessage
 from langchain.schema.runnable import RunnablePassthrough, RunnableLambda, RunnableParallel
 from langchain.schema.output_parser import StrOutputParser
-from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from backend.src.storage.firebase_storage import FireStore
 from server.services.prompt_service import get_system_prompt, get_ror_prompt
 from typing import final
