@@ -1,5 +1,3 @@
-# call model and vector database here
-# from backend.src.storage.chroma_storage import VectorDatabase
 from server.services.chroma_service import VectorDatabase
 # from backend.src.extractors.text_summarizer import TextSummarizer
 # from backend.src.extractors.image_summarizer import ImageSummarizer
