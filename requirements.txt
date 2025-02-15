@@ -43,3 +43,4 @@ firebase_admin
 # Web Development
 streamlit
 -e .
+
