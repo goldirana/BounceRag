@@ -27,10 +27,10 @@ uvicorn
 langchain
 langchain-openai
 langchain_community
-# unstructured==0.16.11
+unstructured==0.16.11
 fastapi==0.115.8
 pydantic
-pdfminer
+# pdfminer
 # lxml
 # pdfminer
 # tesseract==0.1.3
