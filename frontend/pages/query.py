@@ -8,7 +8,21 @@ import streamlit.components.v1 as components
 
 st.title("Query System")
 
-# FAST_API_URL = "http://localhost:8501"
+def display_metadata(metadata_list):
+    """
+    Displays metadata in an expandable section.
+
+    Args:
+        metadata_list (list of dict): List of metadata dictionaries.
+            Example: [{'filename': '2023_removed.pdf', 'page_number': '1'}, {'filename': '2023_removed.pdf', 'page_number': '1'}]
+    """
+    with st.expander("References"):
+        st.markdown("**Metadata:**")
+        # Using st.table for a neat tabular display
+        st.table(metadata_list)
+        
+
+# FAST_API_URL = "http://0.0.0.0:5002"
 FAST_API_URL = os.getenv("FAST_API_URL", "https://server-bnxb.onrender.com")
 icons = {
     "user": "👤",  # Add user avatar
@@ -155,6 +169,7 @@ if query:
                                 stream=True).json()
         
             text_response = response.get("response", "No response generated.")["content"]
+            text_metadata = response.get("text_metadata")
             image_urls = response.get("images", [])
         
     # Stream the assistant's text response
@@ -169,6 +184,8 @@ if query:
             else:
                 assistant_text.markdown(streamed_text)
 
+    # Display text metadata
+        display_metadata(text_metadata)
     # Store response in session state
         if image_urls:
             st.session_state.messages.append({
