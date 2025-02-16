@@ -61,7 +61,13 @@ class QueryService:
             dict: A dictionary containing the processed data.
         """
         data = self.query_handler.split_image_text_types(retrieved_docs)
-        return data
+        return data # {
+                #     "images": b64,
+                #     "images_metadata": image_metadata,
+                #     "texts": text,
+                #     "texts_metadata": text_metadata
+                # }
+
     
     
     # def rag_pipeline(self: object, prompt_func, model):
