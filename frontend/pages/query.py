@@ -140,8 +140,8 @@ if query == None:
 </html>
 """
     # Embed the particles.js HTML (adjust height as needed)
-    components.html(particles_js, height=600,width=800 , scrolling=False)
-elif query:
+    components.html(particles_js, height=600,width=900 , scrolling=False)
+if query:
     # Add user message to session state and display immediately
     st.session_state.messages.append({"role": "user", "content": query})
     with st.chat_message("user", avatar=icons["user"]):
