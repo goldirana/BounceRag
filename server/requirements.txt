@@ -99,5 +99,7 @@ firebase_admin
 langchain-google-firestore
 streamlit
 ipython
+markdown
+
 -e .
 
