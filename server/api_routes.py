@@ -25,10 +25,6 @@ class QueryRequest(BaseModel):
 async def search_vb(request: QueryRequest):
 
     query = request.question
-    # print("DEBUG serch vb")
-    # print("--"*100)
-    # print(query)
-    # print("--"*100)
     chain = rag_service.get_chain(query, query_service, model)
     response_data = await chain.ainvoke(query)
     
@@ -36,6 +32,8 @@ async def search_vb(request: QueryRequest):
         return {"error": "Invalid response format", "response": response_data}
 
     text_response = response_data.get("response", "No response generated.")
+    text_metdata = response_data.get("text_metadata", {})
+        
     image_urls = [f"/static/{os.path.basename(img_path)}" 
                   for img_path in response_data.get("image_paths", [])]
 
@@ -44,6 +42,7 @@ async def search_vb(request: QueryRequest):
 
     return {
         "response": text_response,
-        "images": image_urls
+        "images": image_urls,
+        "text_metadata": text_metdata
         
     }
