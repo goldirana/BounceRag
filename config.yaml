@@ -1,6 +1,6 @@
 data_dir:
   raw: backend/data/raw_pdfs
-  reports: data/reports
+  reports: backend/data/reports
 
 model:
   chat_model: gpt-4o
@@ -28,9 +28,9 @@ prompts:
   ror_prompt: rephrase_and_respond.json
 
 vector_database:
-  vectorstore_name: test5
+  vectorstore_name: test7
   embeddings: OpenAIEmbeddings # if changed need to make change in code
-  persist_directory: vector_database/test_directory
+  persist_directory: vector_database/vc
 
 firebase:
   session_id: user_session_new
