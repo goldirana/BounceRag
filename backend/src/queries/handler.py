@@ -76,12 +76,7 @@ class QueryHandler:
                     text.append("None")
                     # print("Text append None")
                     text_metadata.append(doc.metadata)
-        # print("**"*40)
-        # print("before return")
-        # print(b64, text)
-        # print("**"*40)
-        # print(image_metadata, text_metadata)
-        # print("**"*40)
+  
         return {
             "images": b64,
             "images_metadata": image_metadata,
