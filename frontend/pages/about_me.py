@@ -4,7 +4,21 @@ from PIL import Image
 import markdown
 
 from frontend.components.contact import contact_form
-
+st.markdown(
+    """
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+# -------------------------------
+# CUSTOM CSS FOR CONTACT ME BUTTON & EXPANDER HEADER
+# -------------------------------
 st.markdown(
     """
     <style>
@@ -48,23 +62,40 @@ st.markdown(
 def show_contact_form():
     contact_form()
 
+# Get the directory where the current script is located
+
 image_path = "frontend/static/profile.png"
 
 # Layout: use columns to place image and text side by side
 col1, col2 = st.columns(2, gap="small", vertical_alignment="center")
 
-
+# Left Column: Profile Image
 with col1:
     try:
         profile_image = Image.open(image_path)
         st.image(profile_image, width=230)
     except Exception as e:
-        st.error("Profile image not found. Please ensure 'profile.png' exists in the same directory.")
+        st.error("Profile image not found. Please ensure 'profile.jpg.png' exists in the same directory.")
 
+# Right Column: About Me Text and Social Links
 with col2:
-    st.title("Rajesh Goldy", anchor=False)
-    st.write("Data Scientist | Athlone, Ireland| +353 874867926")
+    st.markdown(
+    """
+    <div class="hero" style="text-align: center; margin-top: 1rem; margin-bottom: 2rem;">
+       <h1 style="font-size: 3rem; margin-bottom: 0; animation: fadeIn 1s ease-in-out;">Rajesh Goldy</h1>
+       <h3 style="margin: 0; animation: fadeIn 1.5s ease-in-out;">Data Scientist, Based in Ireland</h3>
+    </div>
+    <style>
+       @keyframes fadeIn {
+           from { opacity: 0; }
+           to { opacity: 1; }
+       }
+    </style>
+    """,
+    unsafe_allow_html=True,
+    )
     
+    # Social Links Section with improved icon UI (keeping the previous bright yellow style)
     st.markdown(
         """
         <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem;">
@@ -107,10 +138,11 @@ st.write("Click on each section below to view detailed experience:")
 
 def expander_experience(title, content):
     with st.expander(title):
-
+        # Convert the markdown content to HTML and wrap it in a styled div
+        # The inner content remains with its previous color scheme.
         html_content = markdown.markdown(content)
         styled_html = (
-            "<div style='background-color:#f9f9f9; padding:1rem; border-radius:8px; border:1px solid #eaeaea;'>"
+            "<div style='background-color:#1a1a1a; color: #ffffff; padding:1rem; border-radius:8px; border:1px solid #444444;'>"
             + html_content +
             "</div>"
         )
@@ -184,6 +216,39 @@ expander_experience(
 
 # --- SKILLS ---
 st.write("\n")
+st.markdown(
+    """
+    <style>
+    .skill-bar {
+        position: relative;
+        display: block;
+        width: 100%;
+        background: #e0e0e0;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    .skill-bar-inner {
+        height: 20px;
+        border-radius: 5px;
+        background: #4A90E2;
+        width: 0%;
+        transition: width 1s ease-in-out;
+    }
+    </style>
+    <script>
+    // Simple script to animate the skill bars after page load.
+    window.onload = function() {
+        const bars = document.querySelectorAll('.skill-bar-inner');
+        bars.forEach(bar => {
+            bar.style.width = bar.getAttribute('data-percent');
+        });
+    }
+    </script>
+    """,
+    unsafe_allow_html=True,
+)
+# --- SKILLS ---
+st.write("\n")
 st.subheader("Hard Skills", anchor=False)
 st.write(
     """
@@ -192,4 +257,45 @@ st.write(
     - Mlflow, Git, OpenAI, LLaMa, Prompt Engineering  
     - Google Cloud, Azure, AWS
     """
+)
+
+
+
+st.markdown(
+    """
+    <style>
+    .navbar {
+        position: sticky;
+        top: 0;
+        background: #ffffff;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid #eaeaea;
+        z-index: 100;
+    }
+    .navbar a {
+        margin: 0 1rem;
+        text-decoration: none;
+        color: #4A90E2;
+        font-weight: 600;
+    }
+    .footer {
+        text-align: center;
+        padding: 1rem;
+        margin-top: 2rem;
+        border-top: 1px solid #eaeaea;
+        color: #777;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# Later at the bottom of your page:
+st.markdown(
+    """
+    <div class="footer">
+        © 2025 Rajesh Goldy. All rights reserved.
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
