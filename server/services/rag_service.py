@@ -173,6 +173,9 @@ class RAGService:
     def get_text_from_vb(query):
         query_service = get_text_query_service()
         text_docs = query_service.search_similar_documents(query)
+        # print("---"*100)
+        # print(len(text_docs))
+        # time.sleep(20)
         return text_docs
     
 
@@ -207,13 +210,11 @@ class RAGService:
                             | RunnableLambda(lambda x: RAGService.get_stored_docs_(query_service, x)), # input: dict, 
                 "question": RunnableLambda(lambda x: RAGService.get_rephrased_question_(query, model))
             })
-            # |  RunnableLambda(lambda x: self.debug(x))
             | RunnableLambda(lambda x: self.prompt_func_(x))
-            | RunnableLambda(lambda result: RAGService.generate_response(model, result))
-            # |  RunnableLambda(lambda x: self.debug(x))
-        )
+            | RunnableLambda(lambda result: RAGService.generate_response(model, result))        )
         
         return chain
+    
     @staticmethod
     def compute_cosine(x):
         total_docs = []
@@ -221,7 +222,7 @@ class RAGService:
         total_docs.extend(x["images_vb"])
         
         # compute cosine similarity
-        get_top_matching_documents(total_docs, x["query"], top_n=5)
+        total_docs = get_top_matching_documents(total_docs, x["query"], top_n=17)
         return total_docs
     
     def get_chain2(self, query, query_service, model):
@@ -237,14 +238,18 @@ class RAGService:
             | RunnableLambda(lambda x: self.prompt_func_(x))
             | RunnableLambda(lambda result: RAGService.generate_response(model, result))
         )
-        
         return chain
     
     def debug(self, x):
         print( "***"*100)
         print("This is debug function ")
         print(type(x))
-        print(x.keys())
-        print(x["text_metadata"])
+        print(len(x))
+        
+        # print(x.keys())
+        print("length of images",len(x["images"]))
+        print("length of text",len(x["texts"]))
+        time.sleep(40)
+        # print(x["text_metadata"])
         return x
    
