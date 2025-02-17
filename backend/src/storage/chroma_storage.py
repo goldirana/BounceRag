@@ -15,12 +15,14 @@ from backend.src.extractors.extract import Extractor
 load_dotenv()
 
 class VectorDatabase(Extractor):
-    def __init__(self, config, persist_directory):
+    def __init__(self, config, persist_directory:str=None, collection_name: str=None):
         super(VectorDatabase, self).__init__()
         self.config = config
         self.vectorstore = None
         if persist_directory != None:
             self.config.persist_directory = persist_directory
+        if collection_name != None:
+            self.config.vectorstore_name = collection_name
     
     def init_chromadb(self, embeddings):
         """
