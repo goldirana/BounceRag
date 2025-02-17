@@ -245,10 +245,10 @@ class RAGService:
         print("This is debug function ")
         print(type(x))
         print(len(x))
-        
+        print(x[0].metadata)
         # print(x.keys())
-        print("length of images",len(x["images"]))
-        print("length of text",len(x["texts"]))
+        # print("length of images",len(x["images"]))
+        # print("length of text",len(x["texts"]))
         time.sleep(40)
         # print(x["text_metadata"])
         return x
