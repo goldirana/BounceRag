@@ -6,6 +6,16 @@ model:
   chat_model: gpt-4o
   temperature: 0.7
 
+gemini:
+  model_name: "gemini-1.5-pro"
+
+deep_seek:
+  model_name: "deep-seek-1.0"
+
+llama:
+  model_name: "llama-1.0"
+  
+
 metadata:
   - filetype
   - page_number
@@ -28,9 +38,9 @@ prompts:
   ror_prompt: rephrase_and_respond.json
 
 vector_database:
-  vectorstore_name: test7
+  vectorstore_name: test8
   embeddings: OpenAIEmbeddings # if changed need to make change in code
-  persist_directory: vector_database/vc
+  persist_directory: vector_database/vb1
 
 firebase:
   session_id: user_session_new

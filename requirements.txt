@@ -43,5 +43,9 @@ firebase_admin
 
 # Web Development
 streamlit
+
+
+# Image modelling
+google-generativeai
 -e .
 
