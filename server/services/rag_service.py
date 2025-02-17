@@ -12,7 +12,10 @@ from typing import *
 from langchain.schema.document import Document
 from server.services.vb_service import (get_image_query_service, 
                                            get_text_query_service)
-
+from server.services.cosine_score import get_top_matching_documents
+from backend.src.llm_models import get_openai_model
+import time
+import sys
 firestore = FireStore()
 firestore_chat_history = firestore.get_chat_history()
 
@@ -137,16 +140,42 @@ class RAGService:
         image_docs = query_service.search_similar_documents(query)
         total_docs.extend(image_docs)
         
-        # to get the text
+        # ---> image data= image_docs -> doc["page_content"]
+        # del query_service
+        # # to get the text
         query_service = get_text_query_service()
         text_docs = query_service.search_similar_documents(query)
         total_docs.extend(text_docs)
+        # print(type(total_docs))
+        # time.sleep(40)
+        
+        total_docs = get_top_matching_documents(total_docs, query, top_n=12)
+        # print("--DEBUG--"*100)
+        # print(len(total_docs))    
         # print("---"*100)
-        # print("length of image docs: ", len(image_docs))
-        # print("length of text docs: ", len(text_docs))
-
+        # print("length of image docs: ", len(text_docs))
+        # # print("length of text docs: ", len(text_docs))
+        # time.sleep(10)
+        # print("image_docs")
+        # print(text_docs[0])
+        # time.sleep(20)
+        # print(text_docs[0].page_content)
+        # # sys.exit()
         return total_docs
     
+    @staticmethod
+    def get_images_from_vb(query):
+        query_service = get_image_query_service()
+        image_docs = query_service.search_similar_documents(query)
+        return image_docs
+    
+    @staticmethod
+    def get_text_from_vb(query):
+        query_service = get_text_query_service()
+        text_docs = query_service.search_similar_documents(query)
+        return text_docs
+    
+
     @staticmethod
     def get_stored_docs_(query_service, context: List[Document]):
         if isinstance(context, list):
@@ -182,6 +211,31 @@ class RAGService:
             | RunnableLambda(lambda x: self.prompt_func_(x))
             | RunnableLambda(lambda result: RAGService.generate_response(model, result))
             # |  RunnableLambda(lambda x: self.debug(x))
+        )
+        
+        return chain
+    @staticmethod
+    def compute_cosine(x):
+        total_docs = []
+        total_docs.extend(x["text_vb"])
+        total_docs.extend(x["images_vb"])
+        
+        # compute cosine similarity
+        get_top_matching_documents(total_docs, x["query"], top_n=5)
+        return total_docs
+    
+    def get_chain2(self, query, query_service, model):
+        chain = (
+            RunnableParallel({
+                "context": RunnableParallel({"text_vb": RunnableLambda(lambda _: RAGService.get_text_from_vb(query)),
+                                             "images_vb": RunnableLambda(lambda _: RAGService.get_images_from_vb(query)),
+                                             "query": RunnablePassthrough()})
+                          | RunnableLambda(lambda x: RAGService.compute_cosine(x)) # list[documents]
+                            | RunnableLambda(lambda x: RAGService.get_stored_docs_(query_service, x)), # input: dict, 
+                "question": RunnableLambda(lambda _: RAGService.get_rephrased_question_(query, model))
+            })
+            | RunnableLambda(lambda x: self.prompt_func_(x))
+            | RunnableLambda(lambda result: RAGService.generate_response(model, result))
         )
         
         return chain
