@@ -1,5 +1,5 @@
 from backend.src.constants import (CONFIG_FILE_PATH, PARAMS_FILE_PATH, FIREBASE_CREDENTIALS_PATH)
-from backend.src.storage.chroma_storage import VectorDatabase
+from server.services.chroma_service import VectorDatabase
 from backend.src.config.configuration import ConfigurationManager
 from backend.src.llm_models import get_openai_embeddings
 from backend.src.llm_models import (get_openai_embeddings, get_openai_model)
