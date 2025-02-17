@@ -37,7 +37,7 @@ class QueryService:
         self.query_handler = QueryHandler(self.multi_vector_retriever)
         self.vectorstore_as_retriever = self.query_handler.get_vectorstore_as_retreiever()
         
-    def search_similar_documents(self, query: str, top_k: int = 400) -> List[Document]:
+    def search_similar_documents(self, query: str, top_k: int = 10) -> List[Document]:
         """
         Performs a similarity search on vectorstore documents.
 
@@ -51,7 +51,9 @@ class QueryService:
         results = self.query_handler.similarity_search(query, top_k)
         return results
 
-        
+    def combine_text_image(self):
+        pass
+    
     def get_stored_docs(self, retrieved_docs: List[Document])-> dict:
         """
         Retrieves and processes stored documents.
