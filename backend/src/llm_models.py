@@ -3,7 +3,7 @@ from backend.src.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
 from backend.src.config.configuration import ConfigurationManager
 from backend.exception import ModelError
 
-import google.generativeai as genai
+# import google.generativeai as genai
 from IPython.display import Markdown
 # from google.colab import userdata
 from dotenv import load_dotenv
@@ -39,8 +39,8 @@ def get_openai_embeddings():
 GOOGLE_API_KEY=os.getenv('GOOGLE_API_KEY')
 # genai.configure(api_key=GOOGLE_API_KEY)
 
-def get_gemini_model():
-    model_name = config_params.gemini.model_name
-    genai.configure(api_key=GOOGLE_API_KEY)
-    model = genai.GenerativeModel(model_name=model_name)
-    return model
+# def get_gemini_model():
+#     model_name = config_params.gemini.model_name
+#     genai.configure(api_key=GOOGLE_API_KEY)
+#     model = genai.GenerativeModel(model_name=model_name)
+#     return model
