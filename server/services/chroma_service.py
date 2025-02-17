@@ -31,7 +31,6 @@ class VectorDatabase():
         return Chroma(self.config.vectorstore_name, 
                       embeddings, 
                       persist_directory=self.config.persist_directory)
-        
     def get_multivector_retriever(self, vectorstore, id_key: str="doc_id") -> MultiVectorRetriever:
         """
         Retrieves a MultiVectorRetriever instance.
