@@ -22,7 +22,7 @@ def display_metadata(metadata_list):
         st.table(metadata_list)
         
 
-FAST_API_URL = "http://0.0.0.0:5004"
+FAST_API_URL = "http://0.0.0.0:5005"
 # FAST_API_URL = os.getenv("FAST_API_URL", "https://server-bnxb.onrender.com")
 icons = {
     "user": "👤",  # Add user avatar

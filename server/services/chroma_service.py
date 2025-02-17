@@ -14,7 +14,7 @@ from backend.src.config.configuration import ConfigurationManager
 load_dotenv()
 
 class VectorDatabase:
-    def __init__(self, config, persist_directory):
+    def __init__(self, config, persist_directory: str=None):
         self.config = config
         self.vectorstore = None
         if persist_directory != None:
