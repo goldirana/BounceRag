@@ -57,6 +57,7 @@
 python-box==6.0.2 
 pyYAML
 tqdm
+numpy
 joblib
 uvicorn
 scikit-learn
@@ -100,7 +101,7 @@ langchain-google-firestore
 streamlit
 ipython
 markdown
-
+torch
 
 -e .
 
