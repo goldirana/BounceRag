@@ -38,11 +38,12 @@ prompts:
   ror_prompt: rephrase_and_respond.json
 
 vector_database:
-  vectorstore_name: test8
+  vectorstore_name: test11
   embeddings: OpenAIEmbeddings # if changed need to make change in code
-  persist_directory: vector_database/vb1 # deprecated
-  image_persist_directory: vector_database/image # added for image 
-  text_persist_directory: vector_database/text # added for text
+  persist_directory: vb # deprecated
+  # image_persist_directory: vector_database/image # added for image 
+  # text_persist_directory: vector_database/text # added for text
+
 
 firebase:
   session_id: user_session_new
