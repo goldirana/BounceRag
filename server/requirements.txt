@@ -59,7 +59,7 @@ pyYAML
 tqdm
 joblib
 uvicorn
-
+scikit-learn
 # Required Libraries
 # torch
 # matplotlib
