@@ -6,12 +6,14 @@ from langchain_openai import ChatOpenAI
 from typing import *
 import base64
 import uuid
+import requests
 from backend.src.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
 import os
 from dotenv import load_dotenv
 from backend.src.llm_models import (get_openai_embeddings, get_openai_model)
 load_dotenv()   
 
+llama_api_key = os.getenv("LLAMA_API_KEY")
 
 class ImageSummarizer:
     """ImageSummarizer is a class designed to summarize images using a language model API. It provides methods to encode images, summarize them, and manage metadata.
@@ -35,16 +37,33 @@ class ImageSummarizer:
         decorator(func):
         add_metadata(encoded_images, summaries, metadata=None, automatic_metadata=False):
     """
-    def __init__(self, config, model: object):
+    def __init__(self, config, model: object=None):
         super().__init__()
         self.config = config
-        self.model = model
+        if model == None:
+            self.api_url = "https://api.llama-api.com/chat/completions",
+            
+            self.headers = {
+            "Authorization": f"Bearer {llama_api_key}",
+            "Content-Type": "application/json"
+             }
+            self.model_name = "llama3.2-11b-vision"
+            self.model = "llama3.2-11b-vision"
+        else:
+            self.model = model
         self.image_summary_prompt = read_json(self.config.summarizer_prompt_dir)["image_summarizer_prompt"]
         
         # automatic metadata
         self.image_path = None
         self.type = "Image"
         self.uuids = None
+        
+        if model==None:
+            self.model_name = "llama3.2-11b-vision"
+        elif "gpt" in model.model_name:
+            self.model_name = "gpt"
+        elif "gemini" in model.model_name:
+            self.model_name = "gemini"
         
     def encode_image(self, image_path):
         """Encode image to base64
@@ -66,23 +85,59 @@ class ImageSummarizer:
             prompt: prompt to summarize image
         Returns:
             str: summary of image"""
-        
-        msg = self.model.invoke(
-            [
-                HumanMessage(
-                    content=[
-                        {"type": "text", "text": self.image_summary_prompt},
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:image/jpeg;base64,{img_base64}"
+        print("Using model for image summarizing:", self.model_name)
+        if "gpt" in self.model_name:
+            msg = self.model.invoke(
+                [
+                    HumanMessage(
+                        content=[
+                            {"type": "text", "text": self.image_summary_prompt},
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{img_base64}"
+                                },
                             },
-                        },
-                    ]
-                )
+                        ]
+                    )
+                ]
+            )
+            return msg.content
+        elif "gemini" in self.model_name: # to use gemin model for image summarizing
+            msg = self.model.generate_content(
+            [
+                self.image_summary_prompt,
+                {
+                    "mime_type": "image/jpg",  # Change if needed (e.g., "image/png")
+                    "data": img_base64
+                }
             ]
-        )
-        return msg.content
+            )
+            return msg.text
+        
+        elif "llama" in self.model_name:
+            payload = {
+                        "model": self.model_name,
+                        "messages": [
+                            {
+                                "role": "user",
+                                "content": [
+                                    {"type": "text", "text": self.image_summary_prompt},
+                                    {
+                                        "type": "image",
+                                        "image": img_base64
+                                    },
+                                ]
+                            }
+                        ],
+                    "max_tokens": 300
+                    }
+
+            response = requests.post(self.api_url, headers=self.headers, json=payload)
+            response.raise_for_status()  # Raise an error if the request fails
+
+            return response.json()["choices"][0]["message"]["content"]
+            
 
     def get_image_path(self, path: str):
         """Returns the images path by joining the main path and the image names
