@@ -29,12 +29,12 @@ image_summarizer = ImageSummarizer(image_summarizer_config, model)
 
 # image vector database
 
-image_vector_database = VectorDatabase(vector_database_config, persist_directory="vector_database/image")
+image_vector_database = VectorDatabase(vector_database_config, collection_name="image")
 image_chroma = image_vector_database.init_chromadb(embeddings=get_openai_embeddings())
 image_retriever = image_vector_database.get_multivector_retriever(image_chroma)
 
 # text vector database
-text_vector_database = VectorDatabase(vector_database_config,persist_directory="vector_database/text")
+text_vector_database = VectorDatabase(vector_database_config, collection_name="text")
 text_chroma = text_vector_database.init_chromadb(embeddings=get_openai_embeddings())
 text_retriever = text_vector_database.get_multivector_retriever(text_chroma)
 
