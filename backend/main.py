@@ -58,18 +58,19 @@ def main(pdf_file_paths=pdf_file_paths):
         images_path = image_summarizer.get_image_path(image_path)
         
         encoded_images = []
-        images_summaries = []
+        image_summaries = []
         meta_data = []
         
         for image in images_path:
             encoded_image, image_source_path = image_summarizer.encode_image(image)
-            images_summaries.append(image_summarizer.image_summarize(encoded_image))
+            image_summaries.append(image_summarizer.image_summarize(encoded_image))
             encoded_images.append(encoded_image)
             meta_data.append({"source": image_source_path,
                             "type": "image",
                             "title": image.split("/")[-1]})
             
-        image_summaries = image_summarizer.add_metadata(encoded_images, images_summaries, metadata=meta_data, 
+        image_summaries = image_summarizer.add_metadata(encoded_images, image_summaries,
+                                                        metadata=meta_data, 
                                                         automatic_metadata=False)
 
         # # text summaries
