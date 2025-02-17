@@ -13,11 +13,12 @@ from backend.src.config.configuration import ConfigurationManager
 
 load_dotenv()
 
-class VectorDatabase():
-    def __init__(self, config):
-        # super(VectorDatabase, self).__init__()
+class VectorDatabase:
+    def __init__(self, config, persist_directory):
         self.config = config
         self.vectorstore = None
+        if persist_directory != None:
+            self.config.persist_directory = persist_directory
     
     def init_chromadb(self, embeddings):
         """
