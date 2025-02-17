@@ -37,7 +37,7 @@ class QueryService:
         self.query_handler = QueryHandler(self.multi_vector_retriever)
         self.vectorstore_as_retriever = self.query_handler.get_vectorstore_as_retreiever()
         
-    def search_similar_documents(self, query: str, top_k: int = 10) -> List[Document]:
+    def search_similar_documents(self, query: str, top_k: int = 7) -> List[Document]:
         """
         Performs a similarity search on vectorstore documents.
 
