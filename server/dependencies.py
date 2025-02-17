@@ -37,18 +37,6 @@ def get_vector_db(config: VectorDatabaseConfig=vector_database_config) -> object
     vector_database = VectorDatabase(config)
     return vector_database
 
-# def get_data_ingestion(config: DataIngestionConfig=data_ingestion_config) -> object:
-#     data_ingestion = DataIngestion(config)
-#     return data_ingestion
-
-# def get_text_summarizer(config: TextSummarizerConfig=text_summarizer_config) -> object:
-#     text_summarizer = TextSummarizer(config, get_llm_model())
-#     return text_summarizer
-
-# def get_image_summarizer(config: ImageSummarizerConfig=image_summarizer_config) -> object:
-#     image_summarizer = ImageSummarizer(config, get_llm_model())
-#     return image_summarizer
-
 def get_query_service():
     query_service = QueryService(embeddings, get_vector_db())
     return query_service
