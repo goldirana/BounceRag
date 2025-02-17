@@ -25,7 +25,7 @@ class QueryRequest(BaseModel):
 async def search_vb(request: QueryRequest):
 
     query = request.question
-    chain = rag_service.get_chain(query, query_service, model)
+    chain = rag_service.get_chain2(query, query_service, model)
     response_data = await chain.ainvoke(query)
     
     if not isinstance(response_data, dict):  

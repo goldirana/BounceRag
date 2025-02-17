@@ -3,7 +3,6 @@ import os
 import requests
 import time
 from math import ceil
-from backend.src.utils import tempfile_cleaner
 import streamlit.components.v1 as components
 
 st.title("Query System")
@@ -17,12 +16,12 @@ def display_metadata(metadata_list):
             Example: [{'filename': '2023_removed.pdf', 'page_number': '1'}, {'filename': '2023_removed.pdf', 'page_number': '1'}]
     """
     with st.expander("References"):
-        st.markdown("**Metadata:**")
+        # st.markdown("**Metadata:**")
         # Using st.table for a neat tabular display
         st.table(metadata_list)
         
 
-FAST_API_URL = "http://0.0.0.0:5005"
+FAST_API_URL = "http://0.0.0.0:5010"
 # FAST_API_URL = os.getenv("FAST_API_URL", "https://server-bnxb.onrender.com")
 icons = {
     "user": "👤",  # Add user avatar
@@ -187,27 +186,32 @@ if query:
     # Display text metadata
         display_metadata(text_metadata)
     # Store response in session state
-        if image_urls:
-            st.session_state.messages.append({
-                "role": "assistant", 
-                "content": {
-                    "text": streamed_text,
-                    "images": image_urls
-                }
-            })
-            st.subheader("Some Relevant Images")
-            num_images = len(image_urls)
-            cols_per_row = 3
-            rows = ceil(num_images / cols_per_row)
-            
-            image_index = 0
-            for _ in range(rows):
-                cols = st.columns(cols_per_row)
-                for col in cols:
-                    if image_index < num_images:
-                        img_url = f"{FAST_API_URL}{image_urls[image_index]}"
-                        with col:
-                            st.image(img_url, use_container_width=True)
-                    image_index += 1
-        else:
-            st.session_state.messages.append({"role": "assistant", "content": streamed_text})
+        if len(image_urls) > 0:
+          st.write(len(image_urls))
+          st.write(image_urls)
+          st.image(f"{FAST_API_URL}{image_urls[0]}")
+          if image_urls:
+              st.session_state.messages.append({
+                  "role": "assistant", 
+                  "content": {
+                      "text": streamed_text,
+                      "images": image_urls
+                  }
+              })
+              st.subheader("Some Relevant Images")
+              # st.subheader(image_urls)
+              num_images = len(image_urls)
+              cols_per_row = 3
+              rows = ceil(num_images / cols_per_row)
+              
+              image_index = 0
+              for _ in range(rows):
+                  cols = st.columns(cols_per_row)
+                  for col in cols:
+                      if image_index < num_images:
+                          img_url = f"{FAST_API_URL}{image_urls[image_index]}"
+                          with col:
+                              st.image(img_url, use_container_width=True)
+                      image_index += 1
+          else:
+              st.session_state.messages.append({"role": "assistant", "content": streamed_text})
