@@ -10,8 +10,6 @@ from backend.src.llm_models import get_openai_model, get_openai_embeddings
 from backend.src.constants import (CONFIG_FILE_PATH, PARAMS_FILE_PATH, FIREBASE_CREDENTIALS_PATH)
 
 import os
-
-
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -28,9 +26,17 @@ vector_database_config = config_manager.get_vectordatabase_config()
 
 data_ingestion = DataIngestion(data_ingestion_config)
 image_summarizer = ImageSummarizer(image_summarizer_config, model)
-vector_database = VectorDatabase(vector_database_config)
-chroma = vector_database.init_chromadb(embeddings=get_openai_embeddings())
-retriever = vector_database.get_multivector_retriever(chroma)
+
+# image vector database
+
+image_vector_database = VectorDatabase(vector_database_config, persist_directory="vector_database/image")
+image_chroma = image_vector_database.init_chromadb(embeddings=get_openai_embeddings())
+image_retriever = image_vector_database.get_multivector_retriever(image_chroma)
+
+# text vector database
+text_vector_database = VectorDatabase(vector_database_config,persist_directory="vector_database/text")
+text_chroma = text_vector_database.init_chromadb(embeddings=get_openai_embeddings())
+text_retriever = text_vector_database.get_multivector_retriever(text_chroma)
 
 
 # pdf file paths
@@ -68,22 +74,25 @@ def main(pdf_file_paths=pdf_file_paths):
             meta_data.append({"source": image_source_path,
                             "type": "image",
                             "title": image.split("/")[-1]})
-            
+        
+        # add image metadata
         image_summaries = image_summarizer.add_metadata(encoded_images, image_summaries,
                                                         metadata=meta_data, 
                                                         automatic_metadata=False)
-
-        # # text summaries
+        # --> Store image summaries along with metadata
+        image_vector_database.store_to_vb(image_summaries, image_retriever)
+        
+        
+        # get text summaries
         text_summarizer = TextSummarizer(text_summarizer_config, model)
         text_data = text_summarizer.get_text_data(raw_pdf_elements)     
         
-        # Store text data
+        # Store text summaries along with metadata
         raw_text, text_summaries, summary_metadata = text_summarizer.generate_summary(text_data)
         text_summaries = text_summarizer.add_metadata(raw_text, text_summaries, summary_metadata)
-        vector_database.store_to_vb(text_summaries, retriever)
+        text_vector_database.store_to_vb(text_summaries, text_retriever)
         
-        # Store image data
-        vector_database.store_to_vb(image_summaries, retriever)
+      
         
 
 if __name__ == "__main__":
