@@ -10,6 +10,8 @@ import os
 import uuid
 from typing import *
 from langchain.schema.document import Document
+from server.services.vb_service import (get_image_query_service, 
+                                           get_text_query_service)
 
 firestore = FireStore()
 firestore_chat_history = firestore.get_chat_history()
@@ -123,10 +125,28 @@ class RAGService:
         prompt = prompt.format(query=query)
         return model.invoke(prompt).content
 
-    @staticmethod
-    def search_similar_documents_(query_service, query):
-        return query_service.search_similar_documents(query)
+    # @staticmethod
+    # def search_similar_documents_(query_service, query):
+    #     return query_service.search_similar_documents(query)
 
+    @staticmethod
+    def search_similar_documents_(query) -> List[Document]:
+        total_docs = []
+        # to get the images
+        query_service = get_image_query_service()
+        image_docs = query_service.search_similar_documents(query)
+        total_docs.extend(image_docs)
+        
+        # to get the text
+        query_service = get_text_query_service()
+        text_docs = query_service.search_similar_documents(query)
+        total_docs.extend(text_docs)
+        # print("---"*100)
+        # print("length of image docs: ", len(image_docs))
+        # print("length of text docs: ", len(text_docs))
+
+        return total_docs
+    
     @staticmethod
     def get_stored_docs_(query_service, context: List[Document]):
         if isinstance(context, list):
@@ -152,7 +172,8 @@ class RAGService:
     def get_chain(self, query, query_service, model):
         chain = (
             RunnableParallel({
-                "context": RunnableLambda(lambda x: RAGService.search_similar_documents_(query_service, query)) # list[document]
+                "context": RunnableLambda(lambda x: RAGService.search_similar_documents_(query)) # list[document]
+                            # RunnableLambda(lambda x: RAGService.search_similar_documents_(query_service, query)) # list[document]
                             # | RunnableLambda(lambda x: self.debug(x))
                             | RunnableLambda(lambda x: RAGService.get_stored_docs_(query_service, x)), # input: dict, 
                 "question": RunnableLambda(lambda x: RAGService.get_rephrased_question_(query, model))
