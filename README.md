@@ -1,6 +1,7 @@
 # RAG Project
 webpage to access rag system: https://frontend-9zk7.onrender.com/ 
 If you encouter 505 error, please contact at goldirana3210@gmail.com to start server again
+
 ## Project Overview
 This project implements a Retrieval-Augmented Generation (RAG) system using FastAPI for the backend and Streamlit for the frontend. It provides an interface for querying and generating responses based on document content.
 
@@ -130,7 +131,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 5. Hybrid Search
    - How to:
       * 5.1 Combine vector search (semantic similarity) with keyword-based search (BM25) for better retrieval accuracy.
-
       * 5.2 Libraries like Weaviate or Pinecone support hybrid search out of the box. (Currently system uses chromadb because of free version but pinecone can be used to improve memory because of cloud storage of pinecone)
 6. Caching for Frequent Queries
    - How to:

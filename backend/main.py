@@ -10,6 +10,7 @@ from backend.src.llm_models import get_openai_model, get_openai_embeddings
 from backend.src.constants import (CONFIG_FILE_PATH, PARAMS_FILE_PATH, FIREBASE_CREDENTIALS_PATH)
 
 import os
+from tqdm import tqdm
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -67,7 +68,7 @@ def main(pdf_file_paths=pdf_file_paths):
         image_summaries = []
         meta_data = []
         
-        for image in images_path:
+        for image in tqdm(images_path):
             encoded_image, image_source_path = image_summarizer.encode_image(image)
             image_summaries.append(image_summarizer.image_summarize(encoded_image))
             encoded_images.append(encoded_image)
