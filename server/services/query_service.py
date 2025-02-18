@@ -48,7 +48,11 @@ class QueryService:
         Returns:
             List[Document]: A list of documents that are most similar to the query.
         """
-        results = self.query_handler.similarity_search(query, top_k)
+        try:
+            results = self.query_handler.similarity_search(query, top_k)
+        except:
+            results = self.query_handler.similarity_search(query, 5)
+            
         return results
 
     def combine_text_image(self):

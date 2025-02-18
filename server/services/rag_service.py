@@ -16,8 +16,13 @@ from server.services.cosine_score import get_top_matching_documents
 from backend.src.llm_models import get_openai_model
 import time
 import sys
+from backend.src.utils.common import read_json
+
 firestore = FireStore()
 firestore_chat_history = firestore.get_chat_history()
+
+image_summarizer_prompt = read_json("backend/src/prompts/summarizer.json")
+image_summarizer_prompt = image_summarizer_prompt["image_summarizer_prompt"]
 
 
 class RAGService:
@@ -48,6 +53,39 @@ class RAGService:
             """
 
             return {k: v for k, v in x.items() if k in filters}
+        
+    # def image_summarize(self, img_base64_list: List[str]) -> str:
+    #     """Summarize multiple images using LLM model API
+    #     Args:
+    #         img_base64_list: List of base64 encoded images
+    #     Returns:
+    #         str: summary of images"""
+    #     model = get_openai_model()
+    #     messages = [
+    #         HumanMessage(
+    #             content=[
+    #                 {"type": "text", "text": image_summarizer_prompt},
+    #                 {
+    #                     "type": "image_url",
+    #                     "image_url": {
+    #                         "url": f"data:image/jpg;base64,{img_base64}"
+    #                     },
+    #                 },
+    #             ]
+    #         )
+    #         for img_base64 in img_base64_list[:3]
+    #     ]
+    #     combined_messages = "\n".join(
+    #     [f"-{model.invoke(msg.content).content}" for msg in messages[:3]]
+    #     )
+    #     image_summary = []
+    #     for msg in messages:
+    #         image_summary.append(model.invoke(msg).content)   
+    #     print("-0---00"*100)
+    #     print("\n".join(image_summary))
+    #     time.sleep(40)  
+    #     return "\n".join(image_summary)
+    
         
     def prompt_func(self, dict):
         """
@@ -81,7 +119,11 @@ class RAGService:
 
         # Add text content if available
         if "texts" in dict["context"] and len(dict["context"]["texts"]) > 0:
+            print("-----***"* 100)
+            
             format_texts = "\n".join(dict["context"]["texts"])
+            print(format_texts)
+            time.sleep(30)
             message_content.append(
                 HumanMessage(content=f"""Answer the question based only on the following context:
                 Question: {dict["question"]}
@@ -92,11 +134,14 @@ class RAGService:
             )
         # save and decode raw image
         image_paths = []
+        # img_base64_list = []
         if "images" in dict["context"] and len(dict["context"]["images"]) > 0:
             for img_b64 in dict["context"]["images"]:
                 img_path = self.save_image(img_b64)
                 if img_path:
                     image_paths.append(img_path)
+            # message_content.append(
+            #     self.image_summarize(dict["context"]["images"]))
 
         return {"messages": message_content, "image_paths": image_paths,
                 "text_metadata": meta_data}
@@ -140,27 +185,13 @@ class RAGService:
         image_docs = query_service.search_similar_documents(query)
         total_docs.extend(image_docs)
         
-        # ---> image data= image_docs -> doc["page_content"]
-        # del query_service
+
         # # to get the text
         query_service = get_text_query_service()
         text_docs = query_service.search_similar_documents(query)
         total_docs.extend(text_docs)
-        # print(type(total_docs))
-        # time.sleep(40)
         
         total_docs = get_top_matching_documents(total_docs, query, top_n=12)
-        # print("--DEBUG--"*100)
-        # print(len(total_docs))    
-        # print("---"*100)
-        # print("length of image docs: ", len(text_docs))
-        # # print("length of text docs: ", len(text_docs))
-        # time.sleep(10)
-        # print("image_docs")
-        # print(text_docs[0])
-        # time.sleep(20)
-        # print(text_docs[0].page_content)
-        # # sys.exit()
         return total_docs
     
     @staticmethod
@@ -173,9 +204,6 @@ class RAGService:
     def get_text_from_vb(query):
         query_service = get_text_query_service()
         text_docs = query_service.search_similar_documents(query)
-        # print("---"*100)
-        # print(len(text_docs))
-        # time.sleep(20)
         return text_docs
     
 
@@ -215,12 +243,21 @@ class RAGService:
         
         return chain
     
+    def get_encoded_images(self, docs: list[Document]):
+        img_base64_list = []
+        for i in docs:
+            img_base64_list.append(i.metadata["raw_string"])
+            
+        msg = self.image_summarize(img_base64_list)
+        return msg
+        
     @staticmethod
     def compute_cosine(x):
         total_docs = []
-        total_docs.extend(x["text_vb"])
         total_docs.extend(x["images_vb"])
-        
+        total_docs.extend(x["text_vb"])
+        # print("debihg"*100)
+        # time.sleep(30)
         # compute cosine similarity
         total_docs = get_top_matching_documents(total_docs, x["query"], top_n=17)
         return total_docs

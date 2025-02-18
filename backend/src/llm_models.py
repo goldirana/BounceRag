@@ -15,7 +15,7 @@ load_dotenv()
 
 config_manager = ConfigurationManager(CONFIG_FILE_PATH, PARAMS_FILE_PATH)
 config_params = config_manager.config
-
+import time
 def get_openai_model():
     """
     Initializes and returns an instance of the ChatOpenAI model with specified parameters.
@@ -26,7 +26,8 @@ def get_openai_model():
     try:
         model_name = config_params.model.chat_model
         model_temp = config_params.model.temperature
-        model = ChatOpenAI(temperature=model_temp, model_name=model_name)
+        model = ChatOpenAI(temperature=model_temp, model_name="gpt-4o")
+
         return model
     except ModelError:
         raise ModelError("Model initialization failed")
