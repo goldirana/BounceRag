@@ -1,18 +1,17 @@
+from backend.src.llm_models import  get_openai_model
 from backend.src.config.configuration import ConfigurationManager
 from backend.src.utils.common import read_json
 from langchain.schema.messages import HumanMessage
 from langchain.schema.document import Document
 from langchain_openai import ChatOpenAI
-from typing import *
-import base64
-import uuid
-import requests
-from backend.src.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
-import os
+import base64, uuid, os, requests
 from dotenv import load_dotenv
-from backend.src.llm_models import (get_openai_embeddings, get_openai_model)
-load_dotenv()   
+from typing import *
+from backend.src.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
+from backend.exception import *
 
+
+load_dotenv()   
 llama_api_key = os.getenv("LLAMA_API_KEY")
 
 class ImageSummarizer:
@@ -58,6 +57,7 @@ class ImageSummarizer:
         self.type = "Image"
         self.uuids = None
         
+        # setting different model to use
         if model==None:
             self.model_name = "llama3.2-11b-vision"
         elif "gpt" in model.model_name:
@@ -65,6 +65,7 @@ class ImageSummarizer:
         elif "gemini" in model.model_name:
             self.model_name = "gemini"
         
+    @log_error(ImageSummarizerError, failure_message="Error occured while encoding image")
     def encode_image(self, image_path):
         """Encode image to base64
         Args:
@@ -77,7 +78,8 @@ class ImageSummarizer:
         except Exception as e:
             print(f"Error: {e}")
             raise e
-        
+    
+    @log_error(ImageSummarizerError, failure_message="Error occured while summarizing image")
     def image_summarize(self, img_base64) -> str:
         """Summarize image using LLM model API
         Args:
@@ -85,7 +87,7 @@ class ImageSummarizer:
             prompt: prompt to summarize image
         Returns:
             str: summary of image"""
-        print("Using model for image summarizing:", self.model_name)
+        # print("Using model for image summarizing:", self.model_name)
         if "gpt" in self.model_name:
             msg = self.model.invoke(
                 [
@@ -138,7 +140,7 @@ class ImageSummarizer:
 
             return response.json()["choices"][0]["message"]["content"]
             
-
+    @log_error(ImageSummarizerError, failure_message="Error occured while getting image path")
     def get_image_path(self, path: str):
         """Returns the images path by joining the main path and the image names
         Args:
@@ -193,6 +195,7 @@ class ImageSummarizer:
             return summaries_with_metadata
         return wrapper
     
+    @log_error(ImageSummarizerError, failure_message="Error occured while adding metadata")
     @decorator
     def add_metadata(self, encoded_images, summaries, metadata: list[dict]=None, 
                      automatic_metadata=False) -> Tuple[List[tuple], List[Document]]:

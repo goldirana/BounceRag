@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from backend.src.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
 from typing import *
 import uuid
+from backend.exception import *
 
 load_dotenv()
 
@@ -18,7 +19,8 @@ class TextSummarizer(Extractor):
         super().__init__()
         self.config = config
         self.model = model
-        
+    
+    @log_error(TextSummarizerError, failure_message="Error while generating summary")
     def generate_summary(self, docs: List[dict]):
         """
         Generates summaries for a list of documents.
@@ -38,6 +40,7 @@ class TextSummarizer(Extractor):
         summaries = summarize_chain.batch(raw_text, {"max_concurrency": 5})
         return raw_text, summaries, metadata
     
+    @log_error(TextSummarizerError, failure_message="Error while getting composite and listitems")
     def get_text_data(self, raw_pdf_elements)-> List[Any]:
         """
         Extracts text data from a list of raw PDF elements.
@@ -77,6 +80,7 @@ class TextSummarizer(Extractor):
                 new_metadata[key] = str(value)
         return new_metadata
         
+    @log_error(TextSummarizerError, failure_message="Error while adding metadata to summaries")
     def add_metadata(self, raw_text, summaries, summary_metdata: dict=None):
         """
         Adds metadata to the provided summaries and returns a list of Document objects with the enriched metadata.

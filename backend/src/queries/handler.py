@@ -7,7 +7,7 @@ from IPython.display import display, HTML
 from langchain.retrievers.multi_vector import MultiVectorRetriever
 from copy import deepcopy
 import io
-
+from backend.exception import *
 
 class QueryHandler:
     def __init__(self, retriever):
@@ -26,7 +26,8 @@ class QueryHandler:
     
     def query_by_document(self, document: Document, top_k: int=5):
         return self.vectorstore.query_by_document(document, top_k)
-        
+    
+    @log_error(QueryError, failure_message="Error while mapping raw documents")
     def map_raw_docs(self, vectorstore_results: List[Document]) -> List:
         """To map the raw documents from vectorstore results by using doc_id from metadata
         Args:
@@ -47,7 +48,7 @@ class QueryHandler:
             i.metadata.pop("raw_text", None)
             meta_data.append(i.metadata)
         return raw_docs, meta_data
-        
+    
     @staticmethod
     def split_image_text_types(docs: List[Document]) -> Dict:
     #     ''' Split base64-encoded images and texts '''
@@ -96,7 +97,8 @@ class QueryHandler:
     def plot_img_base64(self, img_base64: str):
         img = Image.open(io.BytesIO(b64decode(img_base64)))
         img.show()
-        
+    
+    @log_error(QueryError, failure_message="Error while getting vectorstore as retriever")
     def get_vectorstore_as_retreiever(self) -> MultiVectorRetriever:
         if self.vectorstore == None:
             raise ValueError("Vectorstore is not initialized")
@@ -104,5 +106,5 @@ class QueryHandler:
         return self.vectorstore.as_retriever()
     
 
-if __name__ == "__main__":
-    query_handler = QueryHandler(retriever)
+# if __name__ == "__main__":
+#     query_handler = QueryHandler(retriever)

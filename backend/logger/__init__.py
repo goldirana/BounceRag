@@ -23,6 +23,7 @@ logging.basicConfig(
 
 logger = logging.getLogger()
 
+
 if __name__ == "__main__":
     logger.info("\033[1;31m This is test\033[0m") # highlighting it with color code
     logger.error("This is error")

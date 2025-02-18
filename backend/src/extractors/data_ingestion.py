@@ -3,7 +3,7 @@ from backend.src.config.configuration import ConfigurationManager
 from backend.src.utils.common import create_directory
 from backend.src.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
 import os
-
+from backend.exception import *
 
 class DataIngestion(Extractor):
     """DataIngestion class for processing PDF files and extracting data.
@@ -22,6 +22,8 @@ class DataIngestion(Extractor):
         self.raw_pdf_elements = None
         self.current_pdf_file = None # to keep track of current pdf file being processed (future case)
     
+    @log_error(DataIngestionError, sucess_message="Raw Data fetched sucessfully",
+               failure_message="Error fetching raw data from pdf")
     def process_pdf(self, pdf_file_path: str, **kwargs):  
         """
         Processes a PDF file by extracting data and organizing it into a directory structure.

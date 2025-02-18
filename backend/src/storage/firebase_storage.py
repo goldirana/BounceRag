@@ -5,6 +5,7 @@ from firebase_admin import credentials, firestore
 from langchain_google_firestore import FirestoreChatMessageHistory
 from backend.src.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
 from typing import *
+from backend.exception import *
 
 
 config_manager = ConfigurationManager(CONFIG_FILE_PATH, PARAMS_FILE_PATH)
@@ -16,7 +17,8 @@ class FireStore:
         if config == None:
             self.config = config
         self.config = config
-            
+    
+    @log_error(AuthenticationError, failure_message="Authentication failed")
     def get_firestore_client(self) -> firestore.client:
         """
         Initializes and returns a Firestore client.
@@ -31,6 +33,7 @@ class FireStore:
             firebase_admin.initialize_app(cred)
         return firestore.client()
     
+    @log_error(AuthenticationError, failure_message="Error while getting chat history")
     def get_chat_history(self) -> FirestoreChatMessageHistory:
         """
         Retrieve the chat history from Firestore.
@@ -46,7 +49,8 @@ class FireStore:
             client=self.get_firestore_client()
         )
         return chat_history
-        
+    
+
     def load_messages(self, limit:int=5)-> List:
         """
         Load a limited number of messages from the chat history.
@@ -59,6 +63,7 @@ class FireStore:
         chat_history=self.get_chat_history()
         return chat_history.messages[-limit:]
     
+    @log_error(AuthenticationError, failure_message="Error while adding user message")
     def add_user_message(self,chat_history: object, human_message: str, ai_message: str) -> None:
         """
         Adds a human message and an AI message to the chat history.

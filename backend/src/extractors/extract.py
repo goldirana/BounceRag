@@ -4,7 +4,7 @@ from langchain.schema.document import Document
 from unstructured.partition.pdf import partition_pdf
 from unstructured.documents.elements import CompositeElement, Table, Image, ListItem  
 import os, re
-from backend.logger import logger
+from backend.exception import *
 
 
 class Extractor:
@@ -30,6 +30,8 @@ class Extractor:
     def __init__(self):
         pass
     
+    @log_error(DataIngestionError, sucess_message="Metadata fetched sucessfully", 
+            failure_message="Error fetching metadata from pdf")
     def get_metadata(raw_pdf_element: List) -> List[Dict]:
         """
         Extracts metadata from a list of raw PDF elements.
@@ -44,9 +46,10 @@ class Extractor:
         metadata = []
         for element in raw_pdf_element:
             metadata.append(element.metadata.to_dict())
-        
         return metadata
- 
+    
+    @log_error(DataIngestionError, sucess_message="Year fetched sucessfully", 
+            failure_message="Error getting year from file")
     def get_year(self, file: str) -> str:
         """
         Extracts the year from the given file name.
@@ -83,6 +86,8 @@ class Extractor:
         raw_pdf_elements = partition_pdf(filename=pdf_file, **kwargs)
         return raw_pdf_elements
     
+    @log_error(DataIngestionError, sucess_message="Unique ID generated sucessfully",
+               failure_message="Error generating unique ID")
     def generate_unique_id(self, data: Iterator)-> List[str]:
         """
         Generate a list of unique IDs for each item in the provided data iterator.

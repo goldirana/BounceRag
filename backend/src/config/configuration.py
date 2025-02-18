@@ -8,6 +8,7 @@ from backend.src.entity.config_entity import (ImageSummarizerConfig,
                                       PromptConfig)
 import os
 from typing import *
+from backend.exception import *
 
 
 class ConfigurationManager:
@@ -36,7 +37,7 @@ class ConfigurationManager:
     get_firebase_params():
         Retrieves the configuration parameters for Firebase.
     """
-    
+    @log_error(ConfigurationError, failure_message="Error while loading configuration files")
     def __init__(self, CONFIG_FILE_PATH, PARAMS_FILE_PATH):
         self.config = read_yaml(CONFIG_FILE_PATH)
         self.params = read_yaml(PARAMS_FILE_PATH)
@@ -44,7 +45,8 @@ class ConfigurationManager:
             # print("---"*100)
             # print(os.path.abspath(__file__))
             raise ValueError("ERROR: Config file not loaded. Check config.yaml path.")
-        
+    
+    @log_error(ConfigurationError, failure_message="Error while loading Image Summarizer Config")
     def get_image_summarizer_params(self) -> ImageSummarizerConfig:
         params = ImageSummarizerConfig(
             model=self.config.model.chat_model,
@@ -52,6 +54,7 @@ class ConfigurationManager:
             summarizer_prompt_dir=self.config.prompts.summarizer_prompt_dir)
         return params
     
+    @log_error(ConfigurationError, failure_message="Error while loading Text Summarizer Config")
     def get_text_summarizer_params(self) -> TextSummarizerConfig:
         summarizer_prompt_dir=read_json(self.config.prompts.summarizer_prompt_dir)
         
@@ -62,26 +65,30 @@ class ConfigurationManager:
             text_summarizer_prompt=summarizer_prompt_dir["text_summarizer_prompt"],
         )
         return params
-    
+
+    @log_error(ConfigurationError, failure_message="Error while loading Data Ingestion Config")
     def get_data_ingestion_params(self) -> DataIngestionConfig:
         params = DataIngestionConfig(
             raw=self.config.data_dir.raw,
             reports=self.config.data_dir.reports,
             metadata=self.config.metadata)
         return params
-    
+
+    @log_error(ConfigurationError, failure_message="Error while loading Vectordatabase Config")
     def get_vectordatabase_config(self) -> VectorDatabaseConfig:
         params = VectorDatabaseConfig(
             vectorstore_name=self.config.vector_database.vectorstore_name,
             persist_directory=self.config.vector_database.persist_directory)
         return params
-    
+
+    @log_error(ConfigurationError, failure_message="Error while loading Prompt Config")
     def get_prompt_config(self) -> Optional[Union[PromptConfig, dict]]:
         params = PromptConfig(prompt_dir=self.config.prompts.prompt_dir,
                                 system_message_prompt=self.config.prompts.system_message_prompt,
                                 ror_prompt=self.config.prompts.ror_prompt)
         return params
-
+    
+    @log_error(ConfigurationError, failure_message="Error while getting firebase config")
     def get_firebase_params(self):
         cred = FireStoreConfig(
             firebase_credentials_path=self.config.firebase.firebase_credentials_path,

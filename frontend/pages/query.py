@@ -21,8 +21,8 @@ def display_metadata(metadata_list):
         st.table(metadata_list)
         
 
-# FAST_API_URL = "http://0.0.0.0:5012"
-FAST_API_URL = os.getenv("FAST_API_URL", "https://server-bnxb.onrender.com")
+FAST_API_URL = "http://0.0.0.0:5013"
+# FAST_API_URL = os.getenv("FAST_API_URL", "https://server-bnxb.onrender.com")
 icons = {
     "user": "👤",  # Add user avatar
     "assistant": "frontend/static/ai.gif"
@@ -187,9 +187,6 @@ if query:
         display_metadata(text_metadata)
     # Store response in session state
         if len(image_urls) > 0:
-          st.write(len(image_urls))
-          st.write(image_urls)
-          st.image(f"{FAST_API_URL}{image_urls[0]}")
           if image_urls:
               st.session_state.messages.append({
                   "role": "assistant", 

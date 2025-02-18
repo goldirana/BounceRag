@@ -160,13 +160,13 @@ def save_json(object, path):
     except Exception as e:
         logger.error(e)
 
-def log_error(sucess_message=None, faliure_message=None):
+def log_error(exception, sucess_message=None, failure_message=None):
     """
     A decorator that logs a success message if the decorated function executes without exceptions,
     and logs an error message along with the exception details if an exception is raised.
     Args:
         sucess_message (str, optional): The message to log if the function executes successfully.
-        faliure_message (str, optional): The message to log if the function raises an exception.
+        failure_message (str, optional): The message to log if the function raises an exception.
     Returns:
         function: The decorated function with added logging functionality.
     """
@@ -177,11 +177,11 @@ def log_error(sucess_message=None, faliure_message=None):
                 if sucess_message is not None:
                     logger.info(sucess_message)
                 return result
-            except Exception as e:
-                print(f"ERROR: {faliure_message}\nException in {func.__name__}: {e}")
+            except exception as e:
+                print(f"ERROR: {failure_message}\nException in {func.__name__}: {e}")
                 raise
         return wrapper
-    return decorator  
+    return decorator 
 
 def perform_multiprocessing(func, iterable):
     with Pool(processes=cpu_count()) as pool:

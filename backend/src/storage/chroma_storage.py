@@ -6,11 +6,12 @@ from langchain_openai import OpenAIEmbeddings
 from zipfile import ZipFile
 from typing import *
 from dotenv import load_dotenv
-import os, uuid
-
+import os
 from backend.src.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
 from backend.src.config.configuration import ConfigurationManager
 from backend.src.extractors.extract import Extractor
+from backend.exception import *
+
 
 load_dotenv()
 
@@ -24,6 +25,7 @@ class VectorDatabase(Extractor):
         if collection_name != None:
             self.config.vectorstore_name = collection_name
     
+    @log_error(StorageError, failure_message="Error while initializing ChromaDB")
     def init_chromadb(self, embeddings):
         """
         Initializes a Chroma database with the given embeddings.
@@ -36,7 +38,8 @@ class VectorDatabase(Extractor):
         return Chroma(self.config.vectorstore_name, 
                       embeddings, 
                       persist_directory=self.config.persist_directory)
-        
+    
+    @log_error(StorageError, failure_message="Error while initializing MultiVectorRetriever")
     def get_multivector_retriever(self, vectorstore, id_key: str="doc_id") -> MultiVectorRetriever:
         """
         Retrieves a MultiVectorRetriever instance.
@@ -53,7 +56,8 @@ class VectorDatabase(Extractor):
             docstore=store,
             id_key=id_key
         )
-       
+    
+    @log_error(DataIngestionError, failure_message="Error while generating unique id")
     def generate_document(self, data, metadata=None) -> Document:
         """
         Generates a list of Document objects from the provided data and metadata.
@@ -71,7 +75,7 @@ class VectorDatabase(Extractor):
                         for data_, metadata_ in zip(data, metadata)]
         return documents
 
-    @staticmethod
+    log_error(StorageError, failure_message="Error while performing sanity check on metadata before storage")
     def sanity_check_for_metadata(metadata: dict):
         """
         Perform a sanity check on the metadata dictionary to ensure all values are strings.
@@ -95,6 +99,7 @@ class VectorDatabase(Extractor):
                 new_metadata[key] = str(value)
         return new_metadata
     
+    @log_error(StorageError, failure_message="Error while adding data to vectorbase")
     def store_to_vb(self, summaries: List[Document], retriever)->None:
         """
         Stores a list of document summaries to the vector base using the provided retriever.
@@ -110,7 +115,7 @@ class VectorDatabase(Extractor):
             print("Error in storing data to vectorbase: ", e)
             raise e
 
-    
+    @log_error(StorageError, failure_message="Error while compressing database")
     def zip_vector_database(self) -> None:
         """
         Compresses the contents of the directory specified by `self.config.persist_directory` 
@@ -124,7 +129,8 @@ class VectorDatabase(Extractor):
             for root, dirs, files in os.walk(self.config.persist_directory):
                 for file in files:
                     zipf.write(os.path.join(root, file))
-
+                    
+    @log_error(StorageError, failure_message="Error while unzipping vectorbase")
     def unzip_vectorbase(self, extract_to) -> None:
         """
         Extracts the contents of a zipped vector base file to the specified directory.
@@ -138,6 +144,7 @@ class VectorDatabase(Extractor):
         with ZipFile(self.config.persist_directory + ".zip", 'r') as zip_ref:
             zip_ref.extractall(extract_to)
 
+    @log_error(StorageError, failure_message="Error while loading vectorbase as retriever")
     def get_vectorstore_as_retreiever(self, vectorstore) -> MultiVectorRetriever:  
         """
         Converts the given vector store into a MultiVectorRetriever.
