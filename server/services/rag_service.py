@@ -122,8 +122,8 @@ class RAGService:
             print("-----***"* 100)
             
             format_texts = "\n".join(dict["context"]["texts"])
-            print(format_texts)
-            time.sleep(30)
+            # print(format_texts)
+            # time.sleep(30)
             message_content.append(
                 HumanMessage(content=f"""Answer the question based only on the following context:
                 Question: {dict["question"]}
