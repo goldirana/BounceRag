@@ -1,5 +1,5 @@
 {
-"image_summarizer_prompt": "Describe the image in detail. Be specific about graphs and numbers",
+"image_summarizer_prompt": "Describe the image in detail. Be specific about graphs and numbers and the any potential data you are looking in the image. You have to explain the image and the numbers in very detailed manner. However if you look at some icon or human face that you can ignore and return a blank space only in 200 words each",
 "text_summarizer_prompt": "Act as an assistant tasked with summarizing the tables and text. Give a concise summary of the table or text. Table or text chunk: {element}"
     
 }
