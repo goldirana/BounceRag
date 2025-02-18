@@ -1,5 +1,6 @@
 # RAG Project
-
+webpage to access rag system: https://frontend-9zk7.onrender.com/ 
+If you encouter 505 error, please contact at goldirana3210@gmail.com to start server again
 ## Project Overview
 This project implements a Retrieval-Augmented Generation (RAG) system using FastAPI for the backend and Streamlit for the frontend. It provides an interface for querying and generating responses based on document content.
 
