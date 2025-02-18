@@ -101,7 +101,6 @@ langchain-google-firestore
 streamlit
 ipython
 markdown
-torch
 
 -e .
 

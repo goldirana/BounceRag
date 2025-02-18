@@ -1,8 +1,7 @@
 from sklearn.metrics.pairwise import cosine_similarity
 from backend.src.llm_models import (get_openai_embeddings)
 import numpy as np
-import torch.nn.functional as F
-import torch
+
 
 def get_top_matching_documents(documents, query, top_n=5):
     """
