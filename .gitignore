@@ -19,3 +19,4 @@ server/services/__pycache__/*
 
 .DS_Store
 logs/running.logslogs/
+logs/
