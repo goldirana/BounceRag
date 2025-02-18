@@ -119,11 +119,8 @@ class RAGService:
 
         # Add text content if available
         if "texts" in dict["context"] and len(dict["context"]["texts"]) > 0:
-            print("-----***"* 100)
             
             format_texts = "\n".join(dict["context"]["texts"])
-            # print(format_texts)
-            # time.sleep(30)
             message_content.append(
                 HumanMessage(content=f"""Answer the question based only on the following context:
                 Question: {dict["question"]}
@@ -256,18 +253,18 @@ class RAGService:
         total_docs = []
         total_docs.extend(x["images_vb"])
         total_docs.extend(x["text_vb"])
-        # print("debihg"*100)
-        # time.sleep(30)
+    
         # compute cosine similarity
-        total_docs = get_top_matching_documents(total_docs, x["query"], top_n=17)
+        total_docs = get_top_matching_documents(total_docs, x["question"], top_n=17)
         return total_docs
     
     def get_chain2(self, query, query_service, model):
         chain = (
             RunnableParallel({
                 "context": RunnableParallel({"text_vb": RunnableLambda(lambda _: RAGService.get_text_from_vb(query)),
+                                            #  | RunnableLambda(lambda _: self.debug(_)),
                                              "images_vb": RunnableLambda(lambda _: RAGService.get_images_from_vb(query)),
-                                             "query": RunnablePassthrough()})
+                                             "question": RunnablePassthrough()})
                           | RunnableLambda(lambda x: RAGService.compute_cosine(x)) # list[documents]
                             | RunnableLambda(lambda x: RAGService.get_stored_docs_(query_service, x)), # input: dict, 
                 "question": RunnableLambda(lambda _: RAGService.get_rephrased_question_(query, model))
@@ -282,11 +279,12 @@ class RAGService:
         print("This is debug function ")
         print(type(x))
         print(len(x))
-        print(x[0].metadata)
+        print(x)
+        # print(x[0].metadata)
         # print(x.keys())
         # print("length of images",len(x["images"]))
         # print("length of text",len(x["texts"]))
         time.sleep(40)
-        # print(x["text_metadata"])
+        # print(x["text_metadata"])w
         return x
    
